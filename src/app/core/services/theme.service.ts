@@ -8,6 +8,7 @@ export class ThemeService {
   private storageKey = 'portfolio-theme';
   private document = inject(DOCUMENT);
   private themeSignal = signal<ThemeName>(this.readInitial());
+  private transitionTimer: number | null = null;
 
   readonly theme = this.themeSignal.asReadonly();
 
@@ -17,10 +18,14 @@ export class ThemeService {
   }
 
   toggle(): void {
-    this.setTheme(this.themeSignal() === 'light' ? 'dark' : 'light');
+    const nextTheme = this.themeSignal() === 'light' ? 'dark' : 'light';
+    this.withTransition(() => this.setTheme(nextTheme));
   }
 
   setTheme(theme: ThemeName): void {
+    if (this.themeSignal() === theme) {
+      return;
+    }
     this.themeSignal.set(theme);
     try {
       if (typeof localStorage !== 'undefined') {
@@ -35,6 +40,40 @@ export class ThemeService {
     const body = this.document.body;
     body.classList.toggle('theme-dark', theme === 'dark');
     body.classList.toggle('theme-light', theme === 'light');
+  }
+
+  private withTransition(action: () => void): void {
+    const body = this.document.body;
+    body.classList.add('theme-transition');
+    const docWithTransition = this.document as Document & {
+      startViewTransition?: (callback: () => void | Promise<void>) => { finished: Promise<void> };
+    };
+
+    const startTransition = docWithTransition.startViewTransition?.bind(this.document);
+
+    if (startTransition) {
+      startTransition(action).finished.finally(() => this.clearTransitionFlag());
+    } else {
+      action();
+      this.clearTransitionFlag();
+    }
+  }
+
+  private clearTransitionFlag(): void {
+    const windowRef = this.document.defaultView;
+    if (!windowRef) {
+      this.document.body.classList.remove('theme-transition');
+      return;
+    }
+
+    if (this.transitionTimer !== null) {
+      windowRef.clearTimeout(this.transitionTimer);
+    }
+
+    this.transitionTimer = windowRef.setTimeout(() => {
+      this.document.body.classList.remove('theme-transition');
+      this.transitionTimer = null;
+    }, 600);
   }
 
   private readInitial(): ThemeName {

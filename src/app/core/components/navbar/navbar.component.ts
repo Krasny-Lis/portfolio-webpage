@@ -29,6 +29,9 @@ export class NavbarComponent {
   readonly t = this.translations.translations;
   readonly language = this.translations.language;
   readonly availableLanguages: Language[] = ['en', 'pl'];
+  readonly languageIndex = computed(() =>
+    Math.max(0, this.availableLanguages.indexOf(this.language()))
+  );
 
   readonly modeLabel = computed(() =>
     this.theme() === 'dark'

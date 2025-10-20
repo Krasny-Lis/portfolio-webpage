@@ -1,6 +1,12 @@
 .shell__content {
+  position: relative;
   display: block;
   min-height: calc(100vh - 200px);
   background: var(--surface-page);
   color: var(--text-primary);
+  overflow: hidden;
+}
+
+.shell__content > * {
+  min-height: inherit;
 }

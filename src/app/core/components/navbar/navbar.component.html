@@ -22,6 +22,8 @@
       class="navbar__languages"
       role="group"
       [attr.aria-label]="t().navbar.languageSwitcher.label"
+      [style.--languages-count]="availableLanguages.length"
+      [style.--active-index]="languageIndex()"
     >
       <button
         *ngFor="let lang of availableLanguages"
@@ -34,7 +36,14 @@
         {{ t().navbar.languageSwitcher.options[lang] }}
       </button>
     </div>
-    <button type="button" class="theme-toggle" (click)="toggleTheme(); drawer.open = false" [attr.aria-label]="modeLabel()">
+    <button
+      type="button"
+      class="theme-toggle"
+      [class.theme-toggle--dark]="theme() === 'dark'"
+      (click)="toggleTheme(); drawer.open = false"
+      [attr.aria-label]="modeLabel()"
+      [attr.aria-pressed]="theme() === 'dark'"
+    >
       <span aria-hidden="true">{{ theme() === 'dark' ? '🌙' : '☀️' }}</span>
     </button>
     <div class="navbar__social" *ngIf="links$ | async as links">
