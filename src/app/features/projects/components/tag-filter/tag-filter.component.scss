@@ -1,0 +1,20 @@
+.tag-filter {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag-filter__item {
+  border: 1px solid color-mix(in srgb, var(--text-muted) 25%, transparent);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.tag-filter__item--active {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  border-color: transparent;
+}

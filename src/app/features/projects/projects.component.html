@@ -1,0 +1,13 @@
+<app-section eyebrow="Portfolio" title="Projekty" description="Zobacz wybrane projekty – publiczne i prywatne case’y z NDA.">
+  <app-tag-filter
+    [tags]="availableTags()"
+    [active]="activeTags()"
+    (toggle)="toggleTag($event)"
+    (clear)="clearTags()"
+  ></app-tag-filter>
+  <app-project-list
+    *ngIf="filteredProjects() as projects"
+    [projects]="projects"
+    [ownerView]="ownerView"
+  ></app-project-list>
+</app-section>

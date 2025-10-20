@@ -1,0 +1,43 @@
+<app-section eyebrow="Kontakt" title="Porozmawiajmy">
+  <form class="contact-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <label>
+      <span>Imię</span>
+      <input type="text" formControlName="name" required />
+      <span class="error" *ngIf="form.controls.name.invalid && form.controls.name.touched">Podaj swoje imię.</span>
+    </label>
+    <label>
+      <span>E-mail</span>
+      <input type="email" formControlName="email" required />
+      <span class="error" *ngIf="form.controls.email.invalid && form.controls.email.touched">Podaj poprawny adres.</span>
+    </label>
+    <label>
+      <span>Wiadomość</span>
+      <textarea rows="5" formControlName="message" required></textarea>
+      <span class="error" *ngIf="form.controls.message.invalid && form.controls.message.touched">
+        Wiadomość powinna mieć min. 10 znaków.
+      </span>
+    </label>
+    <label class="checkbox">
+      <input type="checkbox" formControlName="consent" required />
+      <span>Zgadzam się na kontakt zgodnie z polityką prywatności.</span>
+      <span class="error" *ngIf="form.controls.consent.invalid && form.controls.consent.touched">
+        Wymagana zgoda.
+      </span>
+    </label>
+    <button type="submit" [disabled]="facade.status() === 'pending'">Wyślij</button>
+    <p class="status status--success" *ngIf="facade.status() === 'success'">Dziękuję! Wrócę z odpowiedzią.</p>
+    <p class="status status--error" *ngIf="facade.status() === 'error'">{{ facade.errorMessage() }}</p>
+  </form>
+  <div class="contact-info">
+    <h3>Inne kanały</h3>
+    <ul>
+      <li>
+        <a href="mailto:hello@lisu.dev">hello@lisu.dev</a>
+        <button type="button" (click)="copyEmail()">Kopiuj</button>
+        <span class="status" *ngIf="copyFeedback()">{{ copyFeedback() }}</span>
+      </li>
+      <li><a href="https://github.com/lisu" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/lisu" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </div>
+</app-section>

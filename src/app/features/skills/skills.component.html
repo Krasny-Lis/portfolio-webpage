@@ -1,0 +1,13 @@
+<app-section eyebrow="Stack" title="Umiejętności" description="Łączę kompetencje frontendowe z inżynierskim podejściem do jakości.">
+  <div class="skills__grid" *ngIf="skills$ | async as groups">
+    <app-card *ngFor="let group of groups" [title]="group.name">
+      <ul class="skills__list">
+        <li *ngFor="let skill of group.items">
+          <span class="skills__name">{{ skill.name }}</span>
+          <span class="skills__level">{{ skill.level | skillLevel }}</span>
+          <span class="skills__note" *ngIf="skill.note">{{ skill.note }}</span>
+        </li>
+      </ul>
+    </app-card>
+  </div>
+</app-section>

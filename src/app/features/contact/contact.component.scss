@@ -1,0 +1,88 @@
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 520px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+input,
+textarea {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--text-muted) 30%, transparent);
+  background: var(--surface-card);
+  color: var(--text-primary);
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+button[type='submit'] {
+  justify-self: start;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-weight: 600;
+}
+
+button[disabled] {
+  opacity: 0.6;
+}
+
+.checkbox {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkbox input {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 0.85rem;
+}
+
+.status {
+  margin: 0;
+}
+
+.status--success {
+  color: var(--success);
+}
+
+.status--error {
+  color: var(--danger);
+}
+
+.contact-info {
+  margin-top: 2.5rem;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.contact-info button {
+  margin-left: 0.5rem;
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+}
