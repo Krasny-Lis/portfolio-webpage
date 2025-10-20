@@ -21,6 +21,13 @@
   margin: 0;
 }
 
+.about__stats-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: flex-start;
+}
+
 .about__stats-value {
   font-size: clamp(2.5rem, 6vw, 3.5rem);
   font-weight: 700;
@@ -29,6 +36,7 @@
 
 .about__stats-note {
   color: var(--text-secondary);
+  line-height: 1.4;
 }
 
 .about__values {
