@@ -1,0 +1,26 @@
+<article class="project" [class.project--draft]="project.draft">
+  <header class="project__header">
+    <div>
+      <h3>{{ project.name }}</h3>
+      <p class="project__description">{{ project.description }}</p>
+    </div>
+    <span *ngIf="project.draft" class="project__badge">W budowie</span>
+    <span *ngIf="project.private" class="project__badge project__badge--private">Prywatny</span>
+  </header>
+  <div class="project__tags">
+    <app-chip *ngFor="let tag of project.tags" [label]="tag"></app-chip>
+  </div>
+  <ul class="project__highlights" *ngIf="project.highlights?.length">
+    <li *ngFor="let highlight of project.highlights">{{ highlight }}</li>
+  </ul>
+  <footer class="project__links">
+    <a *ngIf="project.demoUrl" [href]="project.demoUrl" target="_blank" rel="noopener">Demo</a>
+    <a
+      *ngIf="project.repoUrl && !project.private"
+      [href]="project.repoUrl"
+      target="_blank"
+      rel="noopener"
+    >GitHub</a>
+    <span *ngIf="project.private && !ownerView" class="project__hint">Repozytorium ukryte (NDA)</span>
+  </footer>
+</article>

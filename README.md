@@ -1,59 +1,74 @@
-# PortfolioWebpage
+# Portfolio Angular Developer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+MVP portfolio application built with Angular 19 standalone components. The app showcases projects, skills and contact options, supports light/dark theming, and is prepared for SSR + prerender to achieve high Lighthouse scores.
 
-## Development server
+## Tech stack & features
 
-To start a local development server, run:
+- Angular 19 standalone architecture
+- Signals for UI state (theme, filters)
+- Reactive forms for validated contact form
+- Server Side Rendering + prerender (`ng run portfolio-webpage:prerender`)
+- Static content fetched from `assets/content/*.json`
+- Accessible UI with keyboard support and WCAG-focused styling
+- Dark/Light mode persisted in `localStorage`
+- Jest for unit tests, Cypress for e2e (baseline config)
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Getting started
 
 ```bash
-ng generate --help
+npm install
+npm run start          # SPA dev server on http://localhost:4200
+npm run dev:ssr        # Start SSR dev server (http://localhost:4200 by default)
 ```
 
-## Building
+## Useful scripts
 
-To build the project run:
+| Command | Description |
+| --- | --- |
+| `npm run lint` | Run ESLint on `src/` and `cypress/`. |
+| `npm run test` | Execute Jest unit tests. |
+| `npm run build` | Production browser build. |
+| `npm run build:ssr` | Build browser + server bundles for SSR. |
+| `npm run prerender` | Prerender defined routes to static HTML. |
+| `npm run e2e` | Execute Cypress e2e tests (requires app running). |
+| `npm run format` | Format using Prettier. |
 
-```bash
-ng build
-```
+## Deployment
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+1. Build SSR bundles: `npm run build:ssr`.
+2. Optionally prerender static routes: `npm run prerender`.
+3. Serve using the generated Node server (`node dist/portfolio-webpage/server/server.mjs`) or deploy the prerendered output (`dist/portfolio-webpage/browser`).
 
-## Running unit tests
+## Content management
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Portfolio data lives in `src/assets/content`:
 
-```bash
-ng test
-```
+- `projects.json` – metadata, demo/repo links, `private` flag
+- `skills.json` – skill groups with level tags
+- `social.json` – social/contact links used in navbar/footer
 
-## Running end-to-end tests
+Update these files to refresh displayed content.
 
-For end-to-end (e2e) testing, run:
+## Testing & quality
 
-```bash
-ng e2e
-```
+- **Unit tests**: `npm run test`
+- **Lint**: `npm run lint`
+- **End-to-end**: `npm run e2e`
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+CI should follow the pipeline `install -> lint -> test -> build -> prerender`.
 
-## Additional Resources
+## Environments
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `src/environments/environment.ts` – local/dev (owner view = `true`)
+- `src/environments/environment.production.ts` – production (private projects hidden)
+
+Adjust `contactEndpoint` to point at the form backend of your choice (Formspree, EmailJS, etc.).
+
+## GitHub Pages / Static hosting
+
+1. Run `npm run prerender` to generate HTML for key routes.
+2. Deploy contents of `dist/portfolio-webpage/browser` to a static host (Netlify, Vercel, GitHub Pages). The generated files include meta tags per route and JSON-LD schema for SEO.
+
+## License
+
+MIT

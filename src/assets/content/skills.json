@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Angular",
+    "items": [
+      { "name": "Standalone + Signals", "level": "pro", "note": "Komponenty standalone, optymalizacje" },
+      { "name": "SSR + SSG", "level": "pro", "note": "Angular 17-19" },
+      { "name": "NgRx", "level": "core", "note": "EntityAdapter, Signals, Effects" }
+    ]
+  },
+  {
+    "name": "RxJS",
+    "items": [
+      { "name": "Higher-order mapping", "level": "pro" },
+      { "name": "Testing Marble", "level": "familiar" }
+    ]
+  },
+  {
+    "name": "Narzędzia",
+    "items": [
+      { "name": "Nx", "level": "core" },
+      { "name": "Jest", "level": "pro" },
+      { "name": "Cypress", "level": "core" }
+    ]
+  },
+  {
+    "name": "Testy",
+    "items": [
+      { "name": "Testing Library", "level": "core" },
+      { "name": "Contract testing", "level": "familiar" }
+    ]
+  }
+]

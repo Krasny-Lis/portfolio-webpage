@@ -1,0 +1,14 @@
+<div class="tag-filter" role="group" aria-label="Filtr projektów">
+  <button type="button" class="tag-filter__item" [class.tag-filter__item--active]="!active.length" (click)="clear.emit()">
+    Wszystkie
+  </button>
+  <button
+    type="button"
+    class="tag-filter__item"
+    *ngFor="let tag of tags"
+    [class.tag-filter__item--active]="active.includes(tag)"
+    (click)="onToggle(tag)"
+  >
+    {{ tag }}
+  </button>
+</div>

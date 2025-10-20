@@ -1,0 +1,33 @@
+.card {
+  border-radius: 20px;
+  padding: 1.75rem;
+  background: var(--surface-card);
+  color: var(--text-primary);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card--clickable:hover,
+.card--clickable:focus-within {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.card__header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.card__subtitle {
+  margin: 0;
+  color: var(--text-secondary);
+}

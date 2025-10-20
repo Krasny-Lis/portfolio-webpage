@@ -1,0 +1,42 @@
+.about__grid {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.about__bio {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about__stats-value {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.about__stats-note {
+  color: var(--text-secondary);
+}
+
+.about__values {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.about__values p {
+  margin: 0;
+  color: var(--text-secondary);
+}
