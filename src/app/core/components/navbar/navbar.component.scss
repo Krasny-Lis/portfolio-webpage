@@ -23,6 +23,32 @@
   gap: 1.5rem;
 }
 
+.navbar__languages {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--text-muted) 40%, transparent);
+  border-radius: 999px;
+  padding: 0.125rem;
+  gap: 0.125rem;
+}
+
+.navbar__language-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.navbar__language-btn--active {
+  background: var(--accent);
+  color: var(--surface-card);
+}
+
 .navbar__links a {
   color: var(--text-secondary);
   font-weight: 500;
@@ -76,10 +102,16 @@
     background: var(--surface-card);
     box-shadow: var(--shadow);
     display: none;
+    gap: 1rem;
   }
 
   .navbar__links.open {
     display: flex;
+  }
+
+  .navbar__languages {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .navbar__social {

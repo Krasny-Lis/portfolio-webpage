@@ -1,19 +1,23 @@
-<app-section eyebrow="Cześć" title="Lisu – Angular Developer" description="Tworzę szybkie, dostępne aplikacje Angularowe, wspierając zespoły w dostarczaniu wartościowych produktów.">
+<app-section
+  [eyebrow]="t().home.eyebrow"
+  [title]="t().home.title"
+  [description]="t().home.description"
+>
   <div class="home__hero">
     <div class="home__copy">
-      <p>Signals, SSR, NgRx, testy. Wszystko po to, by użytkownicy czuli się jak w domu, a business miał spokój.</p>
+      <p>{{ t().home.hero }}</p>
       <div class="home__cta">
-        <a routerLink="/projects" class="btn btn--primary">Zobacz projekty</a>
-        <a routerLink="/contact" class="btn btn--ghost">Skontaktuj się</a>
+        <a routerLink="/projects" class="btn btn--primary">{{ t().home.ctaProjects }}</a>
+        <a routerLink="/contact" class="btn btn--ghost">{{ t().home.ctaContact }}</a>
       </div>
       <div class="home__tags">
-        <app-chip *ngFor="let tag of ['Angular 19', 'SSR', 'NgRx', 'Signals', 'A11y']" [label]="tag"></app-chip>
+        <app-chip *ngFor="let tag of t().home.tags" [label]="tag"></app-chip>
       </div>
     </div>
     <div class="home__photo" role="presentation"></div>
   </div>
   <div class="home__social" *ngIf="social$ | async as links">
-    <span>Znajdziesz mnie też:</span>
+    <span>{{ t().home.socialIntro }}</span>
     <a *ngFor="let link of links" [href]="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
   </div>
 </app-section>

@@ -11,6 +11,6 @@
   *ngIf="visibleCount() < projects.length"
   (click)="showMore()"
 >
-  Pokaż więcej projektów
+  {{ t().projects.showMore }}
 </button>
-<p class="project-list__empty" *ngIf="!projects.length">Brak projektów spełniających kryteria.</p>
+<p class="project-list__empty" *ngIf="!projects.length">{{ t().projects.empty }}</p>

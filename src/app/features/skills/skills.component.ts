@@ -5,6 +5,7 @@ import { CardComponent } from '../../shared/components/card/card.component';
 import { SectionComponent } from '../../shared/components/section/section.component';
 import { SkillLevelPipe } from '../../shared/pipes/skill-level.pipe';
 import { ContentService } from '../../core/services/content.service';
+import { TranslationService } from '../../core/services/translation.service';
 
 @Component({
   selector: 'app-skills',
@@ -16,5 +17,7 @@ import { ContentService } from '../../core/services/content.service';
 })
 export class SkillsComponent {
   private content = inject(ContentService);
+  private translations = inject(TranslationService);
   readonly skills$ = this.content.getSkills();
+  readonly t = this.translations.translations;
 }

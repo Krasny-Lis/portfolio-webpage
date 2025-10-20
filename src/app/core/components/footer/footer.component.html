@@ -1,7 +1,7 @@
 <footer class="footer">
   <div class="footer__inner">
-    <p>© {{ year }} Lisu – Angular Developer</p>
-    <nav aria-label="Linki społecznościowe" class="footer__links" *ngIf="links$ | async as links">
+    <p>© {{ year }} {{ t().footer.copyright }}</p>
+    <nav [attr.aria-label]="t().footer.linksLabel" class="footer__links" *ngIf="links$ | async as links">
       <a *ngFor="let link of links" [href]="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
     </nav>
   </div>

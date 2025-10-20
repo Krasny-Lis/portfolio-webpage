@@ -1,0 +1,30 @@
+[
+  {
+    "id": "ng-workbench",
+    "name": "Angular Workbench",
+    "description": "Monorepo Nx, SSR, Signals + NgRx, Material.",
+    "tags": ["angular", "nx", "ssr", "signals", "ngrx"],
+    "demoUrl": "https://example.com/workbench",
+    "repoUrl": "https://github.com/lisu/ng-workbench",
+    "highlights": ["SSR + prerender", "A11y audyt 95+"],
+    "cover": "assets/images/workbench.webp"
+  },
+  {
+    "id": "portfolio-revamp",
+    "name": "Portfolio Revamp",
+    "description": "Nowoczesne portfolio z trybem dark/light i świetną dostępnością.",
+    "tags": ["angular", "material", "a11y"],
+    "demoUrl": "https://example.com/portfolio",
+    "highlights": ["Lighthouse 95+", "Lazy-loading obrazów"],
+    "draft": true,
+    "cover": "assets/images/portfolio.webp"
+  },
+  {
+    "id": "private-dashboard",
+    "name": "Dashboard klienta",
+    "description": "Aplikacja B2B z modułami raportującymi i analityką czasu rzeczywistego.",
+    "tags": ["angular", "rxjs", "charts"],
+    "highlights": ["Integracja z WebSocket", "NDA"],
+    "private": true
+  }
+]

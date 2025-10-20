@@ -1,20 +1,27 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { ChangeDetectorRef, DestroyRef, Pipe, PipeTransform, effect, inject } from '@angular/core';
+
+import { SkillLevel } from '../../core/models/content.models';
+import { TranslationService } from '../../core/services/translation.service';
 
 @Pipe({
   name: 'skillLevel',
-  standalone: true
+  standalone: true,
+  pure: false
 })
 export class SkillLevelPipe implements PipeTransform {
-  transform(level: 'core' | 'pro' | 'familiar'): string {
-    switch (level) {
-      case 'core':
-        return 'Core';
-      case 'pro':
-        return 'Pro';
-      case 'familiar':
-        return 'Familiar';
-      default:
-        return level;
-    }
+  private translations = inject(TranslationService);
+  private cdr = inject(ChangeDetectorRef);
+  private destroyRef = inject(DestroyRef);
+
+  constructor() {
+    const cleanup = effect(() => {
+      this.translations.language();
+      this.cdr.markForCheck();
+    });
+    this.destroyRef.onDestroy(() => cleanup.destroy());
+  }
+
+  transform(level: SkillLevel): string {
+    return this.translations.translations().skills.levels[level] ?? level;
   }
 }

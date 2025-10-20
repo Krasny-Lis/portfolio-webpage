@@ -10,6 +10,7 @@ import { ContentService } from '../../core/services/content.service';
 import { SectionComponent } from '../../shared/components/section/section.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { TagFilterComponent } from './components/tag-filter/tag-filter.component';
+import { TranslationService } from '../../core/services/translation.service';
 
 @Component({
   selector: 'app-projects',
@@ -24,11 +25,13 @@ export class ProjectsComponent {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
+  private translations = inject(TranslationService);
 
   private allProjects = signal<Project[]>([]);
   readonly activeTags = signal<string[]>([]);
 
   readonly ownerView = environment.ownerView;
+  readonly t = this.translations.translations;
 
   readonly projects$ = this.content
     .getProjects()

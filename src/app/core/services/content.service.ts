@@ -1,20 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, shareReplay } from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { Observable, shareReplay, switchMap } from 'rxjs';
 
 import { Project, SkillGroup, SocialLink } from '../models/content.models';
+import { TranslationService } from './translation.service';
 
 @Injectable({ providedIn: 'root' })
 export class ContentService {
   private http = inject(HttpClient);
+  private translations = inject(TranslationService);
   private cache = new Map<string, Observable<unknown>>();
+  private language$ = toObservable(this.translations.language);
 
   getProjects(): Observable<Project[]> {
-    return this.get<Project[]>('assets/content/projects.json');
+    return this.language$.pipe(switchMap((lang) => this.get<Project[]>(`assets/content/${lang}/projects.json`)));
   }
 
   getSkills(): Observable<SkillGroup[]> {
-    return this.get<SkillGroup[]>('assets/content/skills.json');
+    return this.language$.pipe(switchMap((lang) => this.get<SkillGroup[]>(`assets/content/${lang}/skills.json`)));
   }
 
   getSocialLinks(): Observable<SocialLink[]> {

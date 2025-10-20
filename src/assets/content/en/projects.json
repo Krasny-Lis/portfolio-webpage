@@ -1,0 +1,30 @@
+[
+  {
+    "id": "ng-workbench",
+    "name": "Angular Workbench",
+    "description": "Nx monorepo with SSR, Signals + NgRx, Material.",
+    "tags": ["angular", "nx", "ssr", "signals", "ngrx"],
+    "demoUrl": "https://example.com/workbench",
+    "repoUrl": "https://github.com/lisu/ng-workbench",
+    "highlights": ["SSR + prerender", "A11y audit 95+"],
+    "cover": "assets/images/workbench.webp"
+  },
+  {
+    "id": "portfolio-revamp",
+    "name": "Portfolio Revamp",
+    "description": "Modern portfolio with dark/light mode and top-notch accessibility.",
+    "tags": ["angular", "material", "a11y"],
+    "demoUrl": "https://example.com/portfolio",
+    "highlights": ["Lighthouse 95+", "Lazy-loaded images"],
+    "draft": true,
+    "cover": "assets/images/portfolio.webp"
+  },
+  {
+    "id": "private-dashboard",
+    "name": "Client dashboard",
+    "description": "B2B app with reporting modules and real-time analytics.",
+    "tags": ["angular", "rxjs", "charts"],
+    "highlights": ["WebSocket integration", "NDA"],
+    "private": true
+  }
+]
