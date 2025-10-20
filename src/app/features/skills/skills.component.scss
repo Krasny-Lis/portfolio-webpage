@@ -13,16 +13,34 @@
   padding: 0;
 }
 
+.skills__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.skills__row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
 .skills__name {
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .skills__level {
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
+  font-weight: 600;
   color: var(--text-muted);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--text-muted) 28%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 60%, transparent);
 }
 
 .skills__note {

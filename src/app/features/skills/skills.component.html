@@ -6,9 +6,11 @@
   <div class="skills__grid" *ngIf="skills$ | async as groups">
     <app-card *ngFor="let group of groups" [title]="group.name">
       <ul class="skills__list">
-        <li *ngFor="let skill of group.items">
-          <span class="skills__name">{{ skill.name }}</span>
-          <span class="skills__level">{{ skill.level | skillLevel }}</span>
+        <li class="skills__item" *ngFor="let skill of group.items">
+          <span class="skills__row">
+            <span class="skills__name">{{ skill.name }}</span>
+            <span class="skills__level">{{ skill.level | skillLevel }}</span>
+          </span>
           <span class="skills__note" *ngIf="skill.note">{{ skill.note }}</span>
         </li>
       </ul>
