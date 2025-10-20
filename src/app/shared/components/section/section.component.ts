@@ -1,8 +1,10 @@
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-section',
   standalone: true,
+  imports: [NgIf],
   template: `
     <section class="section" [attr.aria-labelledby]="headingId">
       <div class="section__inner">

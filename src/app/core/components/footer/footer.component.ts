@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { ContentService } from '../../services/content.service';
@@ -6,7 +6,7 @@ import { ContentService } from '../../services/content.service';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [AsyncPipe, NgFor],
+  imports: [AsyncPipe, NgFor, NgIf],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

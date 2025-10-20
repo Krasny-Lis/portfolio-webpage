@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { CardComponent } from '../../shared/components/card/card.component';
@@ -9,7 +9,7 @@ import { ContentService } from '../../core/services/content.service';
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [SectionComponent, CardComponent, NgFor, AsyncPipe, SkillLevelPipe],
+  imports: [SectionComponent, CardComponent, NgFor, NgIf, AsyncPipe, SkillLevelPipe],
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
