@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { map } from 'rxjs';
@@ -10,7 +10,7 @@ import { DrawerDirective } from '../../../shared/directives/drawer.directive';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, AsyncPipe, NgFor, NgIf, NgClass, DrawerDirective],
+  imports: [RouterLink, RouterLinkActive, AsyncPipe, NgFor, NgIf, DrawerDirective],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

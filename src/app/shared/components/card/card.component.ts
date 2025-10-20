@@ -1,8 +1,10 @@
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
   standalone: true,
+  imports: [NgIf],
   template: `
     <article class="card" [class.card--clickable]="clickable">
       <header *ngIf="title" class="card__header">

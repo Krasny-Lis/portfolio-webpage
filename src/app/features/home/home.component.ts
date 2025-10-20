@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { ChipComponent } from '../../shared/components/chip/chip.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SectionComponent, RouterLink, NgFor, NgIf, ChipComponent],
+  imports: [SectionComponent, RouterLink, NgFor, NgIf, AsyncPipe, ChipComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { inject, Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 
 export type ThemeName = 'light' | 'dark';
 
@@ -13,7 +13,7 @@ export class ThemeService {
 
   constructor() {
     this.applyTheme(this.themeSignal());
-    this.themeSignal.subscribe((value) => this.applyTheme(value));
+    effect(() => this.applyTheme(this.themeSignal()));
   }
 
   toggle(): void {
