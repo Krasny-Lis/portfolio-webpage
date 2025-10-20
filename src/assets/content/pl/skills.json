@@ -1,32 +1,48 @@
 [
   {
-    "name": "Angular",
+    "name": "Frontend",
     "items": [
-      { "name": "Standalone + Signals", "level": "pro", "note": "Komponenty standalone, optymalizacje" },
-      { "name": "SSR + SSG", "level": "pro", "note": "Angular 17-19" },
-      { "name": "NgRx", "level": "core", "note": "EntityAdapter, Signals, Effects" }
+      { "name": "Angular", "level": "pro", "note": "Komponenty standalone, Signals, SSR/SSG" },
+      { "name": "TypeScript", "level": "core", "note": "Architektura nastawiona na typy i narzędzia" },
+      { "name": "RxJS", "level": "pro", "note": "Higher-order mapping, testy marble" },
+      { "name": "React", "level": "familiar", "note": "Hooks, wzorce komponentów wielokrotnego użytku" },
+      { "name": "GraphQL", "level": "familiar", "note": "Integracje klienckie i projektowanie schematów" },
+      { "name": "Highcharts", "level": "familiar", "note": "Interaktywne wizualizacje danych" },
+      { "name": "JavaScript (ES6+)", "level": "core", "note": "Nowoczesne funkcje języka i narzędzia build" }
     ]
   },
   {
-    "name": "RxJS",
+    "name": "Stylowanie",
     "items": [
-      { "name": "Higher-order mapping", "level": "pro" },
-      { "name": "Testing Marble", "level": "familiar" }
+      { "name": "CSS3 / Sass", "level": "core", "note": "Responsywność, komponentowe podejście do styli" },
+      { "name": "Bootstrap", "level": "familiar", "note": "Systemy designu i szybkie prototypowanie" },
+      { "name": "Angular Material", "level": "core", "note": "Komponenty UI dla aplikacji enterprise" }
     ]
   },
   {
-    "name": "Narzędzia",
+    "name": "Testowanie",
     "items": [
-      { "name": "Nx", "level": "core" },
-      { "name": "Jest", "level": "pro" },
-      { "name": "Cypress", "level": "core" }
+      { "name": "Jest", "level": "pro", "note": "Testy jednostkowe, test-driven development" },
+      { "name": "Karma", "level": "familiar" },
+      { "name": "Cypress", "level": "core", "note": "Automatyzacja E2E i integracja z CI" },
+      { "name": "Testing Library", "level": "core", "note": "Testy skupione na dostępności i użytkowniku" },
+      { "name": "Testy kontraktowe", "level": "familiar" }
     ]
   },
   {
-    "name": "Testy",
+    "name": "Narzędzia i dostarczanie",
     "items": [
-      { "name": "Testing Library", "level": "core" },
-      { "name": "Contract testing", "level": "familiar" }
+      { "name": "Nx", "level": "core", "note": "Monorepo, generatory i caching" },
+      { "name": "Git", "level": "core", "note": "Strategie branchowania, code review" },
+      { "name": "Agile / Scrum", "level": "core", "note": "Przyrostowe dostarczanie, współpraca z biznesem" },
+      { "name": "Prowadzenie zespołów", "level": "core", "note": "Mentoring, facylitacja współpracy cross-funkcyjnej" }
+    ]
+  },
+  {
+    "name": "Backend i dane",
+    "items": [
+      { "name": "Python (Flask, Django)", "level": "familiar", "note": "API, lekkie serwisy" },
+      { "name": "SQL", "level": "familiar", "note": "Modelowanie relacyjne, zapytania wydajne" }
     ]
   }
 ]
