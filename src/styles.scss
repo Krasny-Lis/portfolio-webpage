@@ -100,3 +100,8 @@ img {
   background: color-mix(in srgb, var(--accent) 40%, transparent);
   color: var(--text-on-accent);
 }
+
+.snackbar-error {
+  background: var(--danger);
+  color: var(--text-on-accent);
+}
