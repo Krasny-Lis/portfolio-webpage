@@ -1,32 +1,48 @@
 [
   {
-    "name": "Angular",
+    "name": "Frontend",
     "items": [
-      { "name": "Standalone + Signals", "level": "pro", "note": "Standalone components, optimisations" },
-      { "name": "SSR + SSG", "level": "pro", "note": "Angular 17-19" },
-      { "name": "NgRx", "level": "core", "note": "EntityAdapter, Signals, Effects" }
+      { "name": "Angular", "level": "pro", "note": "Standalone components, Signals, SSR/SSG" },
+      { "name": "TypeScript", "level": "core", "note": "Type-safe architecture and tooling" },
+      { "name": "RxJS", "level": "pro", "note": "Higher-order mapping, marble testing" },
+      { "name": "React", "level": "familiar", "note": "Hooks, reusable component patterns" },
+      { "name": "GraphQL", "level": "familiar", "note": "Client integrations and schema design" },
+      { "name": "Highcharts", "level": "familiar", "note": "Interactive data visualisations" },
+      { "name": "JavaScript (ES6+)", "level": "core", "note": "Modern language features and build tooling" }
     ]
   },
   {
-    "name": "RxJS",
+    "name": "Styling",
     "items": [
-      { "name": "Higher-order mapping", "level": "pro" },
-      { "name": "Marble testing", "level": "familiar" }
-    ]
-  },
-  {
-    "name": "Tooling",
-    "items": [
-      { "name": "Nx", "level": "core" },
-      { "name": "Jest", "level": "pro" },
-      { "name": "Cypress", "level": "core" }
+      { "name": "CSS3 / Sass", "level": "core", "note": "Responsive design, component-driven styling" },
+      { "name": "Bootstrap", "level": "familiar", "note": "Design systems and rapid prototyping" },
+      { "name": "Angular Material", "level": "core", "note": "Enterprise-ready UI components" }
     ]
   },
   {
     "name": "Testing",
     "items": [
-      { "name": "Testing Library", "level": "core" },
+      { "name": "Jest", "level": "pro", "note": "Unit testing, test-driven workflows" },
+      { "name": "Karma", "level": "familiar" },
+      { "name": "Cypress", "level": "core", "note": "End-to-end automation and CI integration" },
+      { "name": "Testing Library", "level": "core", "note": "Accessible, user-focused tests" },
       { "name": "Contract testing", "level": "familiar" }
+    ]
+  },
+  {
+    "name": "Tooling & Delivery",
+    "items": [
+      { "name": "Nx", "level": "core", "note": "Monorepos, generators and caching" },
+      { "name": "Git", "level": "core", "note": "Branching strategies, code review workflows" },
+      { "name": "Agile / Scrum", "level": "core", "note": "Incremental delivery, stakeholder alignment" },
+      { "name": "Team leadership", "level": "core", "note": "Mentoring, facilitating cross-functional collaboration" }
+    ]
+  },
+  {
+    "name": "Backend & Data",
+    "items": [
+      { "name": "Python (Flask, Django)", "level": "familiar", "note": "APIs, lightweight services" },
+      { "name": "SQL", "level": "familiar", "note": "Relational modelling, performance-aware queries" }
     ]
   }
 ]
