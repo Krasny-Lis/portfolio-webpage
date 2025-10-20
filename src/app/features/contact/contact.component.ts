@@ -1,15 +1,16 @@
-import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, computed, effect, inject, signal } from '@angular/core';
+import { NgIf, isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnDestroy, PLATFORM_ID, computed, effect, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SectionComponent } from '../../shared/components/section/section.component';
-import { ContactFacade } from '../../core/state/contact/contact.facade';
+import { ContactFacade, ContactStatus } from '../../core/state/contact/contact.facade';
 import { TranslationService } from '../../core/services/translation.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [SectionComponent, ReactiveFormsModule, NgIf],
+  imports: [SectionComponent, ReactiveFormsModule, NgIf, MatSnackBarModule],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -18,6 +19,10 @@ export class ContactComponent implements OnDestroy {
   private fb = inject(FormBuilder);
   readonly facade = inject(ContactFacade);
   private translations = inject(TranslationService);
+  private snackBar = inject(MatSnackBar);
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
+  private lastStatus: ContactStatus | null = null;
 
   readonly form = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -40,9 +45,17 @@ export class ContactComponent implements OnDestroy {
 
   constructor() {
     effect(() => {
-      if (this.facade.status() === 'success') {
+      const status = this.facade.status();
+      if (status === 'success') {
         this.form.reset();
       }
+      if (status === 'error' && this.lastStatus !== 'error' && this.isBrowser) {
+        const message = this.facade.errorMessage();
+        if (message) {
+          this.snackBar.open(message, undefined, { duration: 4000, panelClass: ['snackbar-error'] });
+        }
+      }
+      this.lastStatus = status;
     });
   }
 
