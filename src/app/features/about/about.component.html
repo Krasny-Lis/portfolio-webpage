@@ -1,19 +1,19 @@
-<app-section eyebrow="Kim jestem" title="Angular Developer z sercem do jakości">
+<app-section
+  [eyebrow]="t().about.eyebrow"
+  [title]="t().about.title"
+>
   <div class="about__grid">
     <div class="about__bio">
-      <p>
-        Jestem Angular developerem nastawionym na produkt. Łączę Signals, NgRx i SSR, by tworzyć aplikacje szybkie, stabilne i
-        łatwe w utrzymaniu. Wspieram zespoły w projektowaniu architektury, warsztatach i wdrażaniu dobrych praktyk.
-      </p>
+      <p>{{ t().about.description }}</p>
       <ul class="about__stats">
-        <li *ngFor="let item of highlights">
+        <li *ngFor="let item of t().about.highlights">
           <span class="about__stats-value">{{ item.label }}</span>
           <span class="about__stats-note">{{ item.note }}</span>
         </li>
       </ul>
     </div>
     <div class="about__values">
-      <app-card *ngFor="let value of values" [title]="value.title">
+      <app-card *ngFor="let value of t().about.values" [title]="value.title">
         <p>{{ value.description }}</p>
       </app-card>
     </div>

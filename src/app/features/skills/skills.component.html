@@ -1,4 +1,8 @@
-<app-section eyebrow="Stack" title="Umiejętności" description="Łączę kompetencje frontendowe z inżynierskim podejściem do jakości.">
+<app-section
+  [eyebrow]="t().skills.eyebrow"
+  [title]="t().skills.title"
+  [description]="t().skills.description"
+>
   <div class="skills__grid" *ngIf="skills$ | async as groups">
     <app-card *ngFor="let group of groups" [title]="group.name">
       <ul class="skills__list">

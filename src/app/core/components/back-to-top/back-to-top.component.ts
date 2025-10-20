@@ -2,6 +2,8 @@ import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { DestroyRef } from '@angular/core';
 
+import { TranslationService } from '../../services/translation.service';
+
 @Component({
   selector: 'app-back-to-top',
   standalone: true,
@@ -13,6 +15,8 @@ import { DestroyRef } from '@angular/core';
 export class BackToTopComponent {
   readonly visible = signal(false);
   private destroyRef = inject(DestroyRef);
+  private translations = inject(TranslationService);
+  readonly t = this.translations.translations;
 
   constructor() {
     effect(() => {

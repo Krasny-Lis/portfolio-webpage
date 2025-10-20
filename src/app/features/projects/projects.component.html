@@ -1,4 +1,8 @@
-<app-section eyebrow="Portfolio" title="Projekty" description="Zobacz wybrane projekty – publiczne i prywatne case’y z NDA.">
+<app-section
+  [eyebrow]="t().projects.eyebrow"
+  [title]="t().projects.title"
+  [description]="t().projects.description"
+>
   <app-tag-filter
     [tags]="availableTags()"
     [active]="activeTags()"

@@ -1,8 +1,9 @@
 import { NgFor, NgIf, SlicePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject, signal } from '@angular/core';
 
 import { Project } from '../../../../core/models/content.models';
 import { ProjectCardComponent } from '../project-card/project-card.component';
+import { TranslationService } from '../../../../core/services/translation.service';
 
 @Component({
   selector: 'app-project-list',
@@ -15,6 +16,8 @@ import { ProjectCardComponent } from '../project-card/project-card.component';
 export class ProjectListComponent {
   private _projects: Project[] = [];
   readonly visibleCount = signal(6);
+  private translations = inject(TranslationService);
+  readonly t = this.translations.translations;
 
   @Input() ownerView = false;
 

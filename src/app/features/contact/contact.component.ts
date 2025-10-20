@@ -1,9 +1,10 @@
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, computed, effect, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { SectionComponent } from '../../shared/components/section/section.component';
 import { ContactFacade } from '../../core/state/contact/contact.facade';
+import { TranslationService } from '../../core/services/translation.service';
 
 @Component({
   selector: 'app-contact',
@@ -16,6 +17,7 @@ import { ContactFacade } from '../../core/state/contact/contact.facade';
 export class ContactComponent implements OnDestroy {
   private fb = inject(FormBuilder);
   readonly facade = inject(ContactFacade);
+  private translations = inject(TranslationService);
 
   readonly form = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -23,7 +25,18 @@ export class ContactComponent implements OnDestroy {
     message: ['', [Validators.required, Validators.minLength(10)]],
     consent: [false, Validators.requiredTrue]
   });
-  readonly copyFeedback = signal<string | null>(null);
+  readonly t = this.translations.translations;
+  readonly copyFeedbackState = signal<'success' | 'error' | null>(null);
+  readonly copyFeedbackMessage = computed(() => {
+    const state = this.copyFeedbackState();
+    if (state === 'success') {
+      return this.t().contact.copySuccess;
+    }
+    if (state === 'error') {
+      return this.t().contact.copyError;
+    }
+    return null;
+  });
 
   constructor() {
     effect(() => {
@@ -47,11 +60,12 @@ export class ContactComponent implements OnDestroy {
       navigator.clipboard
         .writeText('hello@lisu.dev')
         .then(() => {
-          this.copyFeedback.set('Adres skopiowany 🎉');
-          setTimeout(() => this.copyFeedback.set(null), 2000);
+          this.copyFeedbackState.set('success');
+          setTimeout(() => this.copyFeedbackState.set(null), 2000);
         })
         .catch(() => {
-          this.copyFeedback.set('Nie udało się skopiować.');
+          this.copyFeedbackState.set('error');
+          setTimeout(() => this.copyFeedbackState.set(null), 2000);
         });
     }
   }

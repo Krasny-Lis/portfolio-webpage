@@ -1,4 +1,4 @@
-<nav class="navbar" role="navigation" aria-label="Główna">
+<nav class="navbar" role="navigation" [attr.aria-label]="t().navbar.ariaLabel">
   <a routerLink="/" class="navbar__brand">Lisu.dev</a>
   <button
     class="navbar__toggle"
@@ -7,14 +7,33 @@
     [attr.aria-expanded]="drawer.open"
     aria-controls="primary-menu"
   >
-    <span class="sr-only">Menu</span>
+    <span class="sr-only">{{ t().navbar.menuLabel }}</span>
     ☰
   </button>
   <div #drawer="drawer" appDrawer class="navbar__links" id="primary-menu">
-    <a routerLink="/about" routerLinkActive="is-active" (click)="drawer.open = false">O mnie</a>
-    <a routerLink="/skills" routerLinkActive="is-active" (click)="drawer.open = false">Umiejętności</a>
-    <a routerLink="/projects" routerLinkActive="is-active" (click)="drawer.open = false">Projekty</a>
-    <a routerLink="/contact" routerLinkActive="is-active" (click)="drawer.open = false">Kontakt</a>
+    <a
+      *ngFor="let link of t().navbar.links"
+      [routerLink]="link.path"
+      routerLinkActive="is-active"
+      (click)="drawer.open = false"
+      >{{ link.label }}</a
+    >
+    <div
+      class="navbar__languages"
+      role="group"
+      [attr.aria-label]="t().navbar.languageSwitcher.label"
+    >
+      <button
+        *ngFor="let lang of availableLanguages"
+        type="button"
+        class="navbar__language-btn"
+        [class.navbar__language-btn--active]="language() === lang"
+        (click)="setLanguage(lang); drawer.open = false"
+        [attr.aria-pressed]="language() === lang"
+      >
+        {{ t().navbar.languageSwitcher.options[lang] }}
+      </button>
+    </div>
     <button type="button" class="theme-toggle" (click)="toggleTheme(); drawer.open = false" [attr.aria-label]="modeLabel()">
       <span aria-hidden="true">{{ theme() === 'dark' ? '🌙' : '☀️' }}</span>
     </button>
