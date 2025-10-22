@@ -12,6 +12,15 @@ import { ProjectListComponent } from './components/project-list/project-list.com
 import { TagFilterComponent } from './components/tag-filter/tag-filter.component';
 import { TranslationService } from '../../core/services/translation.service';
 
+const AVAILABLE_TAGS = ['Angular', 'Material', 'React'] as const;
+const NORMALIZED_AVAILABLE_TAGS = AVAILABLE_TAGS.map((tag) => tag.toLowerCase());
+
+function normalizeTagLabel(tag: string): string | null {
+  const lowerCased = tag.toLowerCase();
+  const index = NORMALIZED_AVAILABLE_TAGS.indexOf(lowerCased);
+  return index === -1 ? null : AVAILABLE_TAGS[index];
+}
+
 @Component({
   selector: 'app-projects',
   standalone: true,
@@ -40,17 +49,20 @@ export class ProjectsComponent {
   readonly filteredProjects = computed(() => {
     const projects = this.allProjects();
     const active = this.activeTags();
+
     if (!active.length) {
       return projects;
     }
-    return projects.filter((project) => active.every((tag) => project.tags.includes(tag)));
+
+    const normalizedActive = active.map((tag) => tag.toLowerCase());
+
+    return projects.filter((project) => {
+      const projectTags = project.tags.map((tag) => tag.toLowerCase());
+      return normalizedActive.every((tag) => projectTags.includes(tag));
+    });
   });
 
-  readonly availableTags = computed(() => {
-    const tags = new Set<string>();
-    this.allProjects().forEach((project) => project.tags.forEach((tag) => tags.add(tag)));
-    return Array.from(tags).sort((a, b) => a.localeCompare(b));
-  });
+  readonly availableTags = computed(() => AVAILABLE_TAGS.slice());
 
   constructor() {
     this.projects$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((projects) => this.allProjects.set(projects));
@@ -60,23 +72,33 @@ export class ProjectsComponent {
       if (!tags) {
         this.activeTags.set([]);
       } else {
-        this.activeTags.set(
-          tags
-            .split(',')
-            .map((tag) => tag.trim())
-            .filter(Boolean)
-        );
+        const parsed = tags
+          .split(',')
+          .map((tag) => tag.trim())
+          .filter(Boolean)
+          .map((tag) => normalizeTagLabel(tag))
+          .filter((tag): tag is string => Boolean(tag));
+
+        this.activeTags.set(parsed);
       }
     });
   }
 
   toggleTag(tag: string): void {
-    const current = new Set(this.activeTags());
-    if (current.has(tag)) {
-      current.delete(tag);
-    } else {
-      current.add(tag);
+    const normalizedTag = normalizeTagLabel(tag);
+
+    if (!normalizedTag) {
+      return;
     }
+
+    const current = new Set(this.activeTags());
+
+    if (current.has(normalizedTag)) {
+      current.delete(normalizedTag);
+    } else {
+      current.add(normalizedTag);
+    }
+
     this.updateQuery(Array.from(current));
   }
 
