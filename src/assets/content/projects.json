@@ -1,24 +1,32 @@
 [
   {
-    "id": "portfolio-revamp",
+    "id": "portfolio",
     "name": "Portfolio",
-    "description": "Strona osobista jako pokaz a11y/perf (tryb jasny/ciemny).",
+    "description": "Personal site as an accessibility and performance showcase (dark/light mode).",
     "tags": ["angular", "material"],
     "demoUrl": "https://example.com/portfolio",
     "repoUrl": "https://github.com/Krasny-Lis/portfolio-webpage",
-    "highlights": ["Lighthouse 95+", "Lazy-loading obrazów"],
-    "draft": true,
+    "highlights": [
+      "prerender + lazy images",
+      "semantic landmarks & focus management",
+      "reduced-motion variants"
+    ],
     "cover": "assets/images/portfolio.webp"
   },
   {
-    "id": "ng-filetree",
+    "id": "angular-filetree",
     "name": "Angular FileTree",
-    "description": "Monorepo Nx, SSR, Signals + NgRx, Material.",
-    "tags": ["angular", "material"],
+    "description": "App for managing directory structures in an Nx monorepo. Combines Angular Signals with NgRx; server-side rendering with prerendering.",
+    "tags": ["angular", "signals", "ngrx", "ssr", "material"],
     "demoUrl": "https://example.com/workbench",
     "repoUrl": "https://github.com/Krasny-Lis/b3-folder-app",
-    "highlights": ["SSR + prerender", "A11y audyt 95+"],
-    "cover": "assets/images/workbench.webp"
+    "highlights": [
+      "Signals + NgRx - fast, predictable view-state sync",
+      "SSR + prerendering for faster first paint and SEO",
+      "Nx monorepo (generators, affected)",
+      "UI built with Angular Material"
+    ],
+    "cover": "assets/images/angular-filetree.webp"
   },
   {
     "id": "private-dashboard",

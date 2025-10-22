@@ -23,15 +23,15 @@ npm run dev:ssr        # Start SSR dev server (http://localhost:4200 by default)
 
 ## Useful scripts
 
-| Command | Description |
-| --- | --- |
-| `npm run lint` | Run ESLint on `src/` and `cypress/`. |
-| `npm run test` | Execute Jest unit tests. |
-| `npm run build` | Production browser build. |
-| `npm run build:ssr` | Build browser + server bundles for SSR. |
-| `npm run prerender` | Prerender defined routes to static HTML. |
-| `npm run e2e` | Execute Cypress e2e tests (requires app running). |
-| `npm run format` | Format using Prettier. |
+| Command             | Description                                       |
+| ------------------- | ------------------------------------------------- |
+| `npm run lint`      | Run ESLint on `src/` and `cypress/`.              |
+| `npm run test`      | Execute Jest unit tests.                          |
+| `npm run build`     | Production browser build.                         |
+| `npm run build:ssr` | Build browser + server bundles for SSR.           |
+| `npm run prerender` | Prerender defined routes to static HTML.          |
+| `npm run e2e`       | Execute Cypress e2e tests (requires app running). |
+| `npm run format`    | Format using Prettier.                            |
 
 ## Deployment
 
@@ -43,9 +43,9 @@ npm run dev:ssr        # Start SSR dev server (http://localhost:4200 by default)
 
 Portfolio data lives in `src/assets/content`:
 
-- `projects.json` – metadata, demo/repo links, `private` flag
-- `skills.json` – skill groups with level tags
-- `social.json` – social/contact links used in navbar/footer
+- `projects.json` - metadata, demo/repo links, `private` flag
+- `skills.json` - skill groups with level tags
+- `social.json` - social/contact links used in navbar/footer
 
 Update these files to refresh displayed content.
 
@@ -59,8 +59,8 @@ CI should follow the pipeline `install -> lint -> test -> build -> prerender`.
 
 ## Environments
 
-- `src/environments/environment.ts` – local/dev (owner view = `true`)
-- `src/environments/environment.production.ts` – production (private projects hidden)
+- `src/environments/environment.ts` - local/dev (owner view = `true`)
+- `src/environments/environment.production.ts` - production (private projects hidden)
 
 Adjust `contactEndpoint` to point at the form backend of your choice (Formspree, EmailJS, etc.).
 

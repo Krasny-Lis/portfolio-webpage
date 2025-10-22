@@ -1,5 +1,12 @@
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -12,7 +19,7 @@ import { ProjectListComponent } from './components/project-list/project-list.com
 import { TagFilterComponent } from './components/tag-filter/tag-filter.component';
 import { TranslationService } from '../../core/services/translation.service';
 
-const AVAILABLE_TAGS = ['Angular', 'Material', 'React'] as const;
+const AVAILABLE_TAGS = ['Angular', 'React', 'Material'] as const;
 const NORMALIZED_AVAILABLE_TAGS = AVAILABLE_TAGS.map((tag) => tag.toLowerCase());
 
 function normalizeTagLabel(tag: string): string | null {
@@ -27,7 +34,7 @@ function normalizeTagLabel(tag: string): string | null {
   imports: [SectionComponent, ProjectListComponent, TagFilterComponent, NgIf],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent {
   private content = inject(ContentService);
@@ -65,7 +72,9 @@ export class ProjectsComponent {
   readonly availableTags = computed(() => AVAILABLE_TAGS.slice());
 
   constructor() {
-    this.projects$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((projects) => this.allProjects.set(projects));
+    this.projects$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((projects) => this.allProjects.set(projects));
 
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
       const tags = params.get('tags');
@@ -110,7 +119,7 @@ export class ProjectsComponent {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { tags: tags.length ? tags.join(',') : null },
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 }

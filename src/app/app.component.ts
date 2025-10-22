@@ -12,7 +12,7 @@ import { SeoPageKey } from './core/services/translation.data';
   standalone: true,
   imports: [ShellComponent],
   template: '<app-shell></app-shell>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   private router = inject(Router);
@@ -39,10 +39,10 @@ export class AppComponent {
     this.seo.setStructuredData({
       '@context': 'https://schema.org',
       '@type': 'Person',
-      name: 'Krzysztof Śliwa – Angular Developer',
+      name: 'Lisu - Angular Developer',
       url: 'https://lisu.dev',
       jobTitle: 'Frontend Engineer',
-      knowsAbout: ['Angular', 'Signals', 'NgRx', 'SSR', 'RxJS']
+      knowsAbout: ['Angular', 'Signals', 'NgRx', 'SSR', 'RxJS'],
     });
   }
 
