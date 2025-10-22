@@ -1,10 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Inject, inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { map, Observable, shareReplay, switchMap } from 'rxjs';
 
 import { Project, SkillGroup, SocialLink } from '../models/content.models';
 import { TranslationService } from './translation.service';
+
+export const LANGUAGE_TO_OBSERVABLE = new InjectionToken<typeof toObservable>(
+  'LANGUAGE_TO_OBSERVABLE',
+  {
+    providedIn: 'root',
+    factory: () => toObservable,
+  },
+);
 
 @Injectable({ providedIn: 'root' })
 export class ContentService {
@@ -16,11 +24,11 @@ export class ContentService {
   constructor(
     http?: HttpClient,
     translations?: TranslationService,
-    languageToObservable: typeof toObservable = toObservable,
+    @Optional() @Inject(LANGUAGE_TO_OBSERVABLE) languageToObservable?: typeof toObservable,
   ) {
     this.http = http ?? inject(HttpClient);
     this.translations = translations ?? inject(TranslationService);
-    this.language$ = languageToObservable(this.translations.language);
+    this.language$ = (languageToObservable ?? toObservable)(this.translations.language);
   }
 
   getProjects(): Observable<Project[]> {
