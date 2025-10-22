@@ -1,24 +1,33 @@
 [
   {
-    "id": "portfolio-revamp",
+    "id": "portfolio",
     "name": "Portfolio",
-    "description": "Nowoczesne portfolio z trybem jasnym/ciemnym i dopracowaną dostępnością.",
+    "description": "Strona osobista jako pokaz dostępności i wydajności (tryb jasny/ciemny).",
     "tags": ["angular", "material"],
     "demoUrl": "https://example.com/portfolio",
     "repoUrl": "https://github.com/Krasny-Lis/portfolio-webpage",
-    "highlights": ["Lighthouse 95+", "Lazy-loading obrazów"],
-    "draft": true,
+    "highlights": [
+      "prerender + leniwe obrazki",
+      "semantyczne landmarki i zarządzanie focusem",
+      "warianty reduced-motion"
+    ],
     "cover": "assets/images/portfolio.webp"
   },
   {
-    "id": "ng-filetree",
+    "id": "angular-filetree",
     "name": "Angular FileTree",
-    "description": "Monorepo Nx z SSR, Signals + NgRx oraz Material.",
-    "tags": ["angular", "material"],
+    "description": "Aplikacja do zarządzania strukturą katalogów w monorepo Nx. Łączy Angular Signals z NgRx; serwer w trybie SSR z prerenderingiem.",
+    "tags": ["angular", "signals", "ngrx", "ssr", "material"],
     "demoUrl": "https://example.com/workbench",
     "repoUrl": "https://github.com/Krasny-Lis/b3-folder-app",
-    "highlights": ["SSR + prerender", "A11y audyt 95+"],
-    "cover": "assets/images/workbench.webp"
+    "highlights": [
+      "Signals + NgRx - szybka i przewidywalna synchronizacja widoku",
+      "SSR + prerendering dla lepszego pierwszego wrażenia i SEO",
+      "Monorepo oparte na Nx (generatory, affected)",
+      "UI w Angular Material"
+    ],
+    "draft": false,
+    "cover": "assets/images/angular-filetree.webp"
   },
   {
     "id": "private-dashboard",
