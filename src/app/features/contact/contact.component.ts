@@ -89,7 +89,7 @@ export class ContactComponent implements OnDestroy {
   copyEmail(): void {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
       navigator.clipboard
-        .writeText('hello@lisu.dev')
+        .writeText('sliwa.lis.krzysztof@gmail.com')
         .then(() => {
           this.copyFeedbackState.set('success');
           setTimeout(() => this.copyFeedbackState.set(null), 2000);

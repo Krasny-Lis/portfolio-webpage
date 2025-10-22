@@ -32,12 +32,21 @@
     <h3>{{ t().contact.otherChannels }}</h3>
     <ul>
       <li>
-        <a href="mailto:hello&#64;lisu.dev">hello&#64;lisu.dev</a>
+        <a href="mailto:sliwa.lis.krzysztof&#64;gmail.com">sliwa.lis.krzysztof&#64;gmail.com</a>
         <button type="button" (click)="copyEmail()">{{ t().contact.copy }}</button>
         <span class="status" *ngIf="copyFeedbackMessage()">{{ copyFeedbackMessage() }}</span>
       </li>
-      <li><a href="https://github.com/lisu" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/lisu" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li>
+        <a href="https://github.com/Krasny-Lis?tab=repositories" target="_blank" rel="noopener">GitHub</a>
+      </li>
+      <li>
+        <a
+          href="https://www.linkedin.com/in/krzysztof-%C5%9Bliwa-018747179/"
+          target="_blank"
+          rel="noopener"
+          >LinkedIn</a
+        >
+      </li>
     </ul>
   </div>
 </app-section>
