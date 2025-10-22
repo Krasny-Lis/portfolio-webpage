@@ -52,7 +52,7 @@ export class ThemeService {
     const startTransition = docWithTransition.startViewTransition?.bind(this.document);
 
     if (startTransition) {
-      startTransition(action).finished.finally(() => this.clearTransitionFlag());
+      void startTransition(action).finished.finally(() => this.clearTransitionFlag());
     } else {
       action();
       this.clearTransitionFlag();

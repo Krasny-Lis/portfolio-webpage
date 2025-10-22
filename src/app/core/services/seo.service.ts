@@ -42,7 +42,7 @@ export class SeoService {
   setStructuredData(jsonLd: Record<string, unknown>): void {
     const head = this.document.head;
     const existing = head.querySelector<HTMLScriptElement>('script[type="application/ld+json"]');
-    const script = existing ?? (this.document.createElement('script') as HTMLScriptElement);
+    const script = existing ?? this.document.createElement('script');
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(jsonLd, null, 2);
     if (!existing) {
