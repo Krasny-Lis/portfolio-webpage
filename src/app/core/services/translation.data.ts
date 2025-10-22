@@ -178,6 +178,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
         core: 'Core',
         pro: 'Pro',
         familiar: 'Familiar',
+        legacy: 'Legacy',
       },
     },
     projects: {
@@ -321,6 +322,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
         core: 'Core',
         pro: 'Pro',
         familiar: 'Familiar',
+        legacy: 'Legacy',
       },
     },
     projects: {

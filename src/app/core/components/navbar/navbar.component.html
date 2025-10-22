@@ -16,6 +16,7 @@
       [routerLink]="link.path"
       routerLinkActive="is-active"
       (click)="drawer.open = false"
+      [attr.data-cy]="'navbar-link-' + link.path.replace('/', '')"
       >{{ link.label }}</a
     >
     <div
@@ -47,7 +48,13 @@
       <span aria-hidden="true">{{ theme() === 'dark' ? '🌙' : '☀️' }}</span>
     </button>
     <div class="navbar__social" *ngIf="links$ | async as links">
-      <a *ngFor="let link of links" [href]="link.url" target="_blank" rel="noopener" class="navbar__social-link">
+      <a
+        *ngFor="let link of links"
+        [href]="link.url"
+        target="_blank"
+        rel="noopener"
+        class="navbar__social-link"
+      >
         {{ link.label }}
       </a>
     </div>

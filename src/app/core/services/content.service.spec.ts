@@ -4,22 +4,27 @@ import { of } from 'rxjs';
 import '@angular/compiler';
 import { jest } from '@jest/globals';
 import type { HttpClient } from '@angular/common/http';
+import type { toObservable } from '@angular/core/rxjs-interop';
 
 import { ContentService } from './content.service';
 import { Project } from '../models/content.models';
 import { TranslationService } from './translation.service';
 
 describe('ContentService', () => {
-  const projects: Project[] = [
-    { id: '1', name: 'Test', description: 'Desc', tags: [] },
-  ];
+  const projects: Project[] = [{ id: '1', name: 'Test', description: 'Desc', tags: [] }];
 
   const createService = (httpGet: jest.Mock) => {
     const translations = {
       language: signal('en').asReadonly(),
     } as TranslationService;
 
-    return new ContentService({ get: httpGet } as unknown as HttpClient, translations, of('en'));
+    const toObservableStub: typeof toObservable = () => of('en');
+
+    return new ContentService(
+      { get: httpGet } as unknown as HttpClient,
+      translations,
+      toObservableStub,
+    );
   };
 
   it('should cache requests based on url', () => {

@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, effect, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
 
 import { ShellComponent } from './core/layout/shell.component';
@@ -19,11 +20,15 @@ export class AppComponent {
   private activatedRoute = inject(ActivatedRoute);
   private seo = inject(SeoService);
   private translations = inject(TranslationService);
+  private destroyRef = inject(DestroyRef);
   private currentRoute: ActivatedRoute | null = null;
 
   constructor() {
     this.router.events
-      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      )
       .subscribe(() => {
         const route = this.findPrimaryRoute(this.activatedRoute);
         this.currentRoute = route;

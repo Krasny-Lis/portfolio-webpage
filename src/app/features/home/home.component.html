@@ -6,8 +6,12 @@
   <div class="home__hero">
     <div class="home__copy">
       <div class="home__cta">
-        <a routerLink="/contact" class="btn btn--primary">{{ t().home.ctaContact }}</a>
-        <a routerLink="/projects" class="btn btn--ghost">{{ t().home.ctaProjects }}</a>
+        <a routerLink="/contact" class="btn btn--primary" data-cy="home-cta-contact">{{
+          t().home.ctaContact
+        }}</a>
+        <a routerLink="/projects" class="btn btn--ghost" data-cy="home-cta-projects">{{
+          t().home.ctaProjects
+        }}</a>
       </div>
       <div class="home__tags">
         <app-chip *ngFor="let tag of t().home.tags" [label]="tag"></app-chip>

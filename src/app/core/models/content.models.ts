@@ -11,7 +11,7 @@ export interface Project {
   cover?: string;
 }
 
-export type SkillLevel = 'core' | 'pro' | 'familiar';
+export type SkillLevel = 'core' | 'pro' | 'familiar' | 'legacy';
 
 export interface SkillGroup {
   name: string;
