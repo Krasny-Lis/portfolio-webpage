@@ -137,7 +137,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     },
     home: {
       eyebrow: 'Hello',
-      title: 'Lisu - Angular Developer',
+      title: 'Krzysztof Śliwa - Angular Developer',
       description: 'I build fast, accessible Angular apps and help teams ship reliable products.',
       hero: 'Signals, SSR, NgRx, testing. Everything so users feel at home and the business sleeps well.',
       ctaProjects: 'See projects',
@@ -222,16 +222,16 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     },
     footer: {
       linksLabel: 'Social links',
-      copyright: 'Lisu - Angular Developer',
+      copyright: 'Krzysztof Śliwa - Angular Developer',
     },
     backToTop: 'Back to top',
     seo: {
       home: {
-        title: 'Lisu - Angular Developer',
+        title: 'Krzysztof Śliwa - Angular Developer',
         description: 'Angular developer portfolio: projects, skills, contact. SSR, Signals, NgRx.',
       },
       about: {
-        title: 'About - Lisu.dev',
+        title: 'About - Krzysztof Śliwa',
         description: 'Learn about the values and experience of a quality-driven Angular developer.',
       },
       skills: {
@@ -279,7 +279,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     },
     home: {
       eyebrow: 'Cześć',
-      title: 'Lisu - Angular Developer',
+      title: 'Krzysztof Śliwa - Angular Developer',
       description:
         'Buduję dostępne i testowalne aplikacje w Angularze (Signals, NgRx, SSR) - szybkie, stabilne i łatwe w zmianie.',
       hero: 'Signals, SSR, NgRx, testy. Wszystko po to, by użytkownicy czuli się jak w domu, a biznes miał spokój.',
@@ -366,17 +366,17 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     },
     footer: {
       linksLabel: 'Linki społecznościowe',
-      copyright: 'Lisu - Angular Developer',
+      copyright: 'Krzysztof Śliwa - Angular Developer',
     },
     backToTop: 'Powrót na górę',
     seo: {
       home: {
-        title: 'Lisu - Angular Developer',
+        title: 'Krzysztof Śliwa - Angular Developer',
         description:
           'Portfolio Angular Developera: projekty, umiejętności, kontakt. SSR, Signals, NgRx.',
       },
       about: {
-        title: 'O mnie - Lisu.dev',
+        title: 'O mnie - Krzysztof Śliwa',
         description:
           'Poznaj wartości i doświadczenie Angular Developera skoncentrowanego na jakości.',
       },

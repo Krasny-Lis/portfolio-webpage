@@ -39,7 +39,7 @@ export class AppComponent {
     this.seo.setStructuredData({
       '@context': 'https://schema.org',
       '@type': 'Person',
-      name: 'Lisu – Angular Developer',
+      name: 'Krzysztof Śliwa – Angular Developer',
       url: 'https://lisu.dev',
       jobTitle: 'Frontend Engineer',
       knowsAbout: ['Angular', 'Signals', 'NgRx', 'SSR', 'RxJS']

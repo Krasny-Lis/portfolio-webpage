@@ -1,5 +1,8 @@
 [
-  { "label": "GitHub", "url": "https://github.com/lisu" },
-  { "label": "LinkedIn", "url": "https://www.linkedin.com/in/lisu" },
-  { "label": "Email", "url": "mailto:hello@lisu.dev" }
+  { "label": "GitHub", "url": "https://github.com/Krasny-Lis?tab=repositories" },
+  {
+    "label": "LinkedIn",
+    "url": "https://www.linkedin.com/in/krzysztof-%C5%9Bliwa-018747179/"
+  },
+  { "label": "Email", "url": "mailto:sliwa.lis.krzysztof@gmail.com" }
 ]
