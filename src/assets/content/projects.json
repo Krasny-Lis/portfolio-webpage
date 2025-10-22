@@ -1,10 +1,11 @@
 [
   {
     "id": "portfolio-revamp",
-    "name": "Portfolio Revamp",
+    "name": "Portfolio",
     "description": "Strona osobista jako pokaz a11y/perf (tryb jasny/ciemny).",
-    "tags": ["angular", "material", "a11y"],
+    "tags": ["angular", "material"],
     "demoUrl": "https://example.com/portfolio",
+    "repoUrl": "https://github.com/Krasny-Lis/portfolio-webpage",
     "highlights": ["Lighthouse 95+", "Lazy-loading obrazów"],
     "draft": true,
     "cover": "assets/images/portfolio.webp"
@@ -13,9 +14,9 @@
     "id": "ng-filetree",
     "name": "Angular FileTree",
     "description": "Monorepo Nx, SSR, Signals + NgRx, Material.",
-    "tags": ["angular", "nx", "ssr", "signals", "ngrx"],
+    "tags": ["angular", "material"],
     "demoUrl": "https://example.com/workbench",
-    "repoUrl": "https://github.com/lisu/ng-workbench",
+    "repoUrl": "https://github.com/Krasny-Lis/b3-folder-app",
     "highlights": ["SSR + prerender", "A11y audyt 95+"],
     "cover": "assets/images/workbench.webp"
   },
