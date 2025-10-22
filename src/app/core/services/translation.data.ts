@@ -41,7 +41,6 @@ export interface AppTranslations {
     eyebrow: string;
     title: string;
     description: string;
-    hero: string;
     ctaProjects: string;
     ctaContact: string;
     tags: string[];
@@ -89,8 +88,6 @@ export interface AppTranslations {
     subjectError: string;
     messageLabel: string;
     messageError: string;
-    consentLabel: string;
-    consentError: string;
     submit: string;
     success: string;
     error: string;
@@ -141,10 +138,9 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       eyebrow: 'Hello',
       title: 'Krzysztof Śliwa - Angular Developer',
       description: 'I build fast, accessible Angular apps and help teams ship reliable products.',
-      hero: 'Signals, SSR, NgRx, testing. Everything so users feel at home and the business sleeps well.',
       ctaProjects: 'See projects',
       ctaContact: 'Get in touch',
-      tags: ['Angular 19', 'SSR', 'NgRx', 'Signals', 'A11y'],
+      tags: ['Angular 19', 'SSR', 'NgRx', 'Signals', 'React 18'],
       socialIntro: 'Find me also on:',
     },
     about: {
@@ -213,8 +209,6 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       subjectError: 'Please enter a subject.',
       messageLabel: 'Message',
       messageError: 'Message should be at least 10 characters long.',
-      consentLabel: 'I agree to be contacted according to the privacy policy.',
-      consentError: 'Consent is required.',
       submit: 'Send',
       success: "Thanks! I'll get back to you soon.",
       error: 'Something went wrong. Please try again.',
@@ -286,10 +280,9 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       title: 'Krzysztof Śliwa - Angular Developer',
       description:
         'Buduję dostępne i testowalne aplikacje w Angularze (Signals, NgRx, SSR) - szybkie, stabilne i łatwe w zmianie.',
-      hero: 'Signals, SSR, NgRx, testy. Wszystko po to, by użytkownicy czuli się jak w domu, a biznes miał spokój.',
       ctaProjects: 'Zobacz projekty',
       ctaContact: 'Skontaktuj się',
-      tags: ['Angular 19', 'SSR', 'NgRx', 'Signals', 'A11y'],
+      tags: ['Angular 19', 'SSR', 'NgRx', 'Signals', 'React'],
       socialIntro: 'Znajdziesz mnie też:',
     },
     about: {
@@ -359,8 +352,6 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       subjectError: 'Podaj temat wiadomości.',
       messageLabel: 'Wiadomość',
       messageError: 'Wiadomość powinna mieć min. 10 znaków.',
-      consentLabel: 'Zgadzam się na kontakt zgodnie z polityką prywatności.',
-      consentError: 'Wymagana zgoda.',
       submit: 'Wyślij',
       success: 'Dziękuję! Wrócę z odpowiedzią.',
       error: 'Coś poszło nie tak. Spróbuj ponownie.',

@@ -28,13 +28,6 @@
         {{ t().contact.messageError }}
       </span>
     </label>
-    <label class="checkbox">
-      <input type="checkbox" formControlName="consent" required />
-      <span>{{ t().contact.consentLabel }}</span>
-      <span class="error" *ngIf="form.controls.consent.invalid && form.controls.consent.touched">
-        {{ t().contact.consentError }}
-      </span>
-    </label>
     <button type="submit" [disabled]="facade.status() === 'pending'">
       {{ t().contact.submit }}
     </button>

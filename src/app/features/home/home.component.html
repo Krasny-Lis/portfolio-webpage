@@ -5,10 +5,9 @@
 >
   <div class="home__hero">
     <div class="home__copy">
-      <p>{{ t().home.hero }}</p>
       <div class="home__cta">
-        <a routerLink="/projects" class="btn btn--primary">{{ t().home.ctaProjects }}</a>
-        <a routerLink="/contact" class="btn btn--ghost">{{ t().home.ctaContact }}</a>
+        <a routerLink="/contact" class="btn btn--primary">{{ t().home.ctaContact }}</a>
+        <a routerLink="/projects" class="btn btn--ghost">{{ t().home.ctaProjects }}</a>
       </div>
       <div class="home__tags">
         <app-chip *ngFor="let tag of t().home.tags" [label]="tag"></app-chip>
@@ -18,6 +17,8 @@
   </div>
   <div class="home__social" *ngIf="social$ | async as links">
     <span>{{ t().home.socialIntro }}</span>
-    <a *ngFor="let link of links" [href]="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
+    <a *ngFor="let link of links" [href]="link.url" target="_blank" rel="noopener">{{
+      link.label
+    }}</a>
   </div>
 </app-section>
