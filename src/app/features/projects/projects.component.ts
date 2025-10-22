@@ -108,7 +108,7 @@ export class ProjectsComponent {
   }
 
   private updateQuery(tags: string[]): void {
-    this.router.navigate([], {
+    void this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { tags: tags.length ? tags.join(',') : null },
       queryParamsHandling: 'merge',

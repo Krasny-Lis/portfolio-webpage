@@ -57,8 +57,14 @@ export class ContactFacade {
     const subject = encodeURIComponent(payload.subject.trim());
     const name = payload.name.trim();
     const email = payload.email.trim();
-    const message = payload.message;
-    const bodyLines = [`From: ${name} <${email}>`, '', message];
+    const message = payload.message.trim();
+    const bodyLines = [
+      `From: ${name} <${email}>`,
+      '',
+      message,
+      '',
+      'Consent granted: yes',
+    ];
     const body = encodeURIComponent(bodyLines.join('\n'));
 
     return `mailto:sliwa.lis.krzysztof@gmail.com?subject=${subject}&body=${body}`;
