@@ -10,6 +10,7 @@
   --text-on-accent: #ffffff;
   --accent: #5c6cff;
   --chip-bg: #d9e4ff;
+  --chip-text: var(--text-secondary);
   --shadow: 0 10px 30px rgba(20, 30, 80, 0.08);
   --shadow-elevated: 0 20px 45px rgba(20, 30, 80, 0.14);
   --danger: #d94848;
@@ -28,6 +29,7 @@ body.theme-dark {
   --text-on-accent: #0b1021;
   --accent: #8ea4ff;
   --chip-bg: rgba(142, 164, 255, 0.15);
+  --chip-text: var(--text-secondary);
   --shadow: 0 10px 30px rgba(5, 8, 20, 0.35);
   --shadow-elevated: 0 20px 45px rgba(5, 8, 20, 0.45);
   --danger: #ff6b6b;

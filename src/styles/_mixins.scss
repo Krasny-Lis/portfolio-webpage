@@ -1,0 +1,10 @@
+@mixin elevated-surface($gap: 1rem, $padding: 1.75rem) {
+  border-radius: 20px;
+  background: var(--surface-card);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  padding: $padding;
+  color: var(--text-primary);
+}
