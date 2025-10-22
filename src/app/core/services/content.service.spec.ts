@@ -1,3 +1,4 @@
+import { signal } from '@angular/core';
 import { of } from 'rxjs';
 
 import '@angular/compiler';
@@ -15,10 +16,10 @@ describe('ContentService', () => {
 
   const createService = (httpGet: jest.Mock) => {
     const translations = {
-      language: (() => 'en') as unknown as TranslationService['language'],
+      language: signal('en').asReadonly(),
     } as TranslationService;
 
-    return new ContentService({ get: httpGet } as unknown as HttpClient, translations, () => of('en'));
+    return new ContentService({ get: httpGet } as unknown as HttpClient, translations, of('en'));
   };
 
   it('should cache requests based on url', () => {
