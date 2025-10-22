@@ -35,9 +35,14 @@ describe('ContactFacade', () => {
 
     expect(assignSpy).toHaveBeenCalledTimes(1);
     const url = assignSpy.mock.calls[0][0] as string;
-    expect(url).toContain('mailto:sliwa.lis.krzysztof@gmail.com');
-    expect(url).toContain(`subject=${encodeURIComponent(basePayload.subject)}`);
-    expect(url).toContain(encodeURIComponent('Consent granted: yes'));
+    expect(url.startsWith('mailto:sliwa.lis.krzysztof@gmail.com')).toBe(true);
+
+    const [, query] = url.split('?');
+    const params = new URLSearchParams(query);
+    expect(params.get('subject')).toBe(basePayload.subject.trim());
+
+    const body = params.get('body');
+    expect(body).toBe(`From: ${basePayload.name} <${basePayload.email}>\n\n${basePayload.message}`);
     expect(facade.status()).toBe('success');
   });
 

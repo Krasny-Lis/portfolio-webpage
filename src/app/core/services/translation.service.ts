@@ -1,14 +1,15 @@
 import { DOCUMENT } from '@angular/common';
-import { computed, effect, inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, Inject, Optional, signal } from '@angular/core';
 
 import { AppTranslations, Language, TRANSLATIONS } from './translation.data';
 
 @Injectable({ providedIn: 'root' })
 export class TranslationService {
-  private document = inject(DOCUMENT);
+  private document: Document | null;
+  private storage: Storage | null;
   private storageKey = 'portfolio-language';
   private defaultLanguage: Language = 'en';
-  private languageSignal = signal<Language>(this.resolveInitialLanguage());
+  private languageSignal = signal<Language>(this.defaultLanguage);
 
   readonly language = this.languageSignal.asReadonly();
   readonly translations = computed<AppTranslations>(() => {
@@ -16,7 +17,17 @@ export class TranslationService {
     return TRANSLATIONS[lang] ?? TRANSLATIONS[this.defaultLanguage];
   });
 
-  constructor() {
+  constructor(
+    @Optional() @Inject(DOCUMENT) document?: Document | null,
+    @Optional() storage?: Storage | null,
+  ) {
+    this.document = document ?? this.tryInjectDocument();
+    this.storage = storage ?? this.resolveStorage();
+    const initialLanguage = this.resolveInitialLanguage();
+    this.languageSignal.set(initialLanguage);
+    this.updateDocumentLang(initialLanguage);
+    this.persistLanguage(initialLanguage);
+
     effect(() => {
       const lang = this.languageSignal();
       this.updateDocumentLang(lang);
@@ -29,6 +40,8 @@ export class TranslationService {
       return;
     }
     this.languageSignal.set(lang);
+    this.updateDocumentLang(lang);
+    this.persistLanguage(lang);
   }
 
   toggleLanguage(): void {
@@ -59,12 +72,15 @@ export class TranslationService {
   }
 
   private readStoredLanguage(): Language | null {
+    const storage = this.storage;
+    if (!storage) {
+      return null;
+    }
+
     try {
-      if (typeof localStorage !== 'undefined') {
-        const stored = localStorage.getItem(this.storageKey) as Language | null;
-        if (stored && TRANSLATIONS[stored]) {
-          return stored;
-        }
+      const stored = storage.getItem(this.storageKey) as Language | null;
+      if (stored && TRANSLATIONS[stored]) {
+        return stored;
       }
     } catch {
       // ignore persistence errors
@@ -73,10 +89,13 @@ export class TranslationService {
   }
 
   private persistLanguage(lang: Language): void {
+    const storage = this.storage;
+    if (!storage) {
+      return;
+    }
+
     try {
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem(this.storageKey, lang);
-      }
+      storage.setItem(this.storageKey, lang);
     } catch {
       // ignore persistence errors
     }
@@ -86,5 +105,24 @@ export class TranslationService {
     if (this.document?.documentElement) {
       this.document.documentElement.lang = lang;
     }
+  }
+
+  private tryInjectDocument(): Document | null {
+    try {
+      return inject(DOCUMENT);
+    } catch {
+      return null;
+    }
+  }
+
+  private resolveStorage(): Storage | null {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        return localStorage;
+      }
+    } catch {
+      // ignore storage resolution errors
+    }
+    return null;
   }
 }
