@@ -1,23 +1,23 @@
 [
   {
-    "id": "ng-workbench",
-    "name": "Angular Workbench",
+    "id": "portfolio-revamp",
+    "name": "Portfolio Revamp",
+    "description": "Strona osobista jako pokaz a11y/perf (tryb jasny/ciemny).",
+    "tags": ["angular", "material", "a11y"],
+    "demoUrl": "https://example.com/portfolio",
+    "highlights": ["Lighthouse 95+", "Lazy-loading obrazów"],
+    "draft": true,
+    "cover": "assets/images/portfolio.webp"
+  },
+  {
+    "id": "ng-filetree",
+    "name": "Angular FileTree",
     "description": "Monorepo Nx, SSR, Signals + NgRx, Material.",
     "tags": ["angular", "nx", "ssr", "signals", "ngrx"],
     "demoUrl": "https://example.com/workbench",
     "repoUrl": "https://github.com/lisu/ng-workbench",
     "highlights": ["SSR + prerender", "A11y audyt 95+"],
     "cover": "assets/images/workbench.webp"
-  },
-  {
-    "id": "portfolio-revamp",
-    "name": "Portfolio Revamp",
-    "description": "Nowoczesne portfolio z trybem dark/light i świetną dostępnością.",
-    "tags": ["angular", "material", "a11y"],
-    "demoUrl": "https://example.com/portfolio",
-    "highlights": ["Lighthouse 95+", "Lazy-loading obrazów"],
-    "draft": true,
-    "cover": "assets/images/portfolio.webp"
   },
   {
     "id": "private-dashboard",

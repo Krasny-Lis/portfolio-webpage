@@ -149,7 +149,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       eyebrow: 'Who I am',
       title: 'Angular Developer focused on quality',
       description:
-        'I build accessible, testable Angular apps with Signals, NgRx and SSR — fast, stable and easy to change.',
+        'I build accessible, testable Angular apps with Signals, NgRx and SSR - fast, stable and easy to change.',
       values: [
         {
           title: 'Transparent collaboration',
@@ -185,7 +185,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     projects: {
       eyebrow: 'Portfolio',
       title: 'Projects',
-      description: 'Selected work - public demos and NDA case studies.',
+      description: 'Selected work - public demos',
       filterLabel: 'Project filter',
       filterAll: 'All',
       showMore: 'Show more projects',
@@ -281,7 +281,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       eyebrow: 'Cześć',
       title: 'Lisu - Angular Developer',
       description:
-        'Buduję dostępne i testowalne aplikacje w Angularze (Signals, NgRx, SSR) — szybkie, stabilne i łatwe w zmianie.',
+        'Buduję dostępne i testowalne aplikacje w Angularze (Signals, NgRx, SSR) - szybkie, stabilne i łatwe w zmianie.',
       hero: 'Signals, SSR, NgRx, testy. Wszystko po to, by użytkownicy czuli się jak w domu, a biznes miał spokój.',
       ctaProjects: 'Zobacz projekty',
       ctaContact: 'Skontaktuj się',
@@ -292,7 +292,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       eyebrow: 'Kim jestem',
       title: 'Angular Developer skupiony na jakości',
       description:
-        'Buduję dostępne i testowalne aplikacje w Angularze (Signals, NgRx, SSR) — szybkie, stabilne i łatwe w zmianie.',
+        'Buduję dostępne i testowalne aplikacje w Angularze (Signals, NgRx, SSR) - szybkie, stabilne i łatwe w zmianie.',
       values: [
         {
           title: 'Przejrzysta współpraca',
@@ -329,7 +329,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     projects: {
       eyebrow: 'Portfolio',
       title: 'Projekty',
-      description: 'Zobacz wybrane projekty - publiczne i prywatne case’y z NDA.',
+      description: 'Wybrane realizacje - publiczne dema',
       filterLabel: 'Filtr projektów',
       filterAll: 'Wszystkie',
       showMore: 'Pokaż więcej projektów',

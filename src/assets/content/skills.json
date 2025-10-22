@@ -56,7 +56,7 @@
       {
         "name": "Python",
         "level": "familiar",
-        "note": "Flask — lightweight services & APIs\nDjango — admin CRUD & ORM"
+        "note": "Flask - lightweight services & APIs\nDjango - admin CRUD & ORM"
       },
       {
         "name": "SQL",
