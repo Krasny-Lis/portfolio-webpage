@@ -3,46 +3,82 @@
     "name": "Frontend",
     "items": [
       { "name": "Angular", "level": "pro", "note": "Komponenty standalone, Signals, SSR/SSG" },
-      { "name": "TypeScript", "level": "core", "note": "Architektura nastawiona na typy i narzędzia" },
-      { "name": "RxJS", "level": "pro", "note": "Higher-order mapping, testy marble" },
-      { "name": "React", "level": "familiar", "note": "Hooks, wzorce komponentów wielokrotnego użytku" },
-      { "name": "GraphQL", "level": "familiar", "note": "Integracje klienckie i projektowanie schematów" },
+      { "name": "TypeScript", "level": "core", "note": "Architektura z typami i narzędzia" },
+      { "name": "RxJS", "level": "pro", "note": "Mapowania wyższego rzędu, testy marble" },
+      {
+        "name": "NgRx",
+        "level": "core",
+        "note": "Store'y feature'owe, efekty, mockowalne selektory"
+      },
+      {
+        "name": "React",
+        "level": "familiar",
+        "note": "Wzorce komponentów wielokrotnego użytku, hooki"
+      },
       { "name": "Highcharts", "level": "familiar", "note": "Interaktywne wizualizacje danych" },
-      { "name": "JavaScript (ES6+)", "level": "core", "note": "Nowoczesne funkcje języka i narzędzia build" }
+      {
+        "name": "GraphQL",
+        "level": "familiar",
+        "note": "Integracje po stronie klienta, projektowanie schematów"
+      }
     ]
   },
   {
-    "name": "Stylowanie",
+    "name": "Stylowanie i UI",
     "items": [
-      { "name": "CSS3 / Sass", "level": "core", "note": "Responsywność, komponentowe podejście do styli" },
-      { "name": "Bootstrap", "level": "familiar", "note": "Systemy designu i szybkie prototypowanie" },
-      { "name": "Angular Material", "level": "core", "note": "Komponenty UI dla aplikacji enterprise" }
+      {
+        "name": "CSS3 / Sass",
+        "level": "core",
+        "note": "Responsywny design, stylowanie oparte na komponentach"
+      },
+      { "name": "Angular Material", "level": "core", "note": "Komponenty UI gotowe na enterprise" },
+      { "name": "Bootstrap", "level": "legacy", "note": "Doświadczenie w utrzymaniu/migracjach" }
     ]
   },
   {
-    "name": "Testowanie",
+    "name": "Testy i jakość",
     "items": [
-      { "name": "Jest", "level": "pro", "note": "Testy jednostkowe, test-driven development" },
-      { "name": "Karma", "level": "familiar" },
-      { "name": "Cypress", "level": "core", "note": "Automatyzacja E2E i integracja z CI" },
-      { "name": "Testing Library", "level": "core", "note": "Testy skupione na dostępności i użytkowniku" },
-      { "name": "Testy kontraktowe", "level": "familiar" }
+      { "name": "Jest", "level": "pro", "note": "Testy jednostkowe, przepływy oparte na TDD" },
+      {
+        "name": "Testing Library",
+        "level": "core",
+        "note": "Testy skupione na użytkowniku i dostępności"
+      },
+      { "name": "Cypress", "level": "core", "note": "Testy end-to-end i integracja z CI" },
+      {
+        "name": "Dostępność (a11y)",
+        "level": "familiar",
+        "note": "Zgodność z WCAG, testy z czytnikami ekranu"
+      },
+      { "name": "Karma", "level": "legacy", "note": "Utrzymanie starszych zestawów testów" }
     ]
   },
   {
-    "name": "Narzędzia i dostarczanie",
+    "name": "Architektura i dostarczanie",
     "items": [
-      { "name": "Nx", "level": "core", "note": "Monorepo, generatory i caching" },
-      { "name": "Git", "level": "core", "note": "Strategie branchowania, code review" },
-      { "name": "Agile / Scrum", "level": "core", "note": "Przyrostowe dostarczanie, współpraca z biznesem" },
-      { "name": "Prowadzenie zespołów", "level": "core", "note": "Mentoring, facylitacja współpracy cross-funkcyjnej" }
+      { "name": "Nx", "level": "core", "note": "Monorepo, generatory, caching/affected" },
+      { "name": "Git", "level": "core", "note": "Strategie rozgałęzień, code review" },
+      { "name": "CI/CD", "level": "core", "note": "Budżety, checki, spokojne releasy" },
+      {
+        "name": "Agile / Scrum",
+        "level": "core",
+        "note": "Dostarczanie przyrostowe, współpraca zespołowa"
+      }
     ]
   },
   {
-    "name": "Backend i dane",
+    "name": "Backend (wsparcie)",
     "items": [
-      { "name": "Python (Flask, Django)", "level": "familiar", "note": "API, lekkie serwisy" },
-      { "name": "SQL", "level": "familiar", "note": "Modelowanie relacyjne, zapytania wydajne" }
+      {
+        "name": "Python",
+        "level": "familiar",
+        "note": "Flask — lekkie usługi i API\nDjango — admin/CRUD, ORM"
+      },
+      {
+        "name": "SQL",
+        "level": "familiar",
+        "note": "Modelowanie relacyjne i zapytania"
+      }
     ]
   }
 ]
