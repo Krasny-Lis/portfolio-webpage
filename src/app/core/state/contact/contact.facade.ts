@@ -14,14 +14,19 @@ export type ContactStatus = 'idle' | 'pending' | 'success' | 'error';
 
 @Injectable({ providedIn: 'root' })
 export class ContactFacade {
-  private document = inject(DOCUMENT);
-  private translations = inject(TranslationService);
+  private document: Document;
+  private translations: TranslationService;
 
   readonly status = signal<ContactStatus>('idle');
   private hasError = signal(false);
   readonly errorMessage = computed(() =>
     this.hasError() ? this.translations.translations().contact.error : null,
   );
+
+  constructor(document?: Document, translations?: TranslationService) {
+    this.document = document ?? inject(DOCUMENT);
+    this.translations = translations ?? inject(TranslationService);
+  }
 
   send(payload: ContactFormPayload): void {
     this.status.set('pending');

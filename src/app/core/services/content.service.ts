@@ -8,10 +8,20 @@ import { TranslationService } from './translation.service';
 
 @Injectable({ providedIn: 'root' })
 export class ContentService {
-  private http = inject(HttpClient);
-  private translations = inject(TranslationService);
+  private http: HttpClient;
+  private translations: TranslationService;
   private cache = new Map<string, Observable<unknown>>();
-  private language$ = toObservable(this.translations.language);
+  private language$: Observable<string>;
+
+  constructor(
+    http?: HttpClient,
+    translations?: TranslationService,
+    languageToObservable: typeof toObservable = toObservable,
+  ) {
+    this.http = http ?? inject(HttpClient);
+    this.translations = translations ?? inject(TranslationService);
+    this.language$ = languageToObservable(this.translations.language);
+  }
 
   getProjects(): Observable<Project[]> {
     return this.language$.pipe(
