@@ -38,7 +38,6 @@ export class ContactComponent implements OnDestroy {
     email: ['', [Validators.required, Validators.email]],
     subject: ['', [Validators.required, Validators.minLength(3)]],
     message: ['', [Validators.required, Validators.minLength(10)]],
-    consent: [false, Validators.requiredTrue],
   });
   readonly t = this.translations.translations;
   readonly copyFeedbackState = signal<'success' | 'error' | null>(null);
@@ -62,7 +61,6 @@ export class ContactComponent implements OnDestroy {
           email: '',
           subject: '',
           message: '',
-          consent: false,
         });
       }
       if (status === 'error' && this.lastStatus !== 'error' && this.isBrowser) {

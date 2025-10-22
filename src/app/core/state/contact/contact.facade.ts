@@ -8,7 +8,6 @@ export interface ContactFormPayload {
   email: string;
   subject: string;
   message: string;
-  consent: boolean;
 }
 
 export type ContactStatus = 'idle' | 'pending' | 'success' | 'error';
@@ -54,12 +53,7 @@ export class ContactFacade {
     const name = payload.name.trim();
     const email = payload.email.trim();
     const message = payload.message;
-    const bodyLines = [
-      `From: ${name} <${email}>`,
-      `Consent granted: ${payload.consent ? 'yes' : 'no'}`,
-      '',
-      message,
-    ];
+    const bodyLines = [`From: ${name} <${email}>`, '', message];
     const body = encodeURIComponent(bodyLines.join('\n'));
 
     return `mailto:sliwa.lis.krzysztof@gmail.com?subject=${subject}&body=${body}`;

@@ -9,7 +9,6 @@ describe('ContactFacade', () => {
     email: 'user@example.com',
     subject: 'Hello world',
     message: 'Line 1\nLine 2',
-    consent: true,
   };
 
   describe('when mail client is available', () => {
