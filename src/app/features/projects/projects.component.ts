@@ -18,15 +18,7 @@ import { SectionComponent } from '../../shared/components/section/section.compon
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { TagFilterComponent } from './components/tag-filter/tag-filter.component';
 import { TranslationService } from '../../core/services/translation.service';
-
-const AVAILABLE_TAGS = ['Angular', 'React', 'Material'] as const;
-const NORMALIZED_AVAILABLE_TAGS = AVAILABLE_TAGS.map((tag) => tag.toLowerCase());
-
-function normalizeTagLabel(tag: string): string | null {
-  const lowerCased = tag.toLowerCase();
-  const index = NORMALIZED_AVAILABLE_TAGS.indexOf(lowerCased);
-  return index === -1 ? null : AVAILABLE_TAGS[index];
-}
+import { AVAILABLE_TAGS, normalizeTagLabel } from './tag-utils';
 
 @Component({
   selector: 'app-projects',

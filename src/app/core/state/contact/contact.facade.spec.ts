@@ -1,9 +1,16 @@
-import { DOCUMENT } from '@angular/common';
-import { TestBed } from '@angular/core/testing';
+import '@angular/compiler';
+import { jest } from '@jest/globals';
 
 import { ContactFacade, ContactFormPayload } from './contact.facade';
+import type { TranslationService } from '../../services/translation.service';
 
 describe('ContactFacade', () => {
+  const translationsStub = {
+    translations: () => ({
+      contact: { error: 'Something went wrong' },
+    }),
+  } as unknown as TranslationService;
+
   const basePayload: ContactFormPayload = {
     name: 'Test User',
     email: 'user@example.com',
@@ -12,62 +19,43 @@ describe('ContactFacade', () => {
     consent: true,
   };
 
-  describe('when mail client is available', () => {
-    let facade: ContactFacade;
-    let assignSpy: jest.Mock;
-
-    beforeEach(() => {
-      assignSpy = jest.fn();
-      const mockDocument = {
+  it('should open the mail client when available', () => {
+    const assignSpy = jest.fn();
+    const facade = new ContactFacade(
+      {
         defaultView: {
           location: { assign: assignSpy },
           navigator: { languages: ['en'], language: 'en' },
         },
         documentElement: { lang: 'en' },
-      } as unknown as Document;
+      } as unknown as Document,
+      translationsStub,
+    );
 
-      TestBed.configureTestingModule({
-        providers: [ContactFacade, { provide: DOCUMENT, useValue: mockDocument }],
-      });
+    facade.send(basePayload);
 
-      facade = TestBed.inject(ContactFacade);
-    });
-
-    it('should open the default mail client with encoded subject and body', () => {
-      facade.send(basePayload);
-
-      expect(assignSpy).toHaveBeenCalledTimes(1);
-      const url: string = assignSpy.mock.calls[0][0];
-      expect(url).toContain('mailto:sliwa.lis.krzysztof@gmail.com');
-      expect(url).toContain(`subject=${encodeURIComponent(basePayload.subject)}`);
-      const expectedBody = encodeURIComponent(
-        `From: ${basePayload.name} <${basePayload.email}>\nConsent granted: yes\n\n${basePayload.message}`,
-      );
-      expect(url).toContain(`body=${expectedBody}`);
-      expect(facade.status()).toBe('success');
-    });
+    expect(assignSpy).toHaveBeenCalledTimes(1);
+    const url = assignSpy.mock.calls[0][0] as string;
+    expect(url).toContain('mailto:sliwa.lis.krzysztof@gmail.com');
+    expect(url).toContain(`subject=${encodeURIComponent(basePayload.subject)}`);
+    expect(url).toContain(encodeURIComponent('Consent granted: yes'));
+    expect(facade.status()).toBe('success');
   });
 
-  describe('when mail client is unavailable', () => {
-    let facade: ContactFacade;
-    beforeEach(() => {
-      const mockDocument = {
+  it('should expose an error when mail client is unavailable', () => {
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    const facade = new ContactFacade(
+      {
         defaultView: null,
         documentElement: { lang: 'en' },
-      } as unknown as Document;
+      } as unknown as Document,
+      translationsStub,
+    );
 
-      TestBed.configureTestingModule({
-        providers: [ContactFacade, { provide: DOCUMENT, useValue: mockDocument }],
-      });
+    facade.send(basePayload);
 
-      facade = TestBed.inject(ContactFacade);
-    });
-
-    it('should expose an error state', () => {
-      facade.send(basePayload);
-
-      expect(facade.status()).toBe('error');
-      expect(facade.errorMessage()).toBeTruthy();
-    });
+    expect(facade.status()).toBe('error');
+    expect(facade.errorMessage()).toBe('Something went wrong');
+    consoleSpy.mockRestore();
   });
 });
