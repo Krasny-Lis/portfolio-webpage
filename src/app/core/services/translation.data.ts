@@ -85,6 +85,8 @@ export interface AppTranslations {
     nameError: string;
     emailLabel: string;
     emailError: string;
+    subjectLabel: string;
+    subjectError: string;
     messageLabel: string;
     messageError: string;
     consentLabel: string;
@@ -207,6 +209,8 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       nameError: 'Please enter your name.',
       emailLabel: 'Email',
       emailError: 'Provide a valid email address.',
+      subjectLabel: 'Subject',
+      subjectError: 'Please enter a subject.',
       messageLabel: 'Message',
       messageError: 'Message should be at least 10 characters long.',
       consentLabel: 'I agree to be contacted according to the privacy policy.',
@@ -351,6 +355,8 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       nameError: 'Podaj swoje imię.',
       emailLabel: 'E-mail',
       emailError: 'Podaj poprawny adres.',
+      subjectLabel: 'Temat',
+      subjectError: 'Podaj temat wiadomości.',
       messageLabel: 'Wiadomość',
       messageError: 'Wiadomość powinna mieć min. 10 znaków.',
       consentLabel: 'Zgadzam się na kontakt zgodnie z polityką prywatności.',

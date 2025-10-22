@@ -3,12 +3,23 @@
     <label>
       <span>{{ t().contact.nameLabel }}</span>
       <input type="text" formControlName="name" required />
-      <span class="error" *ngIf="form.controls.name.invalid && form.controls.name.touched">{{ t().contact.nameError }}</span>
+      <span class="error" *ngIf="form.controls.name.invalid && form.controls.name.touched">{{
+        t().contact.nameError
+      }}</span>
     </label>
     <label>
       <span>{{ t().contact.emailLabel }}</span>
       <input type="email" formControlName="email" required />
-      <span class="error" *ngIf="form.controls.email.invalid && form.controls.email.touched">{{ t().contact.emailError }}</span>
+      <span class="error" *ngIf="form.controls.email.invalid && form.controls.email.touched">{{
+        t().contact.emailError
+      }}</span>
+    </label>
+    <label>
+      <span>{{ t().contact.subjectLabel }}</span>
+      <input type="text" formControlName="subject" required />
+      <span class="error" *ngIf="form.controls.subject.invalid && form.controls.subject.touched">
+        {{ t().contact.subjectError }}
+      </span>
     </label>
     <label>
       <span>{{ t().contact.messageLabel }}</span>
@@ -24,9 +35,15 @@
         {{ t().contact.consentError }}
       </span>
     </label>
-    <button type="submit" [disabled]="facade.status() === 'pending'">{{ t().contact.submit }}</button>
-    <p class="status status--success" *ngIf="facade.status() === 'success'">{{ t().contact.success }}</p>
-    <p class="status status--error" *ngIf="facade.status() === 'error'">{{ facade.errorMessage() }}</p>
+    <button type="submit" [disabled]="facade.status() === 'pending'">
+      {{ t().contact.submit }}
+    </button>
+    <p class="status status--success" *ngIf="facade.status() === 'success'">
+      {{ t().contact.success }}
+    </p>
+    <p class="status status--error" *ngIf="facade.status() === 'error'">
+      {{ facade.errorMessage() }}
+    </p>
   </form>
   <div class="contact-info">
     <h3>{{ t().contact.otherChannels }}</h3>
@@ -37,7 +54,9 @@
         <span class="status" *ngIf="copyFeedbackMessage()">{{ copyFeedbackMessage() }}</span>
       </li>
       <li>
-        <a href="https://github.com/Krasny-Lis?tab=repositories" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/Krasny-Lis?tab=repositories" target="_blank" rel="noopener"
+          >GitHub</a
+        >
       </li>
       <li>
         <a

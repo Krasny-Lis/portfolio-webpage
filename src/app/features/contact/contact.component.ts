@@ -36,6 +36,7 @@ export class ContactComponent implements OnDestroy {
   readonly form = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
+    subject: ['', [Validators.required, Validators.minLength(3)]],
     message: ['', [Validators.required, Validators.minLength(10)]],
     consent: [false, Validators.requiredTrue],
   });
@@ -56,7 +57,13 @@ export class ContactComponent implements OnDestroy {
     effect(() => {
       const status = this.facade.status();
       if (status === 'success') {
-        this.form.reset();
+        this.form.reset({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          consent: false,
+        });
       }
       if (status === 'error' && this.lastStatus !== 'error' && this.isBrowser) {
         const message = this.facade.errorMessage();
