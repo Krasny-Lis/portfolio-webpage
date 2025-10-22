@@ -92,6 +92,7 @@ export interface AppTranslations {
     submit: string;
     success: string;
     error: string;
+    invalidForm: string;
     otherChannels: string;
     copy: string;
     copySuccess: string;
@@ -111,7 +112,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
   en: {
     languageNames: {
       en: 'English',
-      pl: 'Polish'
+      pl: 'Polish',
     },
     navbar: {
       ariaLabel: 'Primary navigation',
@@ -120,54 +121,56 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
         { path: '/about', label: 'About' },
         { path: '/skills', label: 'Skills' },
         { path: '/projects', label: 'Projects' },
-        { path: '/contact', label: 'Contact' }
+        { path: '/contact', label: 'Contact' },
       ],
       themeToggle: {
         light: 'Switch to light mode',
-        dark: 'Switch to dark mode'
+        dark: 'Switch to dark mode',
       },
       languageSwitcher: {
         label: 'Language',
         options: {
           en: 'English',
-          pl: 'Polski'
-        }
-      }
+          pl: 'Polski',
+        },
+      },
     },
     home: {
       eyebrow: 'Hello',
-      title: 'Lisu – Angular Developer',
+      title: 'Lisu - Angular Developer',
       description: 'I build fast, accessible Angular apps and help teams ship reliable products.',
       hero: 'Signals, SSR, NgRx, testing. Everything so users feel at home and the business sleeps well.',
       ctaProjects: 'See projects',
       ctaContact: 'Get in touch',
       tags: ['Angular 19', 'SSR', 'NgRx', 'Signals', 'A11y'],
-      socialIntro: 'Find me also on:'
+      socialIntro: 'Find me also on:',
     },
     about: {
       eyebrow: 'Who I am',
       title: 'Angular Developer focused on quality',
       description:
-        'I combine Signals, NgRx and SSR to craft fast, stable and maintainable applications. I support teams with architecture design, workshops and good practices.',
+        'I build accessible, testable Angular apps with Signals, NgRx and SSR — fast, stable and easy to change.',
       values: [
         {
           title: 'Transparent collaboration',
-          description: 'Clear, open communication. I connect product and engineering perspectives effortlessly.'
+          description:
+            'Clear, open communication. I connect product and engineering perspectives effortlessly.',
         },
         {
-          title: 'Attention to detail',
-          description: 'Component architecture built for scalability and testability. Accessibility and performance included.'
+          title: 'Architecture that scales',
+          description:
+            'Components built for testability and accessibility. Less debt, fewer regressions, calmer changes.',
         },
         {
-          title: 'I deliver',
-          description: 'Agile iterations, fast feedback and automation – from CI/CD to testing.'
-        }
+          title: 'Predictable releases',
+          description: 'Agile iterations, fast feedback and automation - from CI/CD to testing.',
+        },
       ],
       highlights: [
-        { label: '95+', note: 'Lighthouse (Performance, A11y, Best practices, SEO)' },
         { label: '5+', note: 'Years of commercial experience' },
-        { label: '12', note: 'Projects shipped as lead / senior' }
-      ]
+        { label: '5+', note: 'Releases delivered end-to-end' },
+        { label: '40+', note: 'Songs learned' },
+      ],
     },
     skills: {
       eyebrow: 'Stack',
@@ -176,26 +179,26 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       levels: {
         core: 'Core',
         pro: 'Pro',
-        familiar: 'Familiar'
-      }
+        familiar: 'Familiar',
+      },
     },
     projects: {
       eyebrow: 'Portfolio',
       title: 'Projects',
-      description: 'Selected work – public demos and NDA case studies.',
+      description: 'Selected work - public demos and NDA case studies.',
       filterLabel: 'Project filter',
       filterAll: 'All',
       showMore: 'Show more projects',
       empty: 'No projects match the selected filters.',
       badges: {
         draft: 'In progress',
-        private: 'Private'
+        private: 'Private',
       },
       links: {
         demo: 'Demo',
-        repo: 'GitHub'
+        repo: 'GitHub',
       },
-      hintPrivate: 'Repository hidden (NDA)'
+      hintPrivate: 'Repository hidden (NDA)',
     },
     contact: {
       eyebrow: 'Contact',
@@ -211,43 +214,47 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       submit: 'Send',
       success: "Thanks! I'll get back to you soon.",
       error: 'Something went wrong. Please try again.',
+      invalidForm: 'Please correct the errors in the form before submitting.',
       otherChannels: 'Other channels',
       copy: 'Copy',
       copySuccess: 'Address copied 🎉',
-      copyError: 'Unable to copy address.'
+      copyError: 'Unable to copy address.',
     },
     footer: {
       linksLabel: 'Social links',
-      copyright: 'Lisu – Angular Developer'
+      copyright: 'Lisu - Angular Developer',
     },
     backToTop: 'Back to top',
     seo: {
       home: {
-        title: 'Lisu – Angular Developer',
-        description: 'Angular developer portfolio: projects, skills, contact. SSR, Signals, NgRx.'
+        title: 'Lisu - Angular Developer',
+        description: 'Angular developer portfolio: projects, skills, contact. SSR, Signals, NgRx.',
       },
       about: {
-        title: 'About – Lisu.dev',
-        description: 'Learn about the values and experience of a quality-driven Angular developer.'
+        title: 'About - Lisu.dev',
+        description: 'Learn about the values and experience of a quality-driven Angular developer.',
       },
       skills: {
-        title: 'Angular skills – Signals, SSR, NgRx',
-        description: 'Frontend competencies: Angular 19, RxJS, testing, tooling. Ready to power your project.'
+        title: 'Angular skills - Signals, SSR, NgRx',
+        description:
+          'Frontend competencies: Angular 19, RxJS, testing, tooling. Ready to power your project.',
       },
       projects: {
-        title: 'Angular projects – portfolio',
-        description: 'Selected Angular projects: public demos, NDA case studies, performance audits.'
+        title: 'Angular projects - portfolio',
+        description:
+          'Selected Angular projects: public demos, NDA case studies, performance audits.',
       },
       contact: {
-        title: 'Contact – Angular collaboration',
-        description: 'Send a message or schedule a consultation. Validated form with delivery confirmation.'
-      }
-    }
+        title: 'Contact - Angular collaboration',
+        description:
+          'Send a message or schedule a consultation. Validated form with delivery confirmation.',
+      },
+    },
   },
   pl: {
     languageNames: {
       en: 'English',
-      pl: 'Polski'
+      pl: 'Polski',
     },
     navbar: {
       ariaLabel: 'Nawigacja główna',
@@ -256,54 +263,58 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
         { path: '/about', label: 'O mnie' },
         { path: '/skills', label: 'Umiejętności' },
         { path: '/projects', label: 'Projekty' },
-        { path: '/contact', label: 'Kontakt' }
+        { path: '/contact', label: 'Kontakt' },
       ],
       themeToggle: {
         light: 'Przełącz na jasny tryb',
-        dark: 'Przełącz na ciemny tryb'
+        dark: 'Przełącz na ciemny tryb',
       },
       languageSwitcher: {
         label: 'Język',
         options: {
           en: 'English',
-          pl: 'Polski'
-        }
-      }
+          pl: 'Polski',
+        },
+      },
     },
     home: {
       eyebrow: 'Cześć',
-      title: 'Lisu – Angular Developer',
-      description: 'Tworzę szybkie, dostępne aplikacje Angularowe i wspieram zespoły w dostarczaniu wartościowych produktów.',
+      title: 'Lisu - Angular Developer',
+      description:
+        'Buduję dostępne i testowalne aplikacje w Angularze (Signals, NgRx, SSR) — szybkie, stabilne i łatwe w zmianie.',
       hero: 'Signals, SSR, NgRx, testy. Wszystko po to, by użytkownicy czuli się jak w domu, a biznes miał spokój.',
       ctaProjects: 'Zobacz projekty',
       ctaContact: 'Skontaktuj się',
       tags: ['Angular 19', 'SSR', 'NgRx', 'Signals', 'A11y'],
-      socialIntro: 'Znajdziesz mnie też:'
+      socialIntro: 'Znajdziesz mnie też:',
     },
     about: {
       eyebrow: 'Kim jestem',
-      title: 'Angular Developer z sercem do jakości',
+      title: 'Angular Developer skupiony na jakości',
       description:
-        'Jestem Angular developerem nastawionym na produkt. Łączę Signals, NgRx i SSR, by tworzyć aplikacje szybkie, stabilne i łatwe w utrzymaniu. Wspieram zespoły w projektowaniu architektury, warsztatach i wdrażaniu dobrych praktyk.',
+        'Buduję dostępne i testowalne aplikacje w Angularze (Signals, NgRx, SSR) — szybkie, stabilne i łatwe w zmianie.',
       values: [
         {
-          title: 'Transparentna współpraca',
-          description: 'Komunikuję się jasno i otwarcie. Sprawnie łączę perspektywę produktową z techniczną.'
+          title: 'Przejrzysta współpraca',
+          description:
+            'Komunikuję się jasno i otwarcie. Sprawnie łączę perspektywę produktową z techniczną.',
         },
         {
-          title: 'Dbałość o szczegóły',
-          description: 'Projektuję architekturę komponentów pod skalowalność i testowalność. Dbam o dostępność i wydajność.'
+          title: 'Skalowalna architektura',
+          description:
+            'Projektuję komponenty pod testowalność i dostępność. Mniej długu, mniej regresji, więcej spokoju przy zmianach.',
         },
         {
-          title: 'Dowozzę',
-          description: 'Bazuję na zwinnych iteracjach, szybkim feedbacku i automatyzacji – od CI/CD po testy.'
-        }
+          title: 'Przewidywalne releasy',
+          description:
+            'Bazuję na zwinnych iteracjach, szybkim feedbacku i automatyzacji - od CI/CD po testy.',
+        },
       ],
       highlights: [
-        { label: '95+', note: 'Lighthouse (Performance, A11y, Best practices, SEO)' },
         { label: '5+', note: 'Lat doświadczenia komercyjnego' },
-        { label: '12', note: 'Zrealizowanych projektów jako lead / senior' }
-      ]
+        { label: '5+', note: 'Zrealizowanych projektów' },
+        { label: '40+', note: 'Nauczonych utworów' },
+      ],
     },
     skills: {
       eyebrow: 'Stack',
@@ -312,26 +323,26 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       levels: {
         core: 'Core',
         pro: 'Pro',
-        familiar: 'Familiar'
-      }
+        familiar: 'Familiar',
+      },
     },
     projects: {
       eyebrow: 'Portfolio',
       title: 'Projekty',
-      description: 'Zobacz wybrane projekty – publiczne i prywatne case’y z NDA.',
+      description: 'Zobacz wybrane projekty - publiczne i prywatne case’y z NDA.',
       filterLabel: 'Filtr projektów',
       filterAll: 'Wszystkie',
       showMore: 'Pokaż więcej projektów',
       empty: 'Brak projektów spełniających kryteria.',
       badges: {
         draft: 'W budowie',
-        private: 'Prywatny'
+        private: 'Prywatny',
       },
       links: {
         demo: 'Demo',
-        repo: 'GitHub'
+        repo: 'GitHub',
       },
-      hintPrivate: 'Repozytorium ukryte (NDA)'
+      hintPrivate: 'Repozytorium ukryte (NDA)',
     },
     contact: {
       eyebrow: 'Kontakt',
@@ -347,37 +358,43 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       submit: 'Wyślij',
       success: 'Dziękuję! Wrócę z odpowiedzią.',
       error: 'Coś poszło nie tak. Spróbuj ponownie.',
+      invalidForm: 'Popraw błędy w formularzu przed wysłaniem.',
       otherChannels: 'Inne kanały',
       copy: 'Kopiuj',
       copySuccess: 'Adres skopiowany 🎉',
-      copyError: 'Nie udało się skopiować.'
+      copyError: 'Nie udało się skopiować.',
     },
     footer: {
       linksLabel: 'Linki społecznościowe',
-      copyright: 'Lisu – Angular Developer'
+      copyright: 'Lisu - Angular Developer',
     },
     backToTop: 'Powrót na górę',
     seo: {
       home: {
-        title: 'Lisu – Angular Developer',
-        description: 'Portfolio Angular Developera: projekty, umiejętności, kontakt. SSR, Signals, NgRx.'
+        title: 'Lisu - Angular Developer',
+        description:
+          'Portfolio Angular Developera: projekty, umiejętności, kontakt. SSR, Signals, NgRx.',
       },
       about: {
-        title: 'O mnie – Lisu.dev',
-        description: 'Poznaj wartości i doświadczenie Angular Developera skoncentrowanego na jakości.'
+        title: 'O mnie - Lisu.dev',
+        description:
+          'Poznaj wartości i doświadczenie Angular Developera skoncentrowanego na jakości.',
       },
       skills: {
-        title: 'Umiejętności Angular – Signals, SSR, NgRx',
-        description: 'Kompetencje frontendowe: Angular 19, RxJS, testy, narzędzia. Gotowe do działania w Twoim projekcie.'
+        title: 'Umiejętności Angular - Signals, SSR, NgRx',
+        description:
+          'Kompetencje frontendowe: Angular 19, RxJS, testy, narzędzia. Gotowe do działania w Twoim projekcie.',
       },
       projects: {
-        title: 'Projekty Angular – portfolio',
-        description: 'Wybrane projekty Angularowe: publiczne demo, case’y pod NDA, audyty wydajności.'
+        title: 'Projekty Angular - portfolio',
+        description:
+          'Wybrane projekty Angularowe: publiczne demo, case’y pod NDA, audyty wydajności.',
       },
       contact: {
-        title: 'Kontakt – współpraca Angular',
-        description: 'Napisz wiadomość lub umów konsultację. Formularz z walidacją i potwierdzeniem wysyłki.'
-      }
-    }
-  }
+        title: 'Kontakt - współpraca Angular',
+        description:
+          'Napisz wiadomość lub umów konsultację. Formularz z walidacją i potwierdzeniem wysyłki.',
+      },
+    },
+  },
 };

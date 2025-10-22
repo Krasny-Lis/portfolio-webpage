@@ -1,5 +1,14 @@
 import { NgIf, isPlatformBrowser } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, PLATFORM_ID, computed, effect, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  PLATFORM_ID,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -13,7 +22,7 @@ import { TranslationService } from '../../core/services/translation.service';
   imports: [SectionComponent, ReactiveFormsModule, NgIf, MatSnackBarModule],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent implements OnDestroy {
   private fb = inject(FormBuilder);
@@ -28,7 +37,7 @@ export class ContactComponent implements OnDestroy {
     name: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
     message: ['', [Validators.required, Validators.minLength(10)]],
-    consent: [false, Validators.requiredTrue]
+    consent: [false, Validators.requiredTrue],
   });
   readonly t = this.translations.translations;
   readonly copyFeedbackState = signal<'success' | 'error' | null>(null);
@@ -52,7 +61,10 @@ export class ContactComponent implements OnDestroy {
       if (status === 'error' && this.lastStatus !== 'error' && this.isBrowser) {
         const message = this.facade.errorMessage();
         if (message) {
-          this.snackBar.open(message, undefined, { duration: 4000, panelClass: ['snackbar-error'] });
+          this.snackBar.open(message, undefined, {
+            duration: 4000,
+            panelClass: ['snackbar-error'],
+          });
         }
       }
       this.lastStatus = status;
@@ -62,6 +74,12 @@ export class ContactComponent implements OnDestroy {
   submit(): void {
     if (this.form.invalid || this.facade.status() === 'pending') {
       this.form.markAllAsTouched();
+      if (this.form.invalid && this.isBrowser) {
+        this.snackBar.open(this.t().contact.invalidForm, undefined, {
+          duration: 4000,
+          panelClass: ['snackbar-error'],
+        });
+      }
       return;
     }
 
