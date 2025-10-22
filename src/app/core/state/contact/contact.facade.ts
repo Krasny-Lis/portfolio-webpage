@@ -1,5 +1,13 @@
 import { DOCUMENT } from '@angular/common';
-import { computed, inject, Injectable, signal } from '@angular/core';
+import {
+  Inject,
+  Optional,
+  Signal,
+  computed,
+  inject,
+  Injectable,
+  signal,
+} from '@angular/core';
 
 import { TranslationService } from '../../services/translation.service';
 
@@ -14,18 +22,22 @@ export type ContactStatus = 'idle' | 'pending' | 'success' | 'error';
 
 @Injectable({ providedIn: 'root' })
 export class ContactFacade {
-  private document: Document;
-  private translations: TranslationService;
+  private document: Document | null;
+  private translationService: TranslationService;
 
   readonly status = signal<ContactStatus>('idle');
   private hasError = signal(false);
-  readonly errorMessage = computed(() =>
-    this.hasError() ? this.translations.translations().contact.error : null,
-  );
+  readonly errorMessage: Signal<string | null>;
 
-  constructor(document?: Document, translations?: TranslationService) {
-    this.document = document ?? inject(DOCUMENT);
-    this.translations = translations ?? inject(TranslationService);
+  constructor(
+    @Optional() @Inject(DOCUMENT) document: Document | null,
+    @Optional() translationService: TranslationService | null,
+  ) {
+    this.document = document ?? inject(DOCUMENT, { optional: true }) ?? null;
+    this.translationService = translationService ?? inject(TranslationService);
+    this.errorMessage = computed(() =>
+      this.hasError() ? this.translationService.translations().contact.error : null,
+    );
   }
 
   send(payload: ContactFormPayload): void {

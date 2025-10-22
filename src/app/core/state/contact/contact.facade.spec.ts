@@ -42,7 +42,9 @@ describe('ContactFacade', () => {
     expect(params.get('subject')).toBe(basePayload.subject.trim());
 
     const body = params.get('body');
-    expect(body).toBe(`From: ${basePayload.name} <${basePayload.email}>\n\n${basePayload.message}`);
+    expect(body).toBe(
+      `From: ${basePayload.name} <${basePayload.email}>\n\n${basePayload.message}\n\nConsent granted: yes`,
+    );
     expect(facade.status()).toBe('success');
   });
 
