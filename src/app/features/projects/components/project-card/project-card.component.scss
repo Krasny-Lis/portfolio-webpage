@@ -1,11 +1,7 @@
+@use '../../../../../styles/mixins' as mixins;
+
 .project {
-  background: var(--surface-card);
-  padding: 1.75rem;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  box-shadow: var(--shadow);
+  @include mixins.elevated-surface($gap: 1.25rem);
   position: relative;
   min-height: 100%;
 }
