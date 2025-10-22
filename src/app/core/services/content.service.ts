@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Optional } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { map, Observable, shareReplay, switchMap } from 'rxjs';
 
@@ -16,11 +16,11 @@ export class ContentService {
   constructor(
     http?: HttpClient,
     translations?: TranslationService,
-    languageToObservable: typeof toObservable = toObservable,
+    @Optional() language$?: Observable<string>,
   ) {
     this.http = http ?? inject(HttpClient);
     this.translations = translations ?? inject(TranslationService);
-    this.language$ = languageToObservable(this.translations.language);
+    this.language$ = language$ ?? toObservable(this.translations.language);
   }
 
   getProjects(): Observable<Project[]> {
