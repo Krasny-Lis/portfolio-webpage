@@ -12,7 +12,7 @@
   </button>
   <div #drawer="drawer" appDrawer class="navbar__links" id="primary-menu">
     <a
-      *ngFor="let link of t().navbar.links"
+      *ngFor="let link of t().navbar.links; trackBy: trackByLabel"
       [routerLink]="link.path"
       routerLinkActive="is-active"
       (click)="drawer.open = false"
@@ -49,7 +49,7 @@
     </button>
     <div class="navbar__social" *ngIf="links$ | async as links">
       <a
-        *ngFor="let link of links"
+        *ngFor="let link of links; trackBy: trackByLabel"
         [href]="link.url"
         target="_blank"
         rel="noopener"

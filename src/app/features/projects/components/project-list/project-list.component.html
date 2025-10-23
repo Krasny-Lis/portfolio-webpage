@@ -1,13 +1,13 @@
 <div class="project-list">
   <app-project-card
-    *ngFor="let project of projects | slice:0:visibleCount()"
+    *ngFor="let project of projects | slice: 0 : visibleCount()"
     [project]="project"
     [ownerView]="ownerView"
   ></app-project-card>
 </div>
 <button
   type="button"
-  class="project-list__more"
+  class="btn btn--primary project-list__more"
   *ngIf="visibleCount() < projects.length"
   (click)="showMore()"
 >

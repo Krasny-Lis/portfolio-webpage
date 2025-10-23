@@ -8,6 +8,7 @@ import { ThemeService } from '../../services/theme.service';
 import { DrawerDirective } from '../../../shared/directives/drawer.directive';
 import { TranslationService } from '../../services/translation.service';
 import { Language } from '../../services/translation.data';
+import { trackByLabel } from '../../../shared/utils/track-by';
 
 @Component({
   selector: 'app-navbar',
@@ -21,6 +22,7 @@ export class NavbarComponent {
   private themeService = inject(ThemeService);
   private content = inject(ContentService);
   private translations = inject(TranslationService);
+  protected readonly trackByLabel = trackByLabel;
 
   readonly theme = this.themeService.theme;
   readonly links$ = this.content

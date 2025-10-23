@@ -28,7 +28,7 @@
         {{ t().contact.messageError }}
       </span>
     </label>
-    <button type="submit" [disabled]="facade.status() === 'pending'">
+    <button type="submit" class="btn btn--primary" [disabled]="facade.status() === 'pending'">
       {{ t().contact.submit }}
     </button>
     <p class="status status--success" *ngIf="facade.status() === 'success'">
@@ -43,7 +43,9 @@
     <ul>
       <li>
         <a href="mailto:sliwa.lis.krzysztof&#64;gmail.com">sliwa.lis.krzysztof&#64;gmail.com</a>
-        <button type="button" (click)="copyEmail()">{{ t().contact.copy }}</button>
+        <button type="button" class="btn btn--text" (click)="copyEmail()">
+          {{ t().contact.copy }}
+        </button>
         <span class="status" *ngIf="copyFeedbackMessage()">{{ copyFeedbackMessage() }}</span>
       </li>
       <li>

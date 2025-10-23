@@ -107,31 +107,54 @@ export interface AppTranslations {
 
 export type SeoPageKey = keyof AppTranslations['seo'];
 
+type LanguageLabelVariant = 'exonym' | 'native';
+
+const LANGUAGE_LABELS = {
+  en: { exonym: 'English', native: 'English' },
+  pl: { exonym: 'Polish', native: 'Polski' },
+} as const satisfies Record<Language, Record<LanguageLabelVariant, string>>;
+
+const NAV_LINK_DEFINITIONS = [
+  { path: '/about', labels: { en: 'About', pl: 'O mnie' } },
+  { path: '/skills', labels: { en: 'Skills', pl: 'Umiejętności' } },
+  { path: '/projects', labels: { en: 'Projects', pl: 'Projekty' } },
+  { path: '/contact', labels: { en: 'Contact', pl: 'Kontakt' } },
+] as const satisfies ReadonlyArray<{ path: string; labels: Record<Language, string> }>;
+
+const languageLabels = (variant: LanguageLabelVariant): Record<Language, string> => {
+  return (Object.keys(LANGUAGE_LABELS) as Language[]).reduce<Record<Language, string>>(
+    (acc, lang) => {
+      acc[lang] = LANGUAGE_LABELS[lang][variant];
+      return acc;
+    },
+    {} as Record<Language, string>,
+  );
+};
+
+const buildNavLinks = (lang: Language): NavLink[] =>
+  NAV_LINK_DEFINITIONS.map(({ path, labels }) => ({ path, label: labels[lang] }));
+
+const LANGUAGE_NAMES_EXONYM = languageLabels('exonym');
+const LANGUAGE_NAMES_NATIVE = languageLabels('native');
+const NAV_LINKS_BY_LANGUAGE: Record<Language, NavLink[]> = {
+  en: buildNavLinks('en'),
+  pl: buildNavLinks('pl'),
+};
+
 export const TRANSLATIONS: Record<Language, AppTranslations> = {
   en: {
-    languageNames: {
-      en: 'English',
-      pl: 'Polish',
-    },
+    languageNames: LANGUAGE_NAMES_EXONYM,
     navbar: {
       ariaLabel: 'Primary navigation',
       menuLabel: 'Menu',
-      links: [
-        { path: '/about', label: 'About' },
-        { path: '/skills', label: 'Skills' },
-        { path: '/projects', label: 'Projects' },
-        { path: '/contact', label: 'Contact' },
-      ],
+      links: NAV_LINKS_BY_LANGUAGE.en,
       themeToggle: {
         light: 'Switch to light mode',
         dark: 'Switch to dark mode',
       },
       languageSwitcher: {
         label: 'Language',
-        options: {
-          en: 'English',
-          pl: 'Polski',
-        },
+        options: LANGUAGE_NAMES_NATIVE,
       },
     },
     home: {
@@ -251,29 +274,18 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     },
   },
   pl: {
-    languageNames: {
-      en: 'English',
-      pl: 'Polski',
-    },
+    languageNames: LANGUAGE_NAMES_NATIVE,
     navbar: {
       ariaLabel: 'Nawigacja główna',
       menuLabel: 'Menu',
-      links: [
-        { path: '/about', label: 'O mnie' },
-        { path: '/skills', label: 'Umiejętności' },
-        { path: '/projects', label: 'Projekty' },
-        { path: '/contact', label: 'Kontakt' },
-      ],
+      links: NAV_LINKS_BY_LANGUAGE.pl,
       themeToggle: {
         light: 'Przełącz na jasny tryb',
         dark: 'Przełącz na ciemny tryb',
       },
       languageSwitcher: {
         label: 'Język',
-        options: {
-          en: 'English',
-          pl: 'Polski',
-        },
+        options: LANGUAGE_NAMES_NATIVE,
       },
     },
     home: {

@@ -6,6 +6,7 @@ import { SectionComponent } from '../../shared/components/section/section.compon
 import { ContentService } from '../../core/services/content.service';
 import { ChipComponent } from '../../shared/components/chip/chip.component';
 import { TranslationService } from '../../core/services/translation.service';
+import { trackByLabel } from '../../shared/utils/track-by';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,12 @@ import { TranslationService } from '../../core/services/translation.service';
   imports: [SectionComponent, RouterLink, NgFor, NgIf, AsyncPipe, ChipComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
   private content = inject(ContentService);
   private translations = inject(TranslationService);
+  protected readonly trackByLabel = trackByLabel;
   readonly social$ = this.content.getSocialLinks();
   readonly t = this.translations.translations;
 }

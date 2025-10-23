@@ -1,5 +1,11 @@
 <div class="tag-filter" role="group" [attr.aria-label]="t().projects.filterLabel">
-  <button type="button" class="tag-filter__item" [class.tag-filter__item--active]="!active.length" (click)="clear.emit()">
+  <button
+    type="button"
+    class="tag-filter__item"
+    [class.tag-filter__item--active]="!active.length"
+    [attr.aria-pressed]="!active.length"
+    (click)="clear.emit()"
+  >
     {{ t().projects.filterAll }}
   </button>
   <button
@@ -7,6 +13,7 @@
     class="tag-filter__item"
     *ngFor="let tag of tags"
     [class.tag-filter__item--active]="active.includes(tag)"
+    [attr.aria-pressed]="active.includes(tag)"
     (click)="onToggle(tag)"
   >
     {{ tag }}

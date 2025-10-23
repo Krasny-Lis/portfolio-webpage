@@ -27,16 +27,6 @@ textarea:focus {
 
 button[type='submit'] {
   justify-self: start;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
-  border: none;
-  background: var(--accent);
-  color: var(--text-on-accent);
-  font-weight: 600;
-}
-
-button[disabled] {
-  opacity: 0.6;
 }
 
 .error {
@@ -68,10 +58,6 @@ button[disabled] {
   gap: 0.75rem;
 }
 
-.contact-info button {
+.contact-info .btn {
   margin-left: 0.5rem;
-  border: none;
-  background: none;
-  color: var(--accent);
-  cursor: pointer;
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { map, Observable, shareReplay, switchMap } from 'rxjs';
+import { map, Observable, shareReplay, switchMap, tap } from 'rxjs';
 
 import { Project, SkillGroup, SocialLink } from '../models/content.models';
 import { TranslationService } from './translation.service';
@@ -20,6 +20,7 @@ export class ContentService {
   private translations: TranslationService;
   private cache = new Map<string, Observable<unknown>>();
   private language$: Observable<string>;
+  private currentLanguage?: string;
 
   constructor(
     http?: HttpClient,
@@ -28,7 +29,14 @@ export class ContentService {
   ) {
     this.http = http ?? inject(HttpClient);
     this.translations = translations ?? inject(TranslationService);
-    this.language$ = (languageToObservable ?? toObservable)(this.translations.language);
+    this.language$ = (languageToObservable ?? toObservable)(this.translations.language).pipe(
+      tap((language) => {
+        if (this.currentLanguage && this.currentLanguage !== language) {
+          this.cache.clear();
+        }
+        this.currentLanguage = language;
+      }),
+    );
   }
 
   getProjects(): Observable<Project[]> {

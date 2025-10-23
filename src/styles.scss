@@ -1,3 +1,5 @@
+@use './styles/buttons';
+
 :root {
   color-scheme: light;
   --surface-page: linear-gradient(180deg, #e5efff 0%, #f6f9ff 100%);
@@ -115,7 +117,13 @@ img {
   color: var(--text-on-accent);
 }
 
-.snackbar-error {
-  background: var(--danger);
-  color: var(--text-on-accent);
+.app-toast-panel {
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.app-toast-panel app-toast {
+  pointer-events: auto;
 }

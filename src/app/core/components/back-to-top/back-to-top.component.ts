@@ -19,12 +19,56 @@ export class BackToTopComponent {
   readonly t = this.translations.translations;
 
   constructor() {
-    if (typeof window !== 'undefined') {
-      const listener = () => this.visible.set(window.scrollY > 400);
-      listener();
-      window.addEventListener('scroll', listener, { passive: true });
-      this.destroyRef.onDestroy(() => window.removeEventListener('scroll', listener));
+    if (typeof window === 'undefined') {
+      return;
     }
+
+    const requestFrame =
+      typeof window.requestAnimationFrame === 'function'
+        ? window.requestAnimationFrame.bind(window)
+        : undefined;
+    const cancelFrame =
+      typeof window.cancelAnimationFrame === 'function'
+        ? window.cancelAnimationFrame.bind(window)
+        : undefined;
+    const usingAnimationFrame = Boolean(requestFrame);
+    let frameHandle: number | null = null;
+    let lastKnownScrollY = window.scrollY;
+
+    const updateVisibility: FrameRequestCallback = () => {
+      frameHandle = null;
+      this.visible.set(lastKnownScrollY > 400);
+    };
+
+    const scheduleUpdate = () => {
+      if (frameHandle !== null) {
+        return;
+      }
+
+      if (requestFrame) {
+        frameHandle = requestFrame(updateVisibility);
+      } else {
+        frameHandle = window.setTimeout(() => updateVisibility(0), 16);
+      }
+    };
+
+    const listener = () => {
+      lastKnownScrollY = window.scrollY;
+      scheduleUpdate();
+    };
+
+    updateVisibility(0);
+    window.addEventListener('scroll', listener, { passive: true });
+    this.destroyRef.onDestroy(() => {
+      window.removeEventListener('scroll', listener);
+      if (frameHandle !== null) {
+        if (usingAnimationFrame && cancelFrame) {
+          cancelFrame(frameHandle);
+        } else if (!usingAnimationFrame) {
+          window.clearTimeout(frameHandle);
+        }
+      }
+    });
   }
 
   scrollTop(): void {

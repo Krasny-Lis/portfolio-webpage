@@ -1,8 +1,11 @@
 import { DOCUMENT } from '@angular/common';
-import { inject, Injectable } from '@angular/core';
+import { effect, inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+
+import { TranslationService } from './translation.service';
+import { SeoPageKey } from './translation.data';
 
 export interface SeoMetadata {
   title: string;
@@ -16,13 +19,29 @@ export class SeoService {
   private meta = inject(Meta);
   private router = inject(Router);
   private document = inject(DOCUMENT);
+  private translations = inject(TranslationService);
+  private initialized = false;
+  private currentRoute: ActivatedRoute | null = null;
 
   init(): void {
+    if (this.initialized) {
+      return;
+    }
+    this.initialized = true;
+
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe(() => {
-        // no-op placeholder, metadata provided via route data
+        const route = this.findPrimaryRoute(this.router.routerState.root);
+        this.currentRoute = route;
+        this.applySeo(route);
       });
+
+    effect(() => {
+      this.translations.language();
+      const route = this.currentRoute ?? this.findPrimaryRoute(this.router.routerState.root);
+      this.applySeo(route);
+    });
   }
 
   update(metadata: SeoMetadata): void {
@@ -47,6 +66,25 @@ export class SeoService {
     script.textContent = JSON.stringify(jsonLd, null, 2);
     if (!existing) {
       head.appendChild(script);
+    }
+  }
+
+  private findPrimaryRoute(route: ActivatedRoute): ActivatedRoute {
+    let current = route;
+    while (current.firstChild) {
+      current = current.firstChild;
+    }
+    return current;
+  }
+
+  private applySeo(route: ActivatedRoute): void {
+    const data = route.snapshot.data as { seoKey?: SeoPageKey };
+    if (!data?.seoKey) {
+      return;
+    }
+    const seo = this.translations.translations().seo[data.seoKey];
+    if (seo) {
+      this.update(seo);
     }
   }
 }

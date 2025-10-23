@@ -10,16 +10,15 @@ import {
   signal,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-
 import { SectionComponent } from '../../shared/components/section/section.component';
 import { ContactFacade, ContactStatus } from '../../core/state/contact/contact.facade';
 import { TranslationService } from '../../core/services/translation.service';
+import { ToastService } from '../../shared/toast/toast.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [SectionComponent, ReactiveFormsModule, NgIf, MatSnackBarModule],
+  imports: [SectionComponent, ReactiveFormsModule, NgIf],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,7 +27,7 @@ export class ContactComponent implements OnDestroy {
   private fb = inject(FormBuilder);
   readonly facade = inject(ContactFacade);
   private translations = inject(TranslationService);
-  private snackBar = inject(MatSnackBar);
+  private toast = inject(ToastService);
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
   private lastStatus: ContactStatus | null = null;
@@ -66,10 +65,7 @@ export class ContactComponent implements OnDestroy {
       if (status === 'error' && this.lastStatus !== 'error' && this.isBrowser) {
         const message = this.facade.errorMessage();
         if (message) {
-          this.snackBar.open(message, undefined, {
-            duration: 4000,
-            panelClass: ['snackbar-error'],
-          });
+          this.toast.show(message, { variant: 'error' });
         }
       }
       this.lastStatus = status;
@@ -80,10 +76,7 @@ export class ContactComponent implements OnDestroy {
     if (this.form.invalid || this.facade.status() === 'pending') {
       this.form.markAllAsTouched();
       if (this.form.invalid && this.isBrowser) {
-        this.snackBar.open(this.t().contact.invalidForm, undefined, {
-          duration: 4000,
-          panelClass: ['snackbar-error'],
-        });
+        this.toast.show(this.t().contact.invalidForm, { variant: 'error' });
       }
       return;
     }
