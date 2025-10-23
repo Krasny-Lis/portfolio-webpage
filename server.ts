@@ -23,8 +23,8 @@ app.use(
   }),
 );
 
-app.get('*', async (req, res, next) => {
-  try {
+app.get('*', (req, res, next) => {
+  void (async () => {
     const { renderApplication } = await import('@angular/platform-server');
     const html = await renderApplication(bootstrap, {
       document: indexHtml,
@@ -33,9 +33,7 @@ app.get('*', async (req, res, next) => {
     });
     res.set('Cache-Control', 'no-store');
     res.send(html);
-  } catch (error) {
-    next(error);
-  }
+  })().catch((error) => next(error));
 });
 
 app.listen(port, () => {

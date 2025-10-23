@@ -11,7 +11,7 @@ import { TranslationService } from '../../../../core/services/translation.servic
   imports: [ChipComponent, NgFor, NgIf],
   templateUrl: './project-card.component.html',
   styleUrls: ['./project-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectCardComponent {
   @Input({ required: true }) project!: Project;

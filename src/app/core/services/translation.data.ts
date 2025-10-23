@@ -68,13 +68,11 @@ export interface AppTranslations {
     empty: string;
     badges: {
       draft: string;
-      private: string;
     };
     links: {
       demo: string;
       repo: string;
     };
-    hintPrivate: string;
   };
   contact: {
     eyebrow: string;
@@ -198,13 +196,11 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       empty: 'No projects match the selected filters.',
       badges: {
         draft: 'In progress',
-        private: 'Private',
       },
       links: {
         demo: 'Demo',
         repo: 'GitHub',
       },
-      hintPrivate: 'Repository hidden (NDA)',
     },
     contact: {
       eyebrow: 'Contact',
@@ -329,14 +325,12 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       showMore: 'Pokaż więcej projektów',
       empty: 'Brak projektów spełniających kryteria.',
       badges: {
-        draft: 'W budowie',
-        private: 'Prywatny',
+        draft: 'W przygotowaniu',
       },
       links: {
         demo: 'Demo',
         repo: 'GitHub',
       },
-      hintPrivate: 'Repozytorium ukryte (NDA)',
     },
     contact: {
       eyebrow: 'Kontakt',

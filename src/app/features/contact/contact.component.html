@@ -1,40 +1,64 @@
 <app-section [eyebrow]="t().contact.eyebrow" [title]="t().contact.title">
-  <form class="contact-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <form
+    class="contact-form"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    novalidate
+    data-cy="contact-form"
+  >
     <label>
       <span>{{ t().contact.nameLabel }}</span>
-      <input type="text" formControlName="name" required />
+      <input type="text" formControlName="name" required data-cy="contact-input-name" />
       <span class="error" *ngIf="form.controls.name.invalid && form.controls.name.touched">{{
         t().contact.nameError
       }}</span>
     </label>
     <label>
       <span>{{ t().contact.emailLabel }}</span>
-      <input type="email" formControlName="email" required />
+      <input type="email" formControlName="email" required data-cy="contact-input-email" />
       <span class="error" *ngIf="form.controls.email.invalid && form.controls.email.touched">{{
         t().contact.emailError
       }}</span>
     </label>
     <label>
       <span>{{ t().contact.subjectLabel }}</span>
-      <input type="text" formControlName="subject" required />
+      <input type="text" formControlName="subject" required data-cy="contact-input-subject" />
       <span class="error" *ngIf="form.controls.subject.invalid && form.controls.subject.touched">
         {{ t().contact.subjectError }}
       </span>
     </label>
     <label>
       <span>{{ t().contact.messageLabel }}</span>
-      <textarea rows="5" formControlName="message" required></textarea>
+      <textarea
+        rows="5"
+        formControlName="message"
+        required
+        data-cy="contact-input-message"
+      ></textarea>
       <span class="error" *ngIf="form.controls.message.invalid && form.controls.message.touched">
         {{ t().contact.messageError }}
       </span>
     </label>
-    <button type="submit" class="btn btn--primary" [disabled]="facade.status() === 'pending'">
+    <button
+      type="submit"
+      class="btn btn--primary"
+      [disabled]="facade.status() === 'pending'"
+      data-cy="contact-submit"
+    >
       {{ t().contact.submit }}
     </button>
-    <p class="status status--success" *ngIf="facade.status() === 'success'">
+    <p
+      class="status status--success"
+      *ngIf="facade.status() === 'success'"
+      data-cy="contact-status-success"
+    >
       {{ t().contact.success }}
     </p>
-    <p class="status status--error" *ngIf="facade.status() === 'error'">
+    <p
+      class="status status--error"
+      *ngIf="facade.status() === 'error'"
+      data-cy="contact-status-error"
+    >
       {{ facade.errorMessage() }}
     </p>
   </form>
@@ -43,10 +67,17 @@
     <ul>
       <li>
         <a href="mailto:sliwa.lis.krzysztof&#64;gmail.com">sliwa.lis.krzysztof&#64;gmail.com</a>
-        <button type="button" class="btn btn--text" (click)="copyEmail()">
+        <button
+          type="button"
+          class="btn btn--text"
+          (click)="copyEmail()"
+          data-cy="contact-copy-email"
+        >
           {{ t().contact.copy }}
         </button>
-        <span class="status" *ngIf="copyFeedbackMessage()">{{ copyFeedbackMessage() }}</span>
+        <span class="status" *ngIf="copyFeedbackMessage()" data-cy="contact-copy-status">{{
+          copyFeedbackMessage()
+        }}</span>
       </li>
       <li>
         <a href="https://github.com/Krasny-Lis?tab=repositories" target="_blank" rel="noopener"

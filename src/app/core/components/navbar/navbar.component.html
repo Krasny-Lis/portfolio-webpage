@@ -25,6 +25,7 @@
       [attr.aria-label]="t().navbar.languageSwitcher.label"
       [style.--languages-count]="availableLanguages.length"
       [style.--active-index]="languageIndex()"
+      data-cy="navbar-language-switcher"
     >
       <button
         *ngFor="let lang of availableLanguages"
@@ -33,6 +34,7 @@
         [class.navbar__language-btn--active]="language() === lang"
         (click)="setLanguage(lang); drawer.open = false"
         [attr.aria-pressed]="language() === lang"
+        [attr.data-cy]="'navbar-language-' + lang"
       >
         {{ t().navbar.languageSwitcher.options[lang] }}
       </button>
@@ -44,6 +46,7 @@
       (click)="toggleTheme(); drawer.open = false"
       [attr.aria-label]="modeLabel()"
       [attr.aria-pressed]="theme() === 'dark'"
+      data-cy="navbar-theme-toggle"
     >
       <span aria-hidden="true">{{ theme() === 'dark' ? '🌙' : '☀️' }}</span>
     </button>

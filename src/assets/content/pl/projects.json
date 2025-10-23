@@ -2,11 +2,11 @@
   {
     "name": "Portfolio",
     "description": "Strona osobista jako pokaz dostępności i wydajności (tryb jasny/ciemny).",
-    "tags": ["angular", "material"],
-    "demoUrl": "https://example.com/portfolio",
+    "tags": ["angular", "ngrx", "ssr"],
+    "demoUrl": "",
     "repoUrl": "https://github.com/Krasny-Lis/portfolio-webpage",
     "highlights": [
-      "prerender + leniwe obrazki",
+      "prerender + lazy loading",
       "semantyczne landmarki i zarządzanie focusem",
       "warianty reduced-motion"
     ]
@@ -15,7 +15,7 @@
     "name": "Angular FileTree",
     "description": "Aplikacja do zarządzania strukturą katalogów w monorepo Nx. Łączy Angular Signals z NgRx; serwer w trybie SSR z prerenderingiem.",
     "tags": ["angular", "signals", "ngrx", "ssr", "material"],
-    "demoUrl": "https://example.com/workbench",
+    "demoUrl": "",
     "repoUrl": "https://github.com/Krasny-Lis/b3-folder-app",
     "highlights": [
       "Signals + NgRx - szybka i przewidywalna synchronizacja widoku",
@@ -25,10 +25,16 @@
     ]
   },
   {
-    "name": "Dashboard klienta",
-    "description": "Aplikacja B2B z modułami raportującymi i analityką czasu rzeczywistego.",
-    "tags": ["angular", "rxjs", "charts"],
-    "highlights": ["Integracja z WebSocket", "NDA"],
-    "private": true
+    "name": "React Shop View",
+    "description": "Aplikacja z prostym widokiem produktów w sklepie, zbudowana w React i Redux Toolkit. Oferuje filtrowanie, sortowanie i paginację.",
+    "tags": ["react", "next.js", "redux"],
+    "demoUrl": "",
+    "repoUrl": "",
+    "highlights": [
+      "Next.js dla renderowania po stronie serwera i routingu",
+      "Redux Toolkit do zarządzania stanem",
+      "Responsywny design z CSS Modules"
+    ],
+    "draft": true
   }
 ]
