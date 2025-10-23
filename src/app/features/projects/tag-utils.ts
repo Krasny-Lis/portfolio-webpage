@@ -1,5 +1,3 @@
-import { Project } from '../../core/models/content.models';
-
 export const AVAILABLE_TAGS = ['Angular', 'React', 'Material'] as const;
 const NORMALIZED_AVAILABLE_TAGS = AVAILABLE_TAGS.map((tag) => tag.toLowerCase());
 

@@ -23,7 +23,6 @@ interface SeoEntry {
 }
 
 export interface AppTranslations {
-  languageNames: Record<Language, string>;
   navbar: {
     ariaLabel: string;
     menuLabel: string;
@@ -107,12 +106,10 @@ export interface AppTranslations {
 
 export type SeoPageKey = keyof AppTranslations['seo'];
 
-type LanguageLabelVariant = 'exonym' | 'native';
-
-const LANGUAGE_LABELS = {
-  en: { exonym: 'English', native: 'English' },
-  pl: { exonym: 'Polish', native: 'Polski' },
-} as const satisfies Record<Language, Record<LanguageLabelVariant, string>>;
+const LANGUAGE_NAMES_NATIVE = {
+  en: 'English',
+  pl: 'Polski',
+} as const satisfies Record<Language, string>;
 
 const NAV_LINK_DEFINITIONS = [
   { path: '/about', labels: { en: 'About', pl: 'O mnie' } },
@@ -121,21 +118,9 @@ const NAV_LINK_DEFINITIONS = [
   { path: '/contact', labels: { en: 'Contact', pl: 'Kontakt' } },
 ] as const satisfies ReadonlyArray<{ path: string; labels: Record<Language, string> }>;
 
-const languageLabels = (variant: LanguageLabelVariant): Record<Language, string> => {
-  return (Object.keys(LANGUAGE_LABELS) as Language[]).reduce<Record<Language, string>>(
-    (acc, lang) => {
-      acc[lang] = LANGUAGE_LABELS[lang][variant];
-      return acc;
-    },
-    {} as Record<Language, string>,
-  );
-};
-
 const buildNavLinks = (lang: Language): NavLink[] =>
   NAV_LINK_DEFINITIONS.map(({ path, labels }) => ({ path, label: labels[lang] }));
 
-const LANGUAGE_NAMES_EXONYM = languageLabels('exonym');
-const LANGUAGE_NAMES_NATIVE = languageLabels('native');
 const NAV_LINKS_BY_LANGUAGE: Record<Language, NavLink[]> = {
   en: buildNavLinks('en'),
   pl: buildNavLinks('pl'),
@@ -143,7 +128,6 @@ const NAV_LINKS_BY_LANGUAGE: Record<Language, NavLink[]> = {
 
 export const TRANSLATIONS: Record<Language, AppTranslations> = {
   en: {
-    languageNames: LANGUAGE_NAMES_EXONYM,
     navbar: {
       ariaLabel: 'Primary navigation',
       menuLabel: 'Menu',
@@ -274,7 +258,6 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     },
   },
   pl: {
-    languageNames: LANGUAGE_NAMES_NATIVE,
     navbar: {
       ariaLabel: 'Nawigacja główna',
       menuLabel: 'Menu',
