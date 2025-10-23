@@ -1,13 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import {
-  Inject,
-  Optional,
-  Signal,
-  computed,
-  inject,
-  Injectable,
-  signal,
-} from '@angular/core';
+import { Inject, Optional, Signal, computed, inject, Injectable, signal } from '@angular/core';
 
 import { TranslationService } from '../../services/translation.service';
 
@@ -46,12 +38,23 @@ export class ContactFacade {
 
     try {
       const mailto = this.createMailtoLink(payload);
-      const defaultView = this.document?.defaultView;
-      if (!defaultView?.location || typeof defaultView.location.assign !== 'function') {
+      const defaultView = this.document?.defaultView ?? null;
+      const globalWindow =
+        typeof globalThis !== 'undefined'
+          ? ((globalThis as typeof globalThis & { window?: Window }).window ??
+            (globalThis as unknown as Window | null))
+          : null;
+
+      const candidates = [defaultView, globalWindow].filter(Boolean) as Window[];
+      const targetWindow = candidates.find(
+        (candidate) => !!candidate.location && typeof candidate.location.assign === 'function',
+      );
+
+      if (!targetWindow) {
         throw new Error('MAILTO_UNAVAILABLE');
       }
 
-      defaultView.location.assign(mailto);
+      targetWindow.location.assign(mailto);
       this.status.set('success');
     } catch (err) {
       this.hasError.set(true);
@@ -70,13 +73,7 @@ export class ContactFacade {
     const name = payload.name.trim();
     const email = payload.email.trim();
     const message = payload.message.trim();
-    const bodyLines = [
-      `From: ${name} <${email}>`,
-      '',
-      message,
-      '',
-      'Consent granted: yes',
-    ];
+    const bodyLines = [`From: ${name} <${email}>`, '', message, '', 'Consent granted: yes'];
     const body = encodeURIComponent(bodyLines.join('\n'));
 
     return `mailto:sliwa.lis.krzysztof@gmail.com?subject=${subject}&body=${body}`;

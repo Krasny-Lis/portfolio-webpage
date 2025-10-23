@@ -28,6 +28,10 @@ describe('Portfolio smoke', () => {
       .and('have.attr', 'role', 'dialog')
       .and('have.attr', 'aria-modal', 'true');
 
+    cy.focused()
+      .should('have.prop', 'tagName', 'A')
+      .and('have.attr', 'data-cy', 'navbar-link-about');
+
     cy.focused().should('have.prop', 'tagName', 'A');
 
     cy.focused().type('{esc}');

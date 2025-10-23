@@ -50,9 +50,15 @@ describe('ContactFacade', () => {
 
   it('should expose an error when mail client is unavailable', () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    const assignSpy = jest.fn(() => {
+      throw new Error('MAILTO_UNAVAILABLE');
+    });
+
     const facade = new ContactFacade(
       {
-        defaultView: null,
+        defaultView: {
+          location: { assign: assignSpy },
+        },
         documentElement: { lang: 'en' },
       } as unknown as Document,
       translationsStub,
@@ -63,5 +69,56 @@ describe('ContactFacade', () => {
     expect(facade.status()).toBe('error');
     expect(facade.errorMessage()).toBe('Something went wrong');
     consoleSpy.mockRestore();
+    expect(assignSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should fallback to global window when document defaultView is unavailable', () => {
+    const assignSpy = jest.fn();
+    const globalWithWindow = globalThis as typeof globalThis & { window?: Window };
+    const originalDescriptor = Object.getOwnPropertyDescriptor(globalThis, 'window');
+    const originalWindow = globalWithWindow.window;
+    const stubWindow = { location: { assign: assignSpy } } as unknown as Window;
+
+    const restoreWindow = () => {
+      if (originalDescriptor) {
+        Object.defineProperty(globalThis, 'window', originalDescriptor);
+      } else if (typeof originalWindow === 'undefined') {
+        delete globalWithWindow.window;
+      } else {
+        globalWithWindow.window = originalWindow;
+      }
+    };
+
+    try {
+      if (!originalDescriptor || originalDescriptor.configurable) {
+        Object.defineProperty(globalThis, 'window', {
+          configurable: true,
+          enumerable: true,
+          writable: true,
+          value: stubWindow,
+        });
+      } else {
+        globalWithWindow.window = stubWindow;
+      }
+    } catch {
+      globalWithWindow.window = stubWindow;
+    }
+
+    try {
+      const facade = new ContactFacade(
+        {
+          defaultView: null,
+          documentElement: { lang: 'en' },
+        } as unknown as Document,
+        translationsStub,
+      );
+
+      facade.send(basePayload);
+
+      expect(assignSpy).toHaveBeenCalledTimes(1);
+      expect(facade.status()).toBe('success');
+    } finally {
+      restoreWindow();
+    }
   });
 });

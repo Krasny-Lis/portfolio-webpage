@@ -19,14 +19,14 @@ describe('Contact form', () => {
 
   it('submits successfully when the email client is available', () => {
     cy.window().then((win) => {
-      cy.stub(win.location, 'assign').as('locationAssign');
+      cy.stub(win, 'open').as('windowOpen');
     });
 
     fillContactForm();
 
     cy.get('[data-cy="contact-submit"]').click();
 
-    cy.get('@locationAssign').should('have.been.calledOnce');
+    cy.get('@windowOpen').should('have.been.calledOnce');
     cy.get('[data-cy="contact-status-success"]').should('be.visible');
     cy.get('[data-cy="contact-input-name"]').should('have.value', '');
     cy.get('[data-cy="contact-input-email"]').should('have.value', '');
@@ -36,18 +36,18 @@ describe('Contact form', () => {
 
   it('displays an error message when the email client cannot be opened', () => {
     cy.window().then((win) => {
-      cy.stub(win.location, 'assign')
+      cy.stub(win, 'open')
         .callsFake(() => {
           throw new Error('MAILTO_UNAVAILABLE');
         })
-        .as('locationAssign');
+        .as('windowOpen');
     });
 
     fillContactForm();
 
     cy.get('[data-cy="contact-submit"]').click();
 
-    cy.get('@locationAssign').should('have.been.calledOnce');
+    cy.get('@windowOpen').should('have.been.calledOnce');
     cy.get('[data-cy="contact-status-error"]').should('be.visible');
   });
 });

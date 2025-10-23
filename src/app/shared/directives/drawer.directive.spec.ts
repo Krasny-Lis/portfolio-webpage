@@ -1,15 +1,21 @@
 import '@angular/compiler';
 import { ElementRef } from '@angular/core';
+import { jest } from '@jest/globals';
 
 import { DrawerDirective } from './drawer.directive';
+
 describe('DrawerDirective', () => {
   let host: HTMLDivElement;
   let toggle: HTMLButtonElement;
   let firstLink: HTMLAnchorElement;
   let secondButton: HTMLButtonElement;
   let directive: DrawerDirective;
+  let rafSpy: jest.SpyInstance<number, [FrameRequestCallback]>;
+  let cancelRafSpy: jest.SpyInstance<void, [number]>;
 
   beforeEach(() => {
+    jest.useFakeTimers();
+
     host = document.createElement('div');
     host.id = 'drawer';
     document.body.appendChild(host);
@@ -33,18 +39,34 @@ describe('DrawerDirective', () => {
     host.appendChild(secondButton);
 
     directive = new DrawerDirective(new ElementRef(host), document);
+
+    rafSpy = jest
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation((callback: FrameRequestCallback): number =>
+        window.setTimeout(() => callback(0), 16),
+      );
+
+    cancelRafSpy = jest
+      .spyOn(window, 'cancelAnimationFrame')
+      .mockImplementation((handle: number): void => {
+        window.clearTimeout(handle);
+      });
   });
 
   afterEach(() => {
     directive.open = false;
     host.remove();
     toggle.remove();
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
+    jest.restoreAllMocks();
   });
 
   it('should focus the first focusable element when opened and restore focus on close', () => {
     toggle.focus();
 
     directive.open = true;
+    jest.runAllTimers();
 
     expect(document.activeElement).toBe(firstLink);
 
@@ -55,6 +77,7 @@ describe('DrawerDirective', () => {
 
   it('should trap focus when pressing Tab and Shift+Tab', () => {
     directive.open = true;
+    jest.runAllTimers();
 
     secondButton.focus();
     const forwardTab = new KeyboardEvent('keydown', {
@@ -84,6 +107,7 @@ describe('DrawerDirective', () => {
 
   it('should close on Escape and return focus to the toggle', () => {
     directive.open = true;
+    jest.runAllTimers();
 
     const escapeEvent = new KeyboardEvent('keydown', {
       key: 'Escape',
@@ -104,9 +128,22 @@ describe('DrawerDirective', () => {
     expect(directive.ariaHidden).toBe('true');
 
     directive.open = true;
+    jest.runAllTimers();
 
     expect(directive.role).toBe('dialog');
     expect(directive.ariaModal).toBe('true');
     expect(directive.ariaHidden).toBe('false');
+  });
+
+  it('should not refocus contents if closed before the next animation frame', () => {
+    toggle.focus();
+
+    directive.open = true;
+    directive.open = false;
+    jest.runAllTimers();
+
+    expect(document.activeElement).toBe(toggle);
+    expect(rafSpy).toHaveBeenCalled();
+    expect(cancelRafSpy).toHaveBeenCalled();
   });
 });

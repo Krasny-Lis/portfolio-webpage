@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Directive, ElementRef, HostBinding, HostListener, Inject } from '@angular/core';
 
 const FOCUSABLE_SELECTORS =
-  'a[href],area[href],button:not([disabled]),input:not([type="hidden"]):not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"]),[contenteditable="true"]';
+  'a[href],a[routerLink],[routerLink],area[href],button:not([disabled]),input:not([type="hidden"]):not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"]),[contenteditable="true"]';
 
 @Directive({
   selector: '[appDrawer]',
@@ -13,6 +13,7 @@ export class DrawerDirective {
   private _open = false;
   private toggleElement: HTMLElement | null = null;
   private previouslyFocusedElement: HTMLElement | null = null;
+  private focusAnimationFrameId: number | null = null;
 
   @HostBinding('class.open') get isOpen(): boolean {
     return this._open;
@@ -105,10 +106,11 @@ export class DrawerDirective {
   private activateDrawer(): void {
     this.previouslyFocusedElement = this.document.activeElement as HTMLElement | null;
     this.toggleElement = this.findToggleElement() ?? this.toggleElement;
-    this.focusFirstElement();
+    this.scheduleFocus();
   }
 
   private deactivateDrawer(): void {
+    this.cancelScheduledFocus();
     const target = this.toggleElement ?? this.previouslyFocusedElement;
 
     if (target && typeof target.focus === 'function') {
@@ -120,6 +122,14 @@ export class DrawerDirective {
 
   private focusFirstElement(): void {
     const focusableElements = this.getFocusableElements();
+    const firstLink = focusableElements.find((element) =>
+      element.matches('a[href], a[routerLink]'),
+    );
+
+    if (firstLink) {
+      firstLink.focus();
+      return;
+    }
 
     if (focusableElements.length) {
       focusableElements[0].focus();
@@ -145,5 +155,40 @@ export class DrawerDirective {
     }
 
     return this.document.querySelector<HTMLElement>(`[aria-controls="${id}"]`);
+  }
+  private scheduleFocus(): void {
+    const view = this.document.defaultView ?? (typeof window !== 'undefined' ? window : null);
+
+    if (this.focusAnimationFrameId !== null && view?.cancelAnimationFrame) {
+      view.cancelAnimationFrame(this.focusAnimationFrameId);
+      this.focusAnimationFrameId = null;
+    }
+
+    if (view?.requestAnimationFrame) {
+      this.focusAnimationFrameId = view.requestAnimationFrame(() => {
+        this.focusAnimationFrameId = null;
+
+        if (!this._open) {
+          return;
+        }
+
+        this.focusFirstElement();
+      });
+      return;
+    }
+
+    if (this._open) {
+      this.focusFirstElement();
+    }
+  }
+
+  private cancelScheduledFocus(): void {
+    const view = this.document.defaultView ?? (typeof window !== 'undefined' ? window : null);
+
+    if (this.focusAnimationFrameId !== null && view?.cancelAnimationFrame) {
+      view.cancelAnimationFrame(this.focusAnimationFrameId);
+    }
+
+    this.focusAnimationFrameId = null;
   }
 }
