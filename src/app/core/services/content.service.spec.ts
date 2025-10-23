@@ -11,7 +11,7 @@ import { Project } from '../models/content.models';
 import { TranslationService } from './translation.service';
 
 describe('ContentService', () => {
-  const projects: Project[] = [{ id: '1', name: 'Test', description: 'Desc', tags: [] }];
+  const projects: Project[] = [{ name: 'Test', description: 'Desc', tags: [] }];
 
   const createService = (httpGet: jest.Mock) => {
     const translations = {

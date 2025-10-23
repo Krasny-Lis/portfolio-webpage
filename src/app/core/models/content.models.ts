@@ -1,5 +1,4 @@
 export interface Project {
-  id: string;
   name: string;
   description: string;
   tags: string[];
@@ -8,7 +7,6 @@ export interface Project {
   highlights?: string[];
   private?: boolean;
   draft?: boolean;
-  cover?: string;
 }
 
 export type SkillLevel = 'core' | 'pro' | 'familiar' | 'legacy';

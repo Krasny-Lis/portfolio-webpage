@@ -1,6 +1,5 @@
 [
   {
-    "id": "portfolio",
     "name": "Portfolio",
     "description": "Strona osobista jako pokaz dostępności i wydajności (tryb jasny/ciemny).",
     "tags": ["angular", "material"],
@@ -10,11 +9,9 @@
       "prerender + leniwe obrazki",
       "semantyczne landmarki i zarządzanie focusem",
       "warianty reduced-motion"
-    ],
-    "cover": "assets/images/portfolio.webp"
+    ]
   },
   {
-    "id": "angular-filetree",
     "name": "Angular FileTree",
     "description": "Aplikacja do zarządzania strukturą katalogów w monorepo Nx. Łączy Angular Signals z NgRx; serwer w trybie SSR z prerenderingiem.",
     "tags": ["angular", "signals", "ngrx", "ssr", "material"],
@@ -25,12 +22,9 @@
       "SSR + prerendering dla lepszego pierwszego wrażenia i SEO",
       "Monorepo oparte na Nx (generatory, affected)",
       "UI w Angular Material"
-    ],
-    "draft": false,
-    "cover": "assets/images/angular-filetree.webp"
+    ]
   },
   {
-    "id": "private-dashboard",
     "name": "Dashboard klienta",
     "description": "Aplikacja B2B z modułami raportującymi i analityką czasu rzeczywistego.",
     "tags": ["angular", "rxjs", "charts"],

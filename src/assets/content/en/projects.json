@@ -1,6 +1,5 @@
 [
   {
-    "id": "portfolio",
     "name": "Portfolio",
     "description": "Personal site as an accessibility and performance showcase (dark/light mode).",
     "tags": ["angular", "material"],
@@ -10,11 +9,9 @@
       "prerender + lazy images",
       "semantic landmarks & focus management",
       "reduced-motion variants"
-    ],
-    "cover": "assets/images/portfolio.webp"
+    ]
   },
   {
-    "id": "angular-filetree",
     "name": "Angular FileTree",
     "description": "App for managing directory structures in an Nx monorepo. Combines Angular Signals with NgRx; server-side rendering with prerendering.",
     "tags": ["angular", "signals", "ngrx", "ssr", "material"],
@@ -25,11 +22,9 @@
       "SSR + prerendering for faster first paint and SEO",
       "Nx monorepo (generators, affected)",
       "UI built with Angular Material"
-    ],
-    "cover": "assets/images/angular-filetree.webp"
+    ]
   },
   {
-    "id": "private-dashboard",
     "name": "Client dashboard",
     "description": "B2B app with reporting modules and real-time analytics.",
     "tags": ["angular", "rxjs", "charts"],
