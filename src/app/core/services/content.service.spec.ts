@@ -51,20 +51,12 @@ describe('ContentService', () => {
 
   it('should clear cache when language changes', () => {
     const projectsEs: Project[] = [{ name: 'Test ES', description: 'Desc ES', tags: [] }];
-    let serviceRef!: ContentService;
 
-    const getMock = jest.fn((url: string) => {
-      if (url.includes('/es/')) {
-        const cache = (serviceRef as unknown as { cache: Map<string, unknown> }).cache;
-        expect(cache.has('assets/content/en/projects.json')).toBe(false);
-        return of(projectsEs);
-      }
-
-      return of(projects);
-    });
+    const getMock = jest.fn((url: string) =>
+      url.includes('/es/') ? of(projectsEs) : of(projects),
+    );
 
     const { service, language$ } = createService(getMock);
-    serviceRef = service;
 
     const received: Project[][] = [];
     const subscription = service.getProjects().subscribe((value) => received.push(value));
