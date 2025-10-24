@@ -57,6 +57,7 @@
     <p
       class="status status--error"
       *ngIf="facade.status() === 'error'"
+      (click)="dismissError()"
       data-cy="contact-status-error"
     >
       {{ facade.errorMessage() }}

@@ -72,12 +72,19 @@ export class ContactFacade {
     this.hasError.set(false);
   }
 
+  dismissError(): void {
+    if (this.status() === 'error') {
+      this.status.set('idle');
+    }
+    this.hasError.set(false);
+  }
+
   private createMailtoLink(payload: ContactFormPayload): string {
     const subject = encodeURIComponent(payload.subject.trim());
     const name = payload.name.trim();
     const email = payload.email.trim();
     const message = payload.message.trim();
-    const bodyLines = [`From: ${name} <${email}>`, '', message, '', 'Consent granted: yes'];
+    const bodyLines = [`From: ${name} <${email}>`, '', message];
     const body = encodeURIComponent(bodyLines.join('\n'));
 
     return `mailto:sliwa.lis.krzysztof@gmail.com?subject=${subject}&body=${body}`;

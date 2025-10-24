@@ -37,11 +37,18 @@ export class ToastService {
 
     this.activeRef = overlayRef;
 
+    const handleClick = () => {
+      overlayRef.dispose();
+    };
+
+    overlayRef.overlayElement.addEventListener('click', handleClick);
+
     overlayRef.detachments().subscribe(() => {
       if (this.activeRef === overlayRef) {
         this.clearHideTimeout();
         this.activeRef = null;
       }
+      overlayRef.overlayElement.removeEventListener('click', handleClick);
     });
 
     if (duration > 0) {
