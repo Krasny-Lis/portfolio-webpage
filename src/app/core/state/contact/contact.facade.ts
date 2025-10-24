@@ -72,13 +72,6 @@ export class ContactFacade {
     this.hasError.set(false);
   }
 
-  dismissError(): void {
-    if (this.status() === 'error') {
-      this.status.set('idle');
-    }
-    this.hasError.set(false);
-  }
-
   private createMailtoLink(payload: ContactFormPayload): string {
     const subject = encodeURIComponent(payload.subject.trim());
     const name = payload.name.trim();

@@ -99,10 +99,6 @@ export class ContactComponent implements OnDestroy {
     }
   }
 
-  dismissError(): void {
-    this.facade.dismissError();
-  }
-
   ngOnDestroy(): void {
     this.facade.reset();
   }
