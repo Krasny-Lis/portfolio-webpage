@@ -46,15 +46,19 @@ export class ContactFacade {
           : null;
 
       const candidates = [defaultView, globalWindow].filter(Boolean) as Window[];
-      const targetWindow = candidates.find(
-        (candidate) => !!candidate.location && typeof candidate.location.assign === 'function',
-      );
+      const targetWindow = candidates.find((candidate) => typeof candidate.open === 'function');
 
       if (!targetWindow) {
         throw new Error('MAILTO_UNAVAILABLE');
       }
 
-      targetWindow.location.assign(mailto);
+      const opener =
+        typeof targetWindow.open === 'function' ? targetWindow.open(mailto, '_self') : null;
+
+      if (!opener) {
+        throw new Error('MAILTO_UNAVAILABLE');
+      }
+
       this.status.set('success');
     } catch (err) {
       this.hasError.set(true);
