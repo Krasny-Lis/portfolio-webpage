@@ -26,6 +26,19 @@
     ]
   },
   {
+    "name": "Slots Mini-Game",
+    "description": "An Angular arcade game where the player catches falling objects. Features keyboard controls and a form for adjusting gameplay settings.",
+    "tags": ["angular", "ngrx", "rxjs"],
+    "demoUrl": "https://krasny-lis.github.io/game/",
+    "repoUrl": "https://github.com/Krasny-Lis/game",
+    "highlights": [
+      "Game state managed with NgRx actions, reducers, selectors, and effects",
+      "Reactive form with validation and live gameplay settings updates",
+      "Keyboard controls, collision detection, and score tracking",
+      "Game loop, countdown timer, and simulated WebSocket feed built with RxJS"
+    ]
+  },
+  {
     "name": "Python Project – Flask",
     "description": "Sample Python application",
     "tags": ["python"],
