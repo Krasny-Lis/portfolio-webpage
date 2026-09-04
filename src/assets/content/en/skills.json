@@ -5,7 +5,7 @@
       { "name": "Angular", "level": "pro", "note": "Standalone components, Signals, SSR/SSG" },
       { "name": "TypeScript", "level": "core", "note": "Type-safe architecture & tooling" },
       { "name": "RxJS", "level": "pro", "note": "Higher-order mapping, marble testing" },
-      { "name": "NgRx", "level": "core", "note": "Feature stores, effects, mockable selectors" },
+      { "name": "NgRx", "level": "core", "note": "Feature stores, effects, mockable selectors" }
     ]
   },
   {
