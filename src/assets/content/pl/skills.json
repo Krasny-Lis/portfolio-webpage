@@ -10,17 +10,6 @@
         "level": "core",
         "note": "Store'y feature'owe, efekty, mockowalne selektory"
       },
-      {
-        "name": "React",
-        "level": "familiar",
-        "note": "Wzorce komponentów wielokrotnego użytku, hooki"
-      },
-      { "name": "Highcharts", "level": "familiar", "note": "Interaktywne wizualizacje danych" },
-      {
-        "name": "GraphQL",
-        "level": "familiar",
-        "note": "Integracje po stronie klienta, projektowanie schematów"
-      }
     ]
   },
   {
