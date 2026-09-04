@@ -9,7 +9,7 @@
         "name": "NgRx",
         "level": "core",
         "note": "Store'y feature'owe, efekty, mockowalne selektory"
-      },
+      }
     ]
   },
   {
