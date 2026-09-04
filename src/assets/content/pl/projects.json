@@ -1,39 +1,40 @@
 [
   {
     "name": "Portfolio",
-    "description": "Strona osobista jako pokaz dostępności i wydajności (tryb jasny/ciemny).",
-    "tags": ["angular", "ngrx", "ssr"],
-    "demoUrl": "",
+    "description": "Osobista strona portfolio z wersją polską i angielską, filtrowaniem projektów oraz trybem jasnym i ciemnym.",
+    "tags": ["angular", "signals"],
+    "demoUrl": "https://krasny-lis.github.io/portfolio-webpage/#/",
     "repoUrl": "https://github.com/Krasny-Lis/portfolio-webpage",
     "highlights": [
-      "prerender + lazy loading",
-      "semantyczne landmarki i zarządzanie focusem",
-      "warianty reduced-motion"
+      "Komponenty standalone i lazy loading podstron",
+      "Zarządzanie motywem, językiem i filtrami przez Angular Signals",
+      "Nawigacja klawiaturą i zarządzanie focusem w menu",
+      "Automatyczne budowanie i publikacja przez GitHub Actions"
     ]
   },
   {
     "name": "Angular FileTree",
-    "description": "Aplikacja do zarządzania strukturą katalogów w monorepo Nx. Łączy Angular Signals z NgRx; serwer w trybie SSR z prerenderingiem.",
-    "tags": ["angular", "signals", "ngrx", "ssr", "material"],
-    "demoUrl": "",
+    "description": "Interaktywne drzewo plików z zarządzaniem stanem w NgRx i interfejsem Angular Material. Pozwala dodawać i usuwać pliki oraz symulować widok różnych użytkowników.",
+    "tags": ["angular", "ngrx", "material"],
+    "demoUrl": "https://krasny-lis.github.io/b3-folder-app/",
     "repoUrl": "https://github.com/Krasny-Lis/b3-folder-app",
     "highlights": [
-      "Signals + NgRx - szybka i przewidywalna synchronizacja widoku",
-      "SSR + prerendering dla lepszego pierwszego wrażenia i SEO",
-      "Monorepo oparte na Nx (generatory, affected)",
-      "UI w Angular Material"
+      "Zarządzanie stanem przez akcje, reducery i selektory NgRx",
+      "Rekurencyjne operacje na zagnieżdżonej strukturze plików",
+      "Filtrowanie plików i dostępnych akcji według wybranego użytkownika",
+      "Zachowanie rozwinięcia folderów po zmianach danych"
     ]
   },
   {
-    "name": "React Shop View",
-    "description": "Aplikacja z prostym widokiem produktów w sklepie, zbudowana w React i Redux Toolkit. Oferuje filtrowanie, sortowanie i paginację.",
-    "tags": ["react", "next.js", "redux"],
+    "name": "Projekt Python – Flask",
+    "description": "Przykładowa aplikacja Python",
+    "tags": ["python"],
     "demoUrl": "",
     "repoUrl": "",
     "highlights": [
-      "Next.js dla renderowania po stronie serwera i routingu",
-      "Redux Toolkit do zarządzania stanem",
-      "Responsywny design z CSS Modules"
+      "Aktualnie służy jako przykład draftu",
+      "TBD",
+      "TBD"
     ],
     "draft": true
   }
