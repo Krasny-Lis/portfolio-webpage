@@ -26,6 +26,19 @@
     ]
   },
   {
+    "name": "Slots Mini-Game",
+    "description": "Gra zręcznościowa w Angularze polegająca na łapaniu spadających obiektów. Obsługuje sterowanie klawiaturą i zmianę parametrów rozgrywki przez formularz.",
+    "tags": ["angular", "ngrx", "rxjs"],
+    "demoUrl": "https://krasny-lis.github.io/game/",
+    "repoUrl": "https://github.com/Krasny-Lis/game",
+    "highlights": [
+      "Zarządzanie stanem gry przez akcje, reducery, selektory i efekty NgRx",
+      "Formularz reaktywny z walidacją i aktualizacją parametrów rozgrywki",
+      "Sterowanie klawiaturą, wykrywanie kolizji i zliczanie punktów",
+      "Pętla gry, licznik czasu i symulacja strumienia WebSocket z użyciem RxJS"
+    ]
+  },
+  {
     "name": "Projekt Python – Flask",
     "description": "Przykładowa aplikacja Python",
     "tags": ["python"],
