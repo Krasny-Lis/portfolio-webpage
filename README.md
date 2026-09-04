@@ -28,6 +28,7 @@ npm run dev:ssr        # Start SSR dev server (http://localhost:4200 by default)
 | `npm run lint`      | Run ESLint on `src/` and `cypress/`.              |
 | `npm run test`      | Execute Jest unit tests.                          |
 | `npm run build`     | Production browser build.                         |
+| `npm run build:pages` | Production browser build for GitHub Pages.       |
 | `npm run build:ssr` | Build browser + server bundles for SSR.           |
 | `npm run prerender` | Prerender defined routes to static HTML.          |
 | `npm run e2e`       | Execute Cypress e2e tests (requires app running). |
@@ -35,9 +36,10 @@ npm run dev:ssr        # Start SSR dev server (http://localhost:4200 by default)
 
 ## Deployment
 
-1. Build SSR bundles: `npm run build:ssr`.
-2. Optionally prerender static routes: `npm run prerender`.
-3. Serve using the generated Node server (`node dist/portfolio-webpage/server/server.mjs`) or deploy the prerendered output (`dist/portfolio-webpage/browser`).
+The supported GitHub Pages deployment uses a client-rendered Angular build. Follow
+the setup below; do not use the SSR/prerender commands for Pages. GitHub Pages does
+not run a Node.js server. The existing SSR configuration is separate from this
+deployment and is not validated by the Pages workflow.
 
 ## Content management
 
@@ -55,7 +57,15 @@ Update these files to refresh displayed content.
 - **Lint**: `npm run lint`
 - **End-to-end**: `npm run e2e`
 
-CI should follow the pipeline `install -> lint -> test -> build -> prerender`.
+The Pages workflow runs `npm ci`, the GitHub Pages routing tests and
+`npm run build:pages` on pull requests to `master`. Publishing runs only after a
+push to `master` or a manual workflow run on `master`. Run the full unit suite,
+lint and end-to-end tests separately.
+
+At the time of adding this workflow, the full unit suite already had six failing
+tests on `master` in `contact.facade.spec.ts` and `toast.service.spec.ts` (outdated
+window/overlay mocks). These are not changed or suppressed by this deployment
+patch; a passing Pages check does not mean the full unit suite passes.
 
 ## Environments
 
@@ -66,8 +76,47 @@ Adjust `contactEndpoint` to point at the form backend of your choice (Formspree,
 
 ## GitHub Pages / Static hosting
 
-1. Run `npm run prerender` to generate HTML for key routes.
-2. Deploy contents of `dist/portfolio-webpage/browser` to a static host (Netlify, Vercel, GitHub Pages). The generated files include meta tags per route and JSON-LD schema for SEO.
+### One-time repository setup
+
+1. Open **Settings → Pages → Build and deployment**.
+2. Set **Source** to **GitHub Actions**, not **Deploy from a branch**. Do not select
+   `/docs`: that directory does not contain a built site.
+3. Merge the deployment changes into `master`.
+4. Open **Actions → Build and deploy Angular to GitHub Pages** and wait for both
+   `build` and `deploy` to finish. Subsequent pushes to `master` update the site.
+5. Open <https://krasny-lis.github.io/portfolio-webpage/>.
+
+If Pages is enabled after the workflow has already failed, rerun the failed jobs
+or use **Run workflow** on `master`. No personal access token is needed.
+
+### Build and routing
+
+```bash
+npm ci
+npm run build:pages
+```
+
+Upload the contents of `dist/portfolio-webpage/browser`, not the source repository
+or the parent `dist/portfolio-webpage` directory. The workflow does this for you.
+
+The command combines the `production` and `github-pages` configurations:
+
+- `baseHref` is `/portfolio-webpage/`, so scripts, styles and JSON assets load
+  under the repository URL.
+- The production environment remains active (`ownerView: false`).
+- `app.config.pages.ts` replaces the normal app config only for this build. It
+  uses hash routing and does not enable hydration, because no server-rendered
+  HTML is provided.
+- Routes use URLs such as `/portfolio-webpage/#/projects`. Opening that URL
+  directly or refreshing it requests the same static index page, avoiding 404s.
+- `npm start`, `npm run build` and the existing SSR configuration are unchanged.
+
+After deployment, check the home page, open `#/projects` and `#/contact` directly,
+refresh both pages, and verify the language switch and project/skill data. The
+Pages build is client-rendered, not prerendered HTML with per-route SEO metadata.
+
+If the repository is renamed or a custom domain is added, update `baseHref` in
+the `github-pages` configuration in `angular.json` to match its new public path.
 
 ## License
 
