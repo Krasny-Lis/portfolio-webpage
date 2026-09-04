@@ -6,9 +6,6 @@
       { "name": "TypeScript", "level": "core", "note": "Type-safe architecture & tooling" },
       { "name": "RxJS", "level": "pro", "note": "Higher-order mapping, marble testing" },
       { "name": "NgRx", "level": "core", "note": "Feature stores, effects, mockable selectors" },
-      { "name": "React", "level": "familiar", "note": "Reusable component patterns, hooks" },
-      { "name": "Highcharts", "level": "familiar", "note": "Interactive data visualisations" },
-      { "name": "GraphQL", "level": "familiar", "note": "Client integrations, schema design" }
     ]
   },
   {
