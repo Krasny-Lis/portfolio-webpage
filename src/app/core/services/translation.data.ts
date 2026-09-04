@@ -145,7 +145,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
       description: 'I build fast, accessible Angular apps and help teams ship reliable products.',
       ctaProjects: 'See projects',
       ctaContact: 'Get in touch',
-      tags: ['Angular 19', 'SSR', 'NgRx', 'Signals', 'React 18'],
+      tags: ['Angular 19', 'SSR', 'NgRx', 'Signals'],
       socialIntro: 'Find me also on:',
     },
     about: {
@@ -274,7 +274,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
         'Buduję dostępne i testowalne aplikacje w Angularze (Signals, NgRx, SSR) - szybkie, stabilne i łatwe w zmianie.',
       ctaProjects: 'Zobacz projekty',
       ctaContact: 'Skontaktuj się',
-      tags: ['Angular 19', 'SSR', 'NgRx', 'Signals', 'React'],
+      tags: ['Angular 19', 'SSR', 'NgRx', 'Signals'],
       socialIntro: 'Znajdziesz mnie też:',
     },
     about: {
