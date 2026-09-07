@@ -4,6 +4,10 @@ describe('normalizeTagLabel', () => {
   it('should return canonical label when available', () => {
     expect(normalizeTagLabel('angular')).toBe('Angular');
     expect(normalizeTagLabel('mAtErIaL')).toBe('Material');
+    expect(normalizeTagLabel('sql server')).toBe('SQL Server');
+    expect(normalizeTagLabel('sSiS')).toBe('SSIS');
+    expect(normalizeTagLabel('ssrs')).toBe('SSRS');
+    expect(normalizeTagLabel('python')).toBe('Python');
   });
 
   it('should return null for unsupported tags', () => {
@@ -15,7 +19,14 @@ describe('normalizeTagLabel', () => {
     expect(normalizeTagLabel('ReAcT')).toBeNull();
   });
 
-  it('should offer only the remaining project filters', () => {
-    expect(AVAILABLE_TAGS).toEqual(['Angular', 'Material']);
+  it('should offer the available project filters', () => {
+    expect(AVAILABLE_TAGS).toEqual([
+      'Angular',
+      'Material',
+      'SQL Server',
+      'SSIS',
+      'SSRS',
+      'Python',
+    ]);
   });
 });
