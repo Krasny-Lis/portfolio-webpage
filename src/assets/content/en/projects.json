@@ -2,7 +2,10 @@
   {
     "name": "Portfolio",
     "description": "Personal portfolio website with Polish and English versions, project filtering, and light and dark themes.",
-    "tags": ["angular", "signals"],
+    "tags": [
+      "angular",
+      "signals"
+    ],
     "demoUrl": "https://krasny-lis.github.io/portfolio-webpage/#/",
     "repoUrl": "https://github.com/Krasny-Lis/portfolio-webpage",
     "highlights": [
@@ -10,12 +13,16 @@
       "Theme, language, and filter state managed with Angular Signals",
       "Keyboard navigation and menu focus management",
       "Automated builds and deployment with GitHub Actions"
-]
+    ]
   },
   {
     "name": "Angular FileTree",
     "description": "Interactive file tree with NgRx state management and an Angular Material interface. Supports adding and deleting files and simulating different users' views.",
-    "tags": ["angular", "ngrx", "material"],
+    "tags": [
+      "angular",
+      "ngrx",
+      "material"
+    ],
     "demoUrl": "https://krasny-lis.github.io/b3-folder-app/",
     "repoUrl": "https://github.com/Krasny-Lis/b3-folder-app",
     "highlights": [
@@ -28,7 +35,11 @@
   {
     "name": "Slots Mini-Game",
     "description": "An Angular arcade game where the player catches falling objects. Features keyboard controls and a form for adjusting gameplay settings.",
-    "tags": ["angular", "ngrx", "rxjs"],
+    "tags": [
+      "angular",
+      "ngrx",
+      "rxjs"
+    ],
     "demoUrl": "https://krasny-lis.github.io/game/",
     "repoUrl": "https://github.com/Krasny-Lis/game",
     "highlights": [
@@ -39,9 +50,29 @@
     ]
   },
   {
+    "name": "PaymentFlow",
+    "description": "End-to-end payment data pipeline covering deterministic CSV generation, SSIS ETL, SQL Server validation and auditing, and parameterized SSRS reporting.",
+    "tags": [
+      "sql server",
+      "ssis",
+      "ssrs",
+      "python"
+    ],
+    "demoUrl": "",
+    "repoUrl": "https://github.com/Krasny-Lis/payment-flow",
+    "highlights": [
+      "Imported 1,000,000 transactions in 38.1 s at approximately 26.3k rows/s",
+      "Idempotent ETL with duplicate handling, rejected-row tracking, and full execution auditing",
+      "Parameterized SSRS report backed by reporting views and a stored procedure",
+      "Repeatable performance, data-integrity, and index-maintenance tests across 1.3 million transactions"
+    ]
+  },
+  {
     "name": "Python Project – Flask",
     "description": "Sample Python application",
-    "tags": ["python"],
+    "tags": [
+      "python"
+    ],
     "demoUrl": "",
     "repoUrl": "",
     "highlights": [
