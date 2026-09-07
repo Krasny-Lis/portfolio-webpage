@@ -1,4 +1,11 @@
-export const AVAILABLE_TAGS = ['Angular', 'Material'] as const;
+export const AVAILABLE_TAGS = [
+  'Angular',
+  'Material',
+  'SQL Server',
+  'SSIS',
+  'SSRS',
+  'Python',
+] as const;
 const NORMALIZED_AVAILABLE_TAGS = AVAILABLE_TAGS.map((tag) => tag.toLowerCase());
 
 export function normalizeTagLabel(tag: string): string | null {
