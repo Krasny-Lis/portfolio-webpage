@@ -34,8 +34,13 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/styles.scss"],
-            "scripts": []
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [],
+            "define": {
+              "BUILD_VERSION": "'development'"
+            }
           },
           "configurations": {
             "production": {
@@ -135,7 +140,13 @@
           "options": {
             "browserTarget": "portfolio-webpage:build:production",
             "serverTarget": "portfolio-webpage:server:production",
-            "routes": ["/", "/about", "/skills", "/projects", "/contact"]
+            "routes": [
+              "/",
+              "/about",
+              "/skills",
+              "/projects",
+              "/contact"
+            ]
           }
         },
         "extract-i18n": {
@@ -153,7 +164,9 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         }
