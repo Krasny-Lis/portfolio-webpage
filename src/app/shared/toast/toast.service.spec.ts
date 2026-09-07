@@ -12,6 +12,7 @@ import { ToastService } from './toast.service';
 describe('ToastService', () => {
   type OverlayRefDouble = OverlayRef & {
     hostElement: HTMLElement;
+    overlayElement: HTMLElement;
     detachSubject: Subject<void>;
     componentRef: any;
   };
@@ -44,6 +45,7 @@ describe('ToastService', () => {
         detachSubject.next();
       }),
       hostElement,
+      overlayElement: hostElement,
       detachSubject,
       componentRef,
     } as OverlayRefDouble;
