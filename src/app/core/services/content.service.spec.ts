@@ -12,6 +12,7 @@ import { TranslationService } from './translation.service';
 
 describe('ContentService', () => {
   const projects: Project[] = [{ name: 'Test', description: 'Desc', tags: [] }];
+  const versionedProjectsUrl = 'assets/content/en/projects.json?v=development';
 
   const createService = (httpGet: jest.Mock) => {
     const translations = {
@@ -33,7 +34,7 @@ describe('ContentService', () => {
     };
   };
 
-  it('should cache requests based on url', () => {
+  it('should cache requests based on the versioned url', () => {
     const getMock = jest.fn(() => of(projects));
     const { service } = createService(getMock);
 
@@ -46,7 +47,7 @@ describe('ContentService', () => {
     expect(second[0]).toEqual(projects);
 
     expect(getMock).toHaveBeenCalledTimes(1);
-    expect(getMock).toHaveBeenCalledWith('assets/content/en/projects.json');
+    expect(getMock).toHaveBeenCalledWith(versionedProjectsUrl);
   });
 
   it('should clear cache when language changes', () => {
@@ -62,17 +63,18 @@ describe('ContentService', () => {
     const subscription = service.getProjects().subscribe((value) => received.push(value));
 
     expect(received[0]).toEqual(projects);
-    expect(getMock).toHaveBeenCalledWith('assets/content/en/projects.json');
+    expect(getMock).toHaveBeenCalledWith(versionedProjectsUrl);
 
     const cache = (service as unknown as { cache: Map<string, unknown> }).cache;
-    expect(cache.has('assets/content/en/projects.json')).toBe(true);
+    expect(cache.has(versionedProjectsUrl)).toBe(true);
 
     language$.next('es');
 
+    const versionedSpanishUrl = 'assets/content/es/projects.json?v=development';
     expect(received[1]).toEqual(projectsEs);
-    expect(getMock).toHaveBeenCalledWith('assets/content/es/projects.json');
-    expect(cache.has('assets/content/en/projects.json')).toBe(false);
-    expect(cache.has('assets/content/es/projects.json')).toBe(true);
+    expect(getMock).toHaveBeenCalledWith(versionedSpanishUrl);
+    expect(cache.has(versionedProjectsUrl)).toBe(false);
+    expect(cache.has(versionedSpanishUrl)).toBe(true);
 
     subscription.unsubscribe();
   });
