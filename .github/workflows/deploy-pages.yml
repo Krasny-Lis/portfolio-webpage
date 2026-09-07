@@ -34,13 +34,14 @@ jobs:
         env:
           CYPRESS_INSTALL_BINARY: '0'
 
-      # The existing contact/toast tests also fail on master. Keep this
-      # deployment check scoped to Pages; see README for the full-suite status.
-      - name: Test GitHub Pages routing
-        run: npm run test -- --ci --runInBand src/app/app.config.pages.spec.ts
+      - name: Run unit tests
+        run: npm run test -- --ci --runInBand
+
+      - name: Lint
+        run: npm run lint
 
       - name: Build for GitHub Pages
-        run: npm run build:pages
+        run: npm run build:pages -- --define "BUILD_VERSION='${GITHUB_SHA}'"
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4
