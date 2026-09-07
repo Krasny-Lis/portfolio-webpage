@@ -6,6 +6,9 @@ import { map, Observable, shareReplay, switchMap, tap } from 'rxjs';
 import { Project, SkillGroup, SocialLink } from '../models/content.models';
 import { TranslationService } from './translation.service';
 
+const CONTENT_VERSION =
+  typeof BUILD_VERSION === 'undefined' ? 'development' : BUILD_VERSION;
+
 export const LANGUAGE_TO_OBSERVABLE = new InjectionToken<typeof toObservable>(
   'LANGUAGE_TO_OBSERVABLE',
   {
@@ -65,11 +68,20 @@ export class ContentService {
   }
 
   private get<T>(url: string): Observable<T> {
-    if (!this.cache.has(url)) {
-      const request$ = this.http.get<T>(url).pipe(shareReplay({ bufferSize: 1, refCount: true }));
-      this.cache.set(url, request$);
+    const versionedUrl = this.withContentVersion(url);
+
+    if (!this.cache.has(versionedUrl)) {
+      const request$ = this.http
+        .get<T>(versionedUrl)
+        .pipe(shareReplay({ bufferSize: 1, refCount: true }));
+      this.cache.set(versionedUrl, request$);
     }
 
-    return this.cache.get(url)! as Observable<T>;
+    return this.cache.get(versionedUrl)! as Observable<T>;
+  }
+
+  private withContentVersion(url: string): string {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}v=${encodeURIComponent(CONTENT_VERSION)}`;
   }
 }

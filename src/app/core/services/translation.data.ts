@@ -178,7 +178,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     skills: {
       eyebrow: 'Stack',
       title: 'Skills',
-      description: 'Frontend expertise blended with an engineering approach to quality.',
+      description: 'Frontend expertise supported by practical SQL, ETL and reporting experience.',
       levels: {
         core: 'Core',
         pro: 'Pro',
@@ -189,7 +189,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     projects: {
       eyebrow: 'Portfolio',
       title: 'Projects',
-      description: 'Selected work - public demos',
+      description: 'Selected public projects, demos and technical case studies',
       filterLabel: 'Project filter',
       filterAll: 'All',
       showMore: 'Show more projects',
@@ -242,9 +242,9 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
           'Frontend competencies: Angular 19, RxJS, testing, tooling. Ready to power your project.',
       },
       projects: {
-        title: 'Angular projects - portfolio',
+        title: 'Software development projects - portfolio',
         description:
-          'Selected Angular projects: public demos, NDA case studies, performance audits.',
+          'Selected Angular applications, data pipelines, SQL Server work and technical case studies.',
       },
       contact: {
         title: 'Contact - Angular collaboration',
@@ -308,7 +308,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     skills: {
       eyebrow: 'Stack',
       title: 'Umiejętności',
-      description: 'Łączę kompetencje frontendowe z inżynierskim podejściem do jakości.',
+      description: 'Łączę kompetencje frontendowe z praktycznym doświadczeniem w SQL, ETL i raportowaniu.',
       levels: {
         core: 'Core',
         pro: 'Pro',
@@ -319,7 +319,7 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
     projects: {
       eyebrow: 'Portfolio',
       title: 'Projekty',
-      description: 'Wybrane realizacje - publiczne dema',
+      description: 'Wybrane publiczne projekty, dema i techniczne studia przypadków',
       filterLabel: 'Filtr projektów',
       filterAll: 'Wszystkie',
       showMore: 'Pokaż więcej projektów',
@@ -374,9 +374,9 @@ export const TRANSLATIONS: Record<Language, AppTranslations> = {
           'Kompetencje frontendowe: Angular 19, RxJS, testy, narzędzia. Gotowe do działania w Twoim projekcie.',
       },
       projects: {
-        title: 'Projekty Angular - portfolio',
+        title: 'Projekty programistyczne - portfolio',
         description:
-          'Wybrane projekty Angularowe: publiczne demo, case’y pod NDA, audyty wydajności.',
+          'Wybrane aplikacje Angular, procesy danych, rozwiązania SQL Server i techniczne studia przypadków.',
       },
       contact: {
         title: 'Kontakt - współpraca Angular',

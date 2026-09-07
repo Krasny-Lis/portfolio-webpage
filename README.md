@@ -8,7 +8,7 @@ MVP portfolio application built with Angular 19 standalone components. The app s
 - Signals for UI state (theme, filters)
 - Reactive forms for validated contact form
 - Server Side Rendering + prerender (`ng run portfolio-webpage:prerender`)
-- Static content fetched from `assets/content/*.json`
+- Static content fetched from `assets/content/*.json` with build-specific cache versioning
 - Accessible UI with keyboard support and WCAG-focused styling
 - Dark/Light mode persisted in `localStorage`
 - Jest for unit tests, Cypress for e2e (baseline config)
@@ -49,7 +49,10 @@ Portfolio data lives in `src/assets/content`:
 - `skills.json` - skill groups with level tags
 - `social.json` - social/contact links used in navbar/footer
 
-Update these files to refresh displayed content.
+Update these files to refresh displayed content. Production builds append the
+current Git commit SHA to content requests as a `?v=` parameter. This changes the
+asset URL on every deployment and prevents browsers from reusing outdated project
+or skill JSON files.
 
 ## Testing & quality
 
@@ -57,15 +60,10 @@ Update these files to refresh displayed content.
 - **Lint**: `npm run lint`
 - **End-to-end**: `npm run e2e`
 
-The Pages workflow runs `npm ci`, the GitHub Pages routing tests and
+The Pages workflow runs `npm ci`, the full Jest unit suite, ESLint and
 `npm run build:pages` on pull requests to `master`. Publishing runs only after a
-push to `master` or a manual workflow run on `master`. Run the full unit suite,
-lint and end-to-end tests separately.
-
-At the time of adding this workflow, the full unit suite already had six failing
-tests on `master` in `contact.facade.spec.ts` and `toast.service.spec.ts` (outdated
-window/overlay mocks). These are not changed or suppressed by this deployment
-patch; a passing Pages check does not mean the full unit suite passes.
+push to `master` or a manual workflow run on `master`. End-to-end tests remain a
+separate local check.
 
 ## Environments
 
@@ -104,6 +102,8 @@ The command combines the `production` and `github-pages` configurations:
 - `baseHref` is `/portfolio-webpage/`, so scripts, styles and JSON assets load
   under the repository URL.
 - The production environment remains active (`ownerView: false`).
+- The workflow injects the current Git commit SHA as `BUILD_VERSION`, which is
+  added to JSON content URLs to invalidate stale browser caches.
 - `app.config.pages.ts` replaces the normal app config only for this build. It
   uses hash routing and does not enable hydration, because no server-rendered
   HTML is provided.

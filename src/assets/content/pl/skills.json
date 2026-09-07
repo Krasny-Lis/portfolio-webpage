@@ -2,9 +2,21 @@
   {
     "name": "Frontend",
     "items": [
-      { "name": "Angular", "level": "pro", "note": "Komponenty standalone, Signals, SSR/SSG" },
-      { "name": "TypeScript", "level": "core", "note": "Architektura z typami i narzędzia" },
-      { "name": "RxJS", "level": "pro", "note": "Mapowania wyższego rzędu, testy marble" },
+      {
+        "name": "Angular",
+        "level": "pro",
+        "note": "Komponenty standalone, Signals, SSR/SSG"
+      },
+      {
+        "name": "TypeScript",
+        "level": "core",
+        "note": "Architektura z typami i narzędzia"
+      },
+      {
+        "name": "RxJS",
+        "level": "pro",
+        "note": "Mapowania wyższego rzędu, testy marble"
+      },
       {
         "name": "NgRx",
         "level": "core",
@@ -20,34 +32,66 @@
         "level": "core",
         "note": "Responsywny design, stylowanie oparte na komponentach"
       },
-      { "name": "Angular Material", "level": "core", "note": "Komponenty UI gotowe na enterprise" },
-      { "name": "Bootstrap", "level": "legacy", "note": "Doświadczenie w utrzymaniu/migracjach" }
+      {
+        "name": "Angular Material",
+        "level": "core",
+        "note": "Komponenty UI gotowe na enterprise"
+      },
+      {
+        "name": "Bootstrap",
+        "level": "legacy",
+        "note": "Doświadczenie w utrzymaniu/migracjach"
+      }
     ]
   },
   {
     "name": "Testy i jakość",
     "items": [
-      { "name": "Jest", "level": "pro", "note": "Testy jednostkowe, przepływy oparte na TDD" },
+      {
+        "name": "Jest",
+        "level": "pro",
+        "note": "Testy jednostkowe, przepływy oparte na TDD"
+      },
       {
         "name": "Testing Library",
         "level": "core",
         "note": "Testy skupione na użytkowniku i dostępności"
       },
-      { "name": "Cypress", "level": "core", "note": "Testy end-to-end i integracja z CI" },
+      {
+        "name": "Cypress",
+        "level": "core",
+        "note": "Testy end-to-end i integracja z CI"
+      },
       {
         "name": "Dostępność (a11y)",
         "level": "familiar",
         "note": "Zgodność z WCAG, testy z czytnikami ekranu"
       },
-      { "name": "Karma", "level": "legacy", "note": "Utrzymanie starszych zestawów testów" }
+      {
+        "name": "Karma",
+        "level": "legacy",
+        "note": "Utrzymanie starszych zestawów testów"
+      }
     ]
   },
   {
     "name": "Architektura i dostarczanie",
     "items": [
-      { "name": "Nx", "level": "core", "note": "Monorepo, generatory, caching/affected" },
-      { "name": "Git", "level": "core", "note": "Strategie rozgałęzień, code review" },
-      { "name": "CI/CD", "level": "core", "note": "Budżety, checki, spokojne releasy" },
+      {
+        "name": "Nx",
+        "level": "core",
+        "note": "Monorepo, generatory, caching/affected"
+      },
+      {
+        "name": "Git",
+        "level": "core",
+        "note": "Strategie rozgałęzień, code review"
+      },
+      {
+        "name": "CI/CD",
+        "level": "core",
+        "note": "Budżety, checki, spokojne releasy"
+      },
       {
         "name": "Agile / Scrum",
         "level": "core",
@@ -56,17 +100,27 @@
     ]
   },
   {
-    "name": "Backend (wsparcie)",
+    "name": "Dane, ETL i raportowanie",
     "items": [
+      {
+        "name": "SQL Server / T-SQL",
+        "level": "familiar",
+        "note": "Model relacyjny, procedury składowane, indeksy i analiza planów wykonania"
+      },
+      {
+        "name": "SSIS",
+        "level": "familiar",
+        "note": "Procesy ETL, walidacja danych, obsługa odrzuceń i audyt wykonań"
+      },
+      {
+        "name": "SSRS",
+        "level": "familiar",
+        "note": "Raporty parametryzowane oparte na widokach i procedurach"
+      },
       {
         "name": "Python",
         "level": "familiar",
-        "note": "Flask - lekkie usługi i API\nDjango - admin/CRUD, ORM"
-      },
-      {
-        "name": "SQL",
-        "level": "familiar",
-        "note": "Modelowanie relacyjne i zapytania"
+        "note": "Generowanie danych testowych, lekkie API we Flasku i podstawy Django ORM"
       }
     ]
   }

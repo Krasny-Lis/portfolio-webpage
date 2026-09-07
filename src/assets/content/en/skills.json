@@ -2,10 +2,26 @@
   {
     "name": "Frontend",
     "items": [
-      { "name": "Angular", "level": "pro", "note": "Standalone components, Signals, SSR/SSG" },
-      { "name": "TypeScript", "level": "core", "note": "Type-safe architecture & tooling" },
-      { "name": "RxJS", "level": "pro", "note": "Higher-order mapping, marble testing" },
-      { "name": "NgRx", "level": "core", "note": "Feature stores, effects, mockable selectors" }
+      {
+        "name": "Angular",
+        "level": "pro",
+        "note": "Standalone components, Signals, SSR/SSG"
+      },
+      {
+        "name": "TypeScript",
+        "level": "core",
+        "note": "Type-safe architecture & tooling"
+      },
+      {
+        "name": "RxJS",
+        "level": "pro",
+        "note": "Higher-order mapping, marble testing"
+      },
+      {
+        "name": "NgRx",
+        "level": "core",
+        "note": "Feature stores, effects, mockable selectors"
+      }
     ]
   },
   {
@@ -16,30 +32,66 @@
         "level": "core",
         "note": "Responsive design, component-driven styling"
       },
-      { "name": "Angular Material", "level": "core", "note": "Enterprise-ready UI components" },
-      { "name": "Bootstrap", "level": "legacy", "note": "Legacy/migration experience" }
+      {
+        "name": "Angular Material",
+        "level": "core",
+        "note": "Enterprise-ready UI components"
+      },
+      {
+        "name": "Bootstrap",
+        "level": "legacy",
+        "note": "Legacy/migration experience"
+      }
     ]
   },
   {
     "name": "Testing & Quality",
     "items": [
-      { "name": "Jest", "level": "pro", "note": "Unit tests, test-driven workflows" },
-      { "name": "Testing Library", "level": "core", "note": "User-focused, accessible tests" },
-      { "name": "Cypress", "level": "core", "note": "End-to-end & CI integration" },
+      {
+        "name": "Jest",
+        "level": "pro",
+        "note": "Unit tests, test-driven workflows"
+      },
+      {
+        "name": "Testing Library",
+        "level": "core",
+        "note": "User-focused, accessible tests"
+      },
+      {
+        "name": "Cypress",
+        "level": "core",
+        "note": "End-to-end & CI integration"
+      },
       {
         "name": "Accessibility (a11y)",
         "level": "familiar",
         "note": "WCAG compliance, screen reader testing"
       },
-      { "name": "Karma", "level": "legacy", "note": "Maintenance on legacy suites" }
+      {
+        "name": "Karma",
+        "level": "legacy",
+        "note": "Maintenance on legacy suites"
+      }
     ]
   },
   {
     "name": "Architecture & Delivery",
     "items": [
-      { "name": "Nx", "level": "core", "note": "Monorepos, generators, caching/affected" },
-      { "name": "Git", "level": "core", "note": "Branching strategies, code reviews" },
-      { "name": "CI/CD", "level": "core", "note": "Budgets, checks, calm releases" },
+      {
+        "name": "Nx",
+        "level": "core",
+        "note": "Monorepos, generators, caching/affected"
+      },
+      {
+        "name": "Git",
+        "level": "core",
+        "note": "Branching strategies, code reviews"
+      },
+      {
+        "name": "CI/CD",
+        "level": "core",
+        "note": "Budgets, checks, calm releases"
+      },
       {
         "name": "Agile / Scrum",
         "level": "core",
@@ -48,17 +100,27 @@
     ]
   },
   {
-    "name": "Backend (Support)",
+    "name": "Data, ETL & Reporting",
     "items": [
+      {
+        "name": "SQL Server / T-SQL",
+        "level": "familiar",
+        "note": "Relational modelling, stored procedures, indexes and execution-plan analysis"
+      },
+      {
+        "name": "SSIS",
+        "level": "familiar",
+        "note": "ETL pipelines, data validation, rejection handling and execution auditing"
+      },
+      {
+        "name": "SSRS",
+        "level": "familiar",
+        "note": "Parameterized reports backed by views and stored procedures"
+      },
       {
         "name": "Python",
         "level": "familiar",
-        "note": "Flask - lightweight services & APIs\nDjango - admin CRUD & ORM"
-      },
-      {
-        "name": "SQL",
-        "level": "familiar",
-        "note": "Relational modelling & queries"
+        "note": "Test-data generation, lightweight Flask APIs and Django ORM basics"
       }
     ]
   }
