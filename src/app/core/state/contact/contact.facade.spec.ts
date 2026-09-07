@@ -19,47 +19,37 @@ describe('ContactFacade', () => {
   };
 
   it('should open the mail client when available', () => {
-    const assignSpy = jest.fn();
+    const openSpy = jest.fn(() => ({}) as WindowProxy);
     const facade = new ContactFacade(
       {
-        defaultView: {
-          location: { assign: assignSpy },
-          navigator: { languages: ['en'], language: 'en' },
-        },
-        documentElement: { lang: 'en' },
+        defaultView: { open: openSpy },
       } as unknown as Document,
       translationsStub,
     );
 
     facade.send(basePayload);
 
-    expect(assignSpy).toHaveBeenCalledTimes(1);
-    const url = assignSpy.mock.calls[0][0] as string;
+    expect(openSpy).toHaveBeenCalledTimes(1);
+    const url = openSpy.mock.calls[0][0] as string;
+    expect(openSpy.mock.calls[0][1]).toBe('_self');
     expect(url.startsWith('mailto:sliwa.lis.krzysztof@gmail.com')).toBe(true);
 
     const [, query] = url.split('?');
     const params = new URLSearchParams(query);
     expect(params.get('subject')).toBe(basePayload.subject.trim());
-
-    const body = params.get('body');
-    expect(body).toBe(
-      `From: ${basePayload.name} <${basePayload.email}>\n\n${basePayload.message}\n\nConsent granted: yes`,
+    expect(params.get('body')).toBe(
+      `From: ${basePayload.name} <${basePayload.email}>\n\n${basePayload.message}`,
     );
     expect(facade.status()).toBe('success');
   });
 
   it('should expose an error when mail client is unavailable', () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
-    const assignSpy = jest.fn(() => {
-      throw new Error('MAILTO_UNAVAILABLE');
-    });
+    const openSpy = jest.fn(() => null);
 
     const facade = new ContactFacade(
       {
-        defaultView: {
-          location: { assign: assignSpy },
-        },
-        documentElement: { lang: 'en' },
+        defaultView: { open: openSpy },
       } as unknown as Document,
       translationsStub,
     );
@@ -68,16 +58,16 @@ describe('ContactFacade', () => {
 
     expect(facade.status()).toBe('error');
     expect(facade.errorMessage()).toBe('Something went wrong');
+    expect(openSpy).toHaveBeenCalledTimes(1);
     consoleSpy.mockRestore();
-    expect(assignSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should fallback to global window when document defaultView is unavailable', () => {
-    const assignSpy = jest.fn();
+    const openSpy = jest.fn(() => ({}) as WindowProxy);
     const globalWithWindow = globalThis as typeof globalThis & { window?: Window };
     const originalDescriptor = Object.getOwnPropertyDescriptor(globalThis, 'window');
     const originalWindow = globalWithWindow.window;
-    const stubWindow = { location: { assign: assignSpy } } as unknown as Window;
+    const stubWindow = { open: openSpy } as unknown as Window;
 
     const restoreWindow = () => {
       if (originalDescriptor) {
@@ -108,14 +98,13 @@ describe('ContactFacade', () => {
       const facade = new ContactFacade(
         {
           defaultView: null,
-          documentElement: { lang: 'en' },
         } as unknown as Document,
         translationsStub,
       );
 
       facade.send(basePayload);
 
-      expect(assignSpy).toHaveBeenCalledTimes(1);
+      expect(openSpy).toHaveBeenCalledTimes(1);
       expect(facade.status()).toBe('success');
     } finally {
       restoreWindow();
