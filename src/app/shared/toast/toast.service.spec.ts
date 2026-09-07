@@ -10,11 +10,26 @@ import { ToastComponent } from './toast.component';
 import { ToastService } from './toast.service';
 
 describe('ToastService', () => {
+  type ToastComponentRefDouble = {
+    instance: ToastComponent;
+    changeDetectorRef: {
+      detectChanges: () => void;
+    };
+    location: {
+      nativeElement: HTMLElement;
+    };
+  };
+
   type OverlayRefDouble = OverlayRef & {
     hostElement: HTMLElement;
     overlayElement: HTMLElement;
     detachSubject: Subject<void>;
-    componentRef: any;
+    componentRef: ToastComponentRefDouble;
+  };
+
+  type GlobalPositionStrategyDouble = {
+    centerHorizontally: () => GlobalPositionStrategyDouble;
+    bottom: () => GlobalPositionStrategyDouble;
   };
 
   let overlayRefs: OverlayRefDouble[];
@@ -26,13 +41,13 @@ describe('ToastService', () => {
   function createOverlayRefStub(): OverlayRefDouble {
     const detachSubject = new Subject<void>();
     const hostElement = document.createElement('div');
-    const componentInstance = new ToastComponent() as any;
-    const componentRef = {
+    const componentInstance = new ToastComponent();
+    const componentRef: ToastComponentRefDouble = {
       instance: componentInstance,
       changeDetectorRef: {
         detectChanges: jest.fn(() => {
-          hostElement.setAttribute('role', componentInstance.role);
-          hostElement.setAttribute('aria-live', componentInstance.ariaLive);
+          hostElement.setAttribute('role', Reflect.get(componentInstance, 'role'));
+          hostElement.setAttribute('aria-live', Reflect.get(componentInstance, 'ariaLive'));
         }),
       },
       location: { nativeElement: hostElement },
@@ -48,7 +63,7 @@ describe('ToastService', () => {
       overlayElement: hostElement,
       detachSubject,
       componentRef,
-    } as OverlayRefDouble;
+    } as unknown as OverlayRefDouble;
 
     return overlayRef;
   }
@@ -56,7 +71,7 @@ describe('ToastService', () => {
   beforeEach(() => {
     overlayRefs = [];
 
-    const globalPosition: any = {
+    const globalPosition: GlobalPositionStrategyDouble = {
       centerHorizontally: jest.fn(() => globalPosition),
       bottom: jest.fn(() => globalPosition),
     };
