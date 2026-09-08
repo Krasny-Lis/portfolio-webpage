@@ -20,10 +20,7 @@ export function getProjectTransitionName(project: Project): string {
   return `project-card-${(hash >>> 0).toString(36)}`;
 }
 
-export function runWithViewTransition(
-  documentRef: Document,
-  update: () => Promise<void>,
-): void {
+export function runWithViewTransition(documentRef: Document, update: () => Promise<void>): void {
   const transitionDocument = documentRef as ViewTransitionDocument;
   const prefersReducedMotion =
     documentRef.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches ?? false;
