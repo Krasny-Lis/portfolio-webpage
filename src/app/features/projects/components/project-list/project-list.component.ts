@@ -2,8 +2,12 @@ import { NgFor, NgIf, SlicePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, inject, signal } from '@angular/core';
 
 import { Project } from '../../../../core/models/content.models';
-import { ProjectCardComponent } from '../project-card/project-card.component';
 import { TranslationService } from '../../../../core/services/translation.service';
+import {
+  getProjectIdentity,
+  getProjectTransitionName,
+} from '../../project-transition.utils';
+import { ProjectCardComponent } from '../project-card/project-card.component';
 
 @Component({
   selector: 'app-project-list',
@@ -11,7 +15,7 @@ import { TranslationService } from '../../../../core/services/translation.servic
   imports: [ProjectCardComponent, NgFor, NgIf, SlicePipe],
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectListComponent {
   private _projects: Project[] = [];
@@ -33,5 +37,13 @@ export class ProjectListComponent {
 
   showMore(): void {
     this.visibleCount.update((value) => Math.min(value + 6, this._projects.length));
+  }
+
+  trackProject(_: number, project: Project): string {
+    return getProjectIdentity(project);
+  }
+
+  transitionName(project: Project): string {
+    return getProjectTransitionName(project);
   }
 }
