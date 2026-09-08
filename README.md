@@ -1,4 +1,4 @@
-# Developer Portfolio — Angular, TypeScript & Data Engineering
+# Developer Portfolio – Angular, TypeScript & Data Engineering
 
 [![Build and deploy Angular to GitHub Pages](https://github.com/Krasny-Lis/portfolio-webpage/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/Krasny-Lis/portfolio-webpage/actions/workflows/deploy-pages.yml)
 
