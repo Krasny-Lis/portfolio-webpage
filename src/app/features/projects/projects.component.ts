@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { DOCUMENT, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,6 +18,7 @@ import { SectionComponent } from '../../shared/components/section/section.compon
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { TagFilterComponent } from './components/tag-filter/tag-filter.component';
 import { TranslationService } from '../../core/services/translation.service';
+import { runWithViewTransition } from './project-transition.utils';
 import { AVAILABLE_TAGS, normalizeTagLabel } from './tag-utils';
 
 @Component({
@@ -33,6 +34,7 @@ export class ProjectsComponent {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
+  private document = inject(DOCUMENT);
   private translations = inject(TranslationService);
 
   private allProjects = signal<Project[]>([]);
@@ -108,10 +110,12 @@ export class ProjectsComponent {
   }
 
   private updateQuery(tags: string[]): void {
-    void this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { tags: tags.length ? tags.join(',') : null },
-      queryParamsHandling: 'merge',
+    runWithViewTransition(this.document, async () => {
+      await this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { tags: tags.length ? tags.join(',') : null },
+        queryParamsHandling: 'merge',
+      });
     });
   }
 }
