@@ -3,10 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, inject, signal } from '@angu
 
 import { Project } from '../../../../core/models/content.models';
 import { TranslationService } from '../../../../core/services/translation.service';
-import {
-  getProjectIdentity,
-  getProjectTransitionName,
-} from '../../project-transition.utils';
+import { getProjectIdentity, getProjectTransitionName } from '../../project-transition.utils';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 
 @Component({
