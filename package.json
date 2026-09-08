@@ -1,6 +1,21 @@
 {
   "name": "portfolio-webpage",
   "version": "1.0.0",
+  "description": "Bilingual Angular portfolio showcasing frontend and data-engineering projects.",
+  "private": true,
+  "homepage": "https://krasny-lis.github.io/portfolio-webpage/#/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Krasny-Lis/portfolio-webpage.git"
+  },
+  "keywords": [
+    "angular",
+    "typescript",
+    "rxjs",
+    "portfolio",
+    "accessibility",
+    "github-pages"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -16,7 +31,6 @@
     "build:ssr": "ng run portfolio-webpage:build-ssr",
     "prerender": "ng run portfolio-webpage:prerender"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^19.2.0",
     "@angular/cdk": "^19.2.8",
